@@ -1,0 +1,17 @@
+VR BOBA GAME (Panda Unexpress)
+
+Main Gameplay Loop:
+
+Player types their name and goes into the game -> Customers come in waves with their order and timings the player has to complete the order by -> player makes the orders and earns money (points and currency they can use in main menu to upgrade stuff/buy more ingredients) -> amount of customers and difficulty of order increases with waves (endless) -> player fails 3 orders and game ends, leaderboard is shown.
+
+
+
+Unique mechanics:
+
+Players start with serving only one recipe, other recipes can be discovered by the player through their own experimentation
+
+Scooping mechanic for toppings and ice
+
+Mixing mechanic for liquid bases(the different recipes)
+
+Slot sugar machine where players can choose the sugar levels and add sugar syrup/honey into the drink
