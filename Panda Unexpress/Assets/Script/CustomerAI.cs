@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ public class CustomerAI : MonoBehaviour
 
     [Header("Order System")]
     private bool orderGenerated = false;
+    public TextMeshProUGUI orderText;
 
     private GameObject spawnedCustomer;
     private NavMeshAgent agent;
@@ -112,10 +114,29 @@ public class CustomerAI : MonoBehaviour
     {
         currentOrder = orderGenerator.GenerateOrder();
 
-        Debug.Log("Customer Order:");
-        Debug.Log(currentOrder.base1 + " + " + currentOrder.base2);
-        Debug.Log(currentOrder.sugarType + " " + currentOrder.sugarPercent + "%");
-        Debug.Log("Ice: " + currentOrder.iceAmount);
-        Debug.Log("Boba: " + currentOrder.boba);
+        string iceText = GetIceText(currentOrder.iceAmount);
+
+        orderText.text =
+            "Customer Order:\n" +
+            currentOrder.base1 + " + " + currentOrder.base2 + "\n" +
+            currentOrder.sugarType + " " + currentOrder.sugarPercent + "%\n" +
+            iceText + "\n" +
+            "Boba: " + (currentOrder.wantsBoba ? "Yes" : "No");
+    }
+    string GetIceText(int iceAmount)
+    {
+        switch (iceAmount)
+        {
+            case 0:
+                return "No Ice";
+            case 1:
+                return "Less Ice";
+            case 2:
+                return "Regular Ice";
+            case 3:
+                return "More Ice";
+            default:
+                return "Unknown";
+        }
     }
 }

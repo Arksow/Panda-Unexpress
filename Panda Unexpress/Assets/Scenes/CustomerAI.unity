@@ -791,13 +791,14 @@ MonoBehaviour:
   spawnPoint: {fileID: 591310801}
   firstLocation: {fileID: 1058756502}
   leaveLocation: {fileID: 3774185}
+  orderText: {fileID: 75134894}
   currentOrder:
     base1: 0
     base2: 0
     sugarType: 0
     sugarPercent: 0
     iceAmount: 0
-    boba: 0
+    wantsBoba: 0
   orderGenerator: {fileID: 1866247530}
 --- !u!4 &591310801
 Transform:

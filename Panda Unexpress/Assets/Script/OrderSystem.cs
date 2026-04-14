@@ -12,13 +12,13 @@ public class OrderSystem : MonoBehaviour
 
         //Sugar
         order.sugarType = (SugarType)Random.Range(0, 3);
-        order.sugarPercent = GetRandomSugar();
+        order.sugarPercent = GetRandomSugar(order.sugarType);
 
         //Ice
         order.iceAmount = GetRandomIce();
 
         //Boba
-        order.boba = Random.value > 0.5f;
+        order.wantsBoba = Random.value > 0.5f;
 
         return order;
     }
@@ -42,9 +42,14 @@ public class OrderSystem : MonoBehaviour
     }
 
     //Sugar values
-    float GetRandomSugar()
+    float GetRandomSugar(SugarType sugarType)
     {
-        int[] sugarOptions = { 0, 25, 50, 75, 100 };
+        if (sugarType == SugarType.None)
+        {
+            return 0;
+        }
+
+        int[] sugarOptions = { 25, 50, 75, 100 };
         return sugarOptions[Random.Range(0, sugarOptions.Length)];
     }
 
