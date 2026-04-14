@@ -10,5 +10,5 @@ public class CustomerOrder
     public float sugarPercent;
 
     public int iceAmount;
-    public bool boba;
+    public bool wantsBoba;
 }
