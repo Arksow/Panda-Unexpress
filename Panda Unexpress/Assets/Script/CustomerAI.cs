@@ -94,7 +94,7 @@ public class CustomerAI : MonoBehaviour
 
     void RotateToZero()
     {
-        Quaternion targetRotation = Quaternion.Euler(0f, 0f, 0f);
+        Quaternion targetRotation = firstLocation.rotation;
 
         spawnedCustomer.transform.rotation = Quaternion.Slerp(
             spawnedCustomer.transform.rotation,
