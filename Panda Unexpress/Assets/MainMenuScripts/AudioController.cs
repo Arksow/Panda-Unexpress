@@ -1,11 +1,21 @@
 using UnityEngine;
-
+[System.Serializable]
+public class Sound
+{
+    public string name;
+    public AudioClip clip;
+}
 public class AudioController : MonoBehaviour
 {
     public static AudioController Instance;
 
     public AudioSource musicSource;
+    public AudioSource sfxSource;
 
+    public Sound[] music; //put under audio list
+    public Sound[] sfx;
+
+    public string CurrentClip = "";
     private void Awake()
     {
         //global //singleton
@@ -21,8 +31,14 @@ public class AudioController : MonoBehaviour
         }
 
         // Load saved volume
-        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 50f);
         SetVolume(savedVolume);
+
+      
+
+
+        float savedSfxVolume = PlayerPrefs.GetFloat("SFXVolume", 25f); //forever
+        SetVolume(savedSfxVolume);
     }
 
     public void SetVolume(float volume)
@@ -30,5 +46,47 @@ public class AudioController : MonoBehaviour
         musicSource.volume = volume;
         PlayerPrefs.SetFloat("MusicVolume", volume);
         Debug.Log("Volume set to: " + volume);
+    }
+
+    public void SetVolumeOfSfx(float volume)
+    {
+        sfxSource.volume = volume;
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+        Debug.Log("Volume set to: " + volume);
+    }
+
+    public void PlayMusic(string trackName)
+    {
+        if (CurrentClip == trackName)
+            return;
+
+        foreach (Sound s in music)
+        {
+            if (s.name == trackName)
+            {
+                musicSource.clip = s.clip;
+                musicSource.loop = true;
+                musicSource.Play();
+                CurrentClip = trackName;
+
+                Debug.Log("Playing Music: " + trackName);
+                return;
+            }
+        }
+
+        Debug.LogWarning("Music not found: " + trackName);
+    }
+
+   //play sfx
+    public void PlaySFX(string soundName)
+    {
+        foreach (Sound s in sfx)
+        {
+            if (s.name == soundName)
+            {
+                sfxSource.PlayOneShot(s.clip);
+                return;
+            }
+        }
     }
 }
