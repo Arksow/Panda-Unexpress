@@ -10,11 +10,11 @@ public class CustomerAI : MonoBehaviour
     public Transform spawnPoint;
 
     [Header("Locations")]
-    public Transform firstLocation;
     public Transform leaveLocation;
+    public Transform firstLocation;
 
     [Header("Progress Settings")]
-    private float decreaseSpeed = 0.02f;
+    private float decreaseSpeed = 0.01f;
 
     [Header("Order System")]
     private bool orderGenerated = false;
@@ -29,6 +29,7 @@ public class CustomerAI : MonoBehaviour
 
     public CustomerOrder currentOrder;
     public OrderSystem orderGenerator;
+    public CupData receivedOrder;
 
     void Start()
     {
@@ -46,6 +47,9 @@ public class CustomerAI : MonoBehaviour
         {
             reachedCounter = true;
             agent.isStopped = true; //Stop the agent to rotate in place
+            agent.ResetPath();
+            agent.velocity = Vector3.zero;
+            agent.updateRotation = false;
         }
 
         //Customer rotates to zero and decrease progress bar until it reaches zero, then leave the store
@@ -55,7 +59,8 @@ public class CustomerAI : MonoBehaviour
 
             if (!orderGenerated)
             {
-                CustomerOrderSetup();
+                //CustomerOrderSetup();
+                currentOrder = orderGenerator.GenerateOrder();
                 orderGenerated = true;
             }
 
@@ -110,19 +115,19 @@ public class CustomerAI : MonoBehaviour
         agent.SetDestination(leaveLocation.position);
     }
 
-    void CustomerOrderSetup()
-    {
-        currentOrder = orderGenerator.GenerateOrder();
+    //void CustomerOrderSetup()
+    //{
+    //    currentOrder = orderGenerator.GenerateOrder();
 
-        string iceText = GetIceText(currentOrder.iceAmount);
+    //    string iceText = GetIceText(currentOrder.iceAmount);
 
-        orderText.text =
-            "Customer Order:\n" +
-            currentOrder.base1 + " + " + currentOrder.base2 + "\n" +
-            currentOrder.sugarType + " " + currentOrder.sugarPercent + "%\n" +
-            iceText + "\n" +
-            "Boba: " + (currentOrder.wantsBoba ? "Yes" : "No");
-    }
+    //    orderText.text =
+    //        "Customer Order:\n" +
+    //        currentOrder.base1 + " + " + currentOrder.base2 + "\n" +
+    //        currentOrder.sugarType + " " + currentOrder.sugarPercent + "%\n" +
+    //        iceText + "\n" +
+    //        "Boba: " + (currentOrder.wantsBoba ? "Yes" : "No");
+    //}
     string GetIceText(int iceAmount)
     {
         switch (iceAmount)
@@ -138,5 +143,28 @@ public class CustomerAI : MonoBehaviour
             default:
                 return "Unknown";
         }
+    }
+    
+    public void CheckOrder()
+    {
+        if (currentOrder == null || receivedOrder == null)
+            return;
+
+        if (currentOrder.sugarPercent != receivedOrder.sugarPercentage ||
+            currentOrder.sugarType != receivedOrder.currentSugarType ||
+            currentOrder.iceAmount != receivedOrder.iceScoopCount ||
+            //currentOrder.wantsBoba != (receivedOrder.bobaParticleCount > 0) ||
+            currentOrder.base1 != receivedOrder.base1 ||
+            currentOrder.base2 != receivedOrder.base2)
+        {
+            Debug.Log("Customer is unhappy with the order!");
+        }
+        else
+        {
+            Debug.Log("Customer is happy with the order!");
+        }
+
+        progressImage.fillAmount = 0f;
+        CustomerLeave();
     }
 }
