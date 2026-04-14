@@ -14,8 +14,8 @@ public class CupData : MonoBehaviour
     public SugarType currentSugarType = SugarType.None;
 
     [Header("UI Reference")]
-    public GameObject uiCanvas;
-    public TextMeshProUGUI contentsText;
+    //public GameObject uiCanvas;
+    //public TextMeshProUGUI contentsText;
 
     [Header("Liquid Bases")]
     public LiquidBase base1 = LiquidBase.None;
@@ -28,12 +28,12 @@ public class CupData : MonoBehaviour
 
     void Start()
     {
-        uiCanvas.SetActive(false);
+        //uiCanvas.SetActive(false);
         UpdateUI();
     }
 
-    public void ShowUI() { uiCanvas.SetActive(true); UpdateUI(); }
-    public void HideUI() { uiCanvas.SetActive(false); }
+    //public void ShowUI() { uiCanvas.SetActive(true); UpdateUI(); }
+    //public void HideUI() { uiCanvas.SetActive(false); }
 
     public void AddIceScoop() { iceScoopCount++; UpdateUI(); }
 
@@ -52,10 +52,10 @@ public class CupData : MonoBehaviour
             ? $"{currentSugarType}: {Mathf.RoundToInt(sugarPercentage)}%"
             : "Sugar: 0%";
 
-        contentsText.text = "<u>Cup Contents</u>\n" +
-                            $"Ice: {iceScoopCount} Scoops\n" +
-                            $"Boba: {bobaScoops} Scoops\n" +
-                            $"{sugarDisplay}";
+        //contentsText.text = "<u>Cup Contents</u>\n" +
+        //                    $"Ice: {iceScoopCount} Scoops\n" +
+        //                    $"Boba: {bobaScoops} Scoops\n" +
+        //                    $"{sugarDisplay}";
     }
 
     public void AddLiquid(LiquidBase incomingBase, float amount)
