@@ -55,7 +55,7 @@ public class AudioController : MonoBehaviour
         Debug.Log("Volume set to: " + volume);
     }
 
-    public void PlayMusic(string trackName)
+    public void PlayMusic(string trackName) //create empty gameobject with audio source and SceneMusic Scrip
     {
         if (CurrentClip == trackName)
             return;
@@ -78,7 +78,7 @@ public class AudioController : MonoBehaviour
     }
 
    //play sfx
-    public void PlaySFX(string soundName)
+    public void PlaySFX(string soundName) //just call into whatever button or what
     {
         foreach (Sound s in sfx)
         {
