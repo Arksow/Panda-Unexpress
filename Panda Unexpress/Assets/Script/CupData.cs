@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 
 public enum SugarType { None, Syrup, Honey }
-public enum LiquidBase { None, BlackTea, Matcha, Milk, Taro }
+public enum LiquidBase { None, Tea, Matcha, Milk }
 
 public class CupData : MonoBehaviour
 {
@@ -89,9 +89,9 @@ public class CupData : MonoBehaviour
 
     private void ValidateRecipe()
     {
-        // Example: Valid Recipe is Black Tea + Milk (Milk Tea)
-        bool isMilkTea = (base1 == LiquidBase.BlackTea && base2 == LiquidBase.Milk) ||
-                         (base1 == LiquidBase.Milk && base2 == LiquidBase.BlackTea);
+        // Example: Valid Recipe is Tea + Milk (Milk Tea)
+        bool isMilkTea = (base1 == LiquidBase.Tea && base2 == LiquidBase.Milk) ||
+                         (base1 == LiquidBase.Milk && base2 == LiquidBase.Tea);
 
         // Example: Valid Recipe is Matcha + Milk (Matcha Latte)
         bool isMatchaLatte = (base1 == LiquidBase.Matcha && base2 == LiquidBase.Milk) ||
