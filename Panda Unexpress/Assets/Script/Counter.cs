@@ -13,8 +13,8 @@ public class Counter : MonoBehaviour
 
             if (cup != null && customerManager != null)
             {
-                customerManager.receivedOrder = cup;
-                customerManager.CheckOrder();
+                //customerManager.receivedOrder = cup;
+                //customerManager.CheckOrder();
                 Destroy(other.gameObject);
             }
         }
