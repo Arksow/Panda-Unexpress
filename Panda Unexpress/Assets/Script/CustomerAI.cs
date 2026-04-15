@@ -45,7 +45,10 @@ public class CustomerAI : MonoBehaviour
             agent.remainingDistance <= agent.stoppingDistance)
         {
             reachedCounter = true;
-            agent.isStopped = true; //Stop the agent to rotate in place
+
+            agent.isStopped = true;
+            agent.velocity = Vector3.zero;
+            agent.ResetPath();
         }
 
         //Customer rotates to zero and decrease progress bar until it reaches zero, then leave the store
@@ -106,7 +109,9 @@ public class CustomerAI : MonoBehaviour
     void CustomerLeave()
     {
         isLeaving = true;
+
         agent.isStopped = false;
+        agent.updateRotation = true;
         agent.SetDestination(leaveLocation.position);
     }
 
