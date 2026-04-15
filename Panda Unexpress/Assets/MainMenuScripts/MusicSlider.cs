@@ -24,6 +24,6 @@ public class MusicSlider : MonoBehaviour
 
     public void SFXChangeVolume(float value)
     {
-        AudioController.Instance.SetVolume(value);
+        AudioController.Instance.SetVolumeOfSfx(value);
     }
 }
