@@ -14,7 +14,7 @@ public class Counter : MonoBehaviour
             if (cup != null && customerManager != null)
             {
                 customerManager.receivedOrder = cup;
-                customerManager.CheckOrder();
+                customerManager.CheckOrder(cup);
                 Destroy(other.gameObject);
             }
         }
