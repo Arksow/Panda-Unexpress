@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 
 public enum SugarType { None, Syrup, Honey }
-public enum LiquidBase { None, BlackTea, Matcha, Milk, Taro }
+public enum LiquidBase { None, Tea, Matcha, Milk }
 
 public class CupData : MonoBehaviour
 {
@@ -14,8 +14,8 @@ public class CupData : MonoBehaviour
     public SugarType currentSugarType = SugarType.None;
 
     [Header("UI Reference")]
-    public GameObject uiCanvas;
-    public TextMeshProUGUI contentsText;
+    //public GameObject uiCanvas;
+    //public TextMeshProUGUI contentsText;
 
     [Header("Liquid Bases")]
     public LiquidBase base1 = LiquidBase.None;
@@ -28,12 +28,12 @@ public class CupData : MonoBehaviour
 
     void Start()
     {
-        uiCanvas.SetActive(false);
+        //uiCanvas.SetActive(false);
         UpdateUI();
     }
 
-    public void ShowUI() { uiCanvas.SetActive(true); UpdateUI(); }
-    public void HideUI() { uiCanvas.SetActive(false); }
+    //public void ShowUI() { uiCanvas.SetActive(true); UpdateUI(); }
+    //public void HideUI() { uiCanvas.SetActive(false); }
 
     public void AddIceScoop() { iceScoopCount++; UpdateUI(); }
 
@@ -52,10 +52,10 @@ public class CupData : MonoBehaviour
             ? $"{currentSugarType}: {Mathf.RoundToInt(sugarPercentage)}%"
             : "Sugar: 0%";
 
-        contentsText.text = "<u>Cup Contents</u>\n" +
-                            $"Ice: {iceScoopCount} Scoops\n" +
-                            $"Boba: {bobaScoops} Scoops\n" +
-                            $"{sugarDisplay}";
+        //contentsText.text = "<u>Cup Contents</u>\n" +
+        //                    $"Ice: {iceScoopCount} Scoops\n" +
+        //                    $"Boba: {bobaScoops} Scoops\n" +
+        //                    $"{sugarDisplay}";
     }
 
     public void AddLiquid(LiquidBase incomingBase, float amount)
@@ -89,9 +89,9 @@ public class CupData : MonoBehaviour
 
     private void ValidateRecipe()
     {
-        // Example: Valid Recipe is Black Tea + Milk (Milk Tea)
-        bool isMilkTea = (base1 == LiquidBase.BlackTea && base2 == LiquidBase.Milk) ||
-                         (base1 == LiquidBase.Milk && base2 == LiquidBase.BlackTea);
+        // Example: Valid Recipe is Tea + Milk (Milk Tea)
+        bool isMilkTea = (base1 == LiquidBase.Tea && base2 == LiquidBase.Milk) ||
+                         (base1 == LiquidBase.Milk && base2 == LiquidBase.Tea);
 
         // Example: Valid Recipe is Matcha + Milk (Matcha Latte)
         bool isMatchaLatte = (base1 == LiquidBase.Matcha && base2 == LiquidBase.Milk) ||
