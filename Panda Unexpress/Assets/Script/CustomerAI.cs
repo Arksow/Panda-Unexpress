@@ -1,66 +1,75 @@
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class CustomerAI : MonoBehaviour
 {
-    [Header("Spawn Settings")]
-    public GameObject customerPrefab;
-    public Transform spawnPoint;
-
     [Header("Locations")]
-    public Transform leaveLocation;
-    public Transform firstLocation;
-
-    [Header("Progress Settings")]
-    private float decreaseSpeed = 0.01f;
+    [HideInInspector] public Transform leaveLocation;
+    [HideInInspector] public Transform customerLocation;
 
     [Header("Order System")]
-    private bool orderGenerated = false;
-    public TextMeshProUGUI orderText;
+    [HideInInspector] public OrderSystem orderGenerator;
 
-    private GameObject spawnedCustomer;
+    [Header("Customer Info")]
+    public int customerID;
+
+    public List<CustomerOrder> currentOrders = new List<CustomerOrder>();
+    [HideInInspector] public int orderCount = 1;
+    public CupData receivedOrder;
+
+    [Header("UI")]
+    [HideInInspector] public OrderUIManager orderUI;
+
+    [Header("Progress")]
+    private float decreaseSpeed = 0.1f;
+    private bool orderGenerated = false;
+
     private NavMeshAgent agent;
-    private Image progressImage;
+    [SerializeField] private Image progressImage;
 
     private bool reachedCounter = false;
     private bool isLeaving = false;
 
-    public CustomerOrder currentOrder;
-    public OrderSystem orderGenerator;
-    public CupData receivedOrder;
+    public System.Action onCustomerLeave;
 
     void Start()
     {
-        SpawnCustomer();
+        agent = GetComponent<NavMeshAgent>();
+
+        if (progressImage != null)
+            progressImage.fillAmount = 1f;
+
+        if (customerLocation != null)
+            agent.SetDestination(customerLocation.position);
     }
 
     void Update()
     {
         if (agent == null) return;
 
-        //Move to the first location
+        // ARRIVE AT COUNTER
         if (!reachedCounter &&
             !agent.pathPending &&
-            agent.remainingDistance <= agent.stoppingDistance)
+            agent.hasPath &&
+            agent.remainingDistance <= agent.stoppingDistance + 0.1f)
         {
             reachedCounter = true;
-            agent.isStopped = true; //Stop the agent to rotate in place
+            agent.isStopped = true;
             agent.ResetPath();
             agent.velocity = Vector3.zero;
             agent.updateRotation = false;
         }
 
-        //Customer rotates to zero and decrease progress bar until it reaches zero, then leave the store
+        // WAITING STATE
         if (reachedCounter && !isLeaving)
         {
-            RotateToZero();
+            RotateToCounter();
 
             if (!orderGenerated)
             {
-                //CustomerOrderSetup();
-                currentOrder = orderGenerator.GenerateOrder();
+                SetupOrder();
                 orderGenerated = true;
             }
 
@@ -69,102 +78,110 @@ public class CustomerAI : MonoBehaviour
             if (progressImage.fillAmount <= 0f)
             {
                 progressImage.fillAmount = 0f;
-                CustomerLeave();
+                LeaveStore();
             }
         }
 
-        //Leave the store and destroy when reached leave location
+        // DESTROY AFTER LEAVING
         if (isLeaving &&
             !agent.pathPending &&
-            agent.remainingDistance <= agent.stoppingDistance)
+            agent.hasPath &&
+            agent.remainingDistance <= agent.stoppingDistance + 0.1f)
         {
-            Destroy(spawnedCustomer);
+            onCustomerLeave?.Invoke();
+            Destroy(gameObject);
         }
     }
 
-    void SpawnCustomer()
+    void RotateToCounter()
     {
-        spawnedCustomer = Instantiate(customerPrefab, spawnPoint.position, spawnPoint.rotation);
-
-        agent = spawnedCustomer.GetComponent<NavMeshAgent>();
-
-        progressImage = spawnedCustomer.GetComponentInChildren<Image>();
-
-        if (progressImage != null)
-            progressImage.fillAmount = 1f;
-
-        if (agent != null)
-            agent.SetDestination(firstLocation.position);
-    }
-
-    void RotateToZero()
-    {
-        Quaternion targetRotation = firstLocation.rotation;
-
-        spawnedCustomer.transform.rotation = Quaternion.Slerp(
-            spawnedCustomer.transform.rotation,
-            targetRotation,
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            customerLocation.rotation,
             5f * Time.deltaTime
         );
     }
 
-    void CustomerLeave()
+    void SetupOrder()
     {
+        currentOrders.Clear();
+
+        for (int i = 0; i < orderCount; i++)
+        {
+            CustomerOrder order = orderGenerator.GenerateOrder();
+            currentOrders.Add(order);
+        }
+
+        orderUI?.AddCustomer(this);
+    }
+
+    void LeaveStore()
+    {
+        ClearCustomerUI();
         isLeaving = true;
         agent.isStopped = false;
+        agent.updateRotation = true;
         agent.SetDestination(leaveLocation.position);
     }
 
-    //void CustomerOrderSetup()
-    //{
-    //    currentOrder = orderGenerator.GenerateOrder();
-
-    //    string iceText = GetIceText(currentOrder.iceAmount);
-
-    //    orderText.text =
-    //        "Customer Order:\n" +
-    //        currentOrder.base1 + " + " + currentOrder.base2 + "\n" +
-    //        currentOrder.sugarType + " " + currentOrder.sugarPercent + "%\n" +
-    //        iceText + "\n" +
-    //        "Boba: " + (currentOrder.wantsBoba ? "Yes" : "No");
-    //}
-    string GetIceText(int iceAmount)
+    public void CheckOrder(CupData cup)
     {
-        switch (iceAmount)
+        receivedOrder = cup;
+
+        if (currentOrders.Count == 0)
         {
-            case 0:
-                return "No Ice";
-            case 1:
-                return "Less Ice";
-            case 2:
-                return "Regular Ice";
-            case 3:
-                return "More Ice";
-            default:
-                return "Unknown";
-        }
-    }
-    
-    public void CheckOrder()
-    {
-        if (currentOrder == null || receivedOrder == null)
+            Debug.Log("No more orders for this customer");
             return;
+        }
 
-        if (currentOrder.sugarPercent != receivedOrder.sugarPercentage ||
-            currentOrder.sugarType != receivedOrder.currentSugarType ||
-            currentOrder.iceAmount != receivedOrder.iceScoopCount ||
-            //currentOrder.wantsBoba != (receivedOrder.bobaParticleCount > 0) ||
-            currentOrder.base1 != receivedOrder.base1 ||
-            currentOrder.base2 != receivedOrder.base2)
+        CustomerOrder currentOrder = currentOrders[0];
+
+        bool correct =
+            currentOrder.sugarPercent == receivedOrder.sugarPercentage &&
+            currentOrder.sugarType == receivedOrder.currentSugarType &&
+            currentOrder.iceAmount == receivedOrder.iceScoopCount &&
+            currentOrder.base1 == receivedOrder.base1 &&
+            currentOrder.base2 == receivedOrder.base2;
+
+        if (correct)
         {
-            Debug.Log("Customer is unhappy with the order!");
+            Debug.Log($"Customer {customerID} order completed!");
+
+            currentOrders.RemoveAt(0);
+            orderUI?.UpdateUI();
+
+            // Leave only after all drinks served
+            if (currentOrders.Count == 0)
+            {
+                Debug.Log($"Customer {customerID} is HAPPY and leaving!");
+                progressImage.fillAmount = 0f;
+                ClearCustomerUI();
+                LeaveStore();
+            }
+            else
+            {
+                Debug.Log($"Remaining orders: {currentOrders.Count}");
+            }
         }
         else
         {
-            Debug.Log("Customer is happy with the order!");
+            Debug.Log($"Customer {customerID} is UNHAPPY!");
+            progressImage.fillAmount = 0f;
+            ClearCustomerUI();
+            LeaveStore();
         }
+    }
 
-        progressImage.fillAmount = 0f;
-        CustomerLeave();
+    public void SetPatienceMultiplier(float multiplier)
+    {
+        decreaseSpeed *= multiplier;
+    }
+
+    void ClearCustomerUI()
+    {
+        if (orderUI != null)
+        {
+            orderUI?.RemoveCustomer(this);
+        }
     }
 }

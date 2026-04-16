@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 3774185}
   m_Layer: 0
   m_Name: ExitLocation
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 277779065}
   m_Layer: 0
   m_Name: 'Queue '
-  m_TagString: Untagged
+  m_TagString: Queue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -767,7 +767,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 591310801}
-  - component: {fileID: 591310800}
+  - component: {fileID: 591310802}
   m_Layer: 0
   m_Name: SpawnLocation
   m_TagString: Untagged
@@ -775,31 +775,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &591310800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 591310799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1027a87c1844e3449af62fd3dba13407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CustomerAI
-  customerPrefab: {fileID: 7363462436892381181, guid: 2ebbcd473e21c6549aac989163d626ba, type: 3}
-  spawnPoint: {fileID: 591310801}
-  firstLocation: {fileID: 1058756502}
-  leaveLocation: {fileID: 3774185}
-  orderText: {fileID: 75134894}
-  currentOrder:
-    base1: 0
-    base2: 0
-    sugarType: 0
-    sugarPercent: 0
-    iceAmount: 0
-    wantsBoba: 0
-  orderGenerator: {fileID: 1866247530}
 --- !u!4 &591310801
 Transform:
   m_ObjectHideFlags: 0
@@ -815,6 +790,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &591310802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591310799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4c8f56c3a478b469cb57545824ea38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
+  customerPrefab: {fileID: 7363462436892381181, guid: 2ebbcd473e21c6549aac989163d626ba, type: 3}
+  spawnPoint: {fileID: 591310801}
+  leaveLocation: {fileID: 3774185}
+  orderSystem: {fileID: 1866247530}
+  counterSlots:
+  - position: {fileID: 1058756502}
+    isOccupied: 0
+  - position: {fileID: 277779065}
+    isOccupied: 0
+  - position: {fileID: 1540653573}
+    isOccupied: 0
+  orderUI: {fileID: 1559694189}
 --- !u!1 &1013926659
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,7 +904,7 @@ GameObject:
   - component: {fileID: 1058756502}
   m_Layer: 0
   m_Name: Queue
-  m_TagString: Untagged
+  m_TagString: Queue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1072,7 +1071,7 @@ GameObject:
   - component: {fileID: 1540653573}
   m_Layer: 0
   m_Name: 'Queue '
-  m_TagString: Untagged
+  m_TagString: Queue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1091,6 +1090,51 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1342871218}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1559694188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1559694190}
+  - component: {fileID: 1559694189}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1559694189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559694188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc169f3d9bd09bb4185c3d52e4734f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OrderUIManager
+  orderText: {fileID: 75134894}
+--- !u!4 &1559694190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559694188}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.05746, y: -0, z: -0.60914}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1866247529
 GameObject:
@@ -1264,3 +1308,4 @@ SceneRoots:
   - {fileID: 3774185}
   - {fileID: 458875911}
   - {fileID: 1866247531}
+  - {fileID: 1559694190}
