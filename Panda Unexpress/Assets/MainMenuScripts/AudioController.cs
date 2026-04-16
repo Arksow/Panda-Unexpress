@@ -37,7 +37,7 @@ public class AudioController : MonoBehaviour
       
 
 
-        float savedSfxVolume = PlayerPrefs.GetFloat("SFXVolume", 25f); //forever
+        float savedSfxVolume = PlayerPrefs.GetFloat("SFXVolume", 50f); //forever
         SetVolume(savedSfxVolume);
     }
 
