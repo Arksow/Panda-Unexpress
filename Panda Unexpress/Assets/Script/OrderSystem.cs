@@ -18,7 +18,7 @@ public class OrderSystem : MonoBehaviour
         order.iceAmount = GetRandomIce();
 
         //Boba
-        order.wantsBoba = Random.value > 0.5f;
+        order.bobaAmount = GetRandomBoba();
 
         return order;
     }
@@ -58,6 +58,16 @@ public class OrderSystem : MonoBehaviour
     {
         float roll = Random.value;
 
+        if (roll < 0.30f) return 0;
+        if (roll < 0.65f) return 1;
+        if (roll < 0.90f) return 2;
+        return 3;
+    }
+
+    //Boba values
+    int GetRandomBoba()
+    {
+        float roll = Random.value;
         if (roll < 0.30f) return 0;
         if (roll < 0.65f) return 1;
         if (roll < 0.90f) return 2;
