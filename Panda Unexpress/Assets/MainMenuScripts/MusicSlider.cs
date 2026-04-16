@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class MusicSlider : MonoBehaviour
 {
@@ -25,5 +26,19 @@ public class MusicSlider : MonoBehaviour
     public void SFXChangeVolume(float value)
     {
         AudioController.Instance.SetVolumeOfSfx(value);
+    }
+    public void ResetSettings()
+    {
+        PlayerPrefs.DeleteKey("MusicVolume");
+        PlayerPrefs.DeleteKey("SFXVolume");
+
+        float defaultMusicVol = 1f;
+        float defaultSFXVol = 1f;
+
+        AudioController.Instance.SetVolume(defaultMusicVol);
+        AudioController.Instance.SetVolumeOfSfx(defaultSFXVol);
+
+         musicSlider.value = defaultMusicVol;
+         sfxSlider.value = defaultSFXVol;
     }
 }
