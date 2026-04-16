@@ -1,43 +1,22 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Counter : MonoBehaviour
 {
-    private List<CustomerAI> customersAtCounter = new List<CustomerAI>();
+    [Header("Customer Reference")]
+    public CustomerAI customerManager;
 
     private void OnTriggerEnter(Collider other)
     {
-        CustomerAI customer = other.GetComponent<CustomerAI>();
-
-        if (customer != null)
-        {
-            if (!customersAtCounter.Contains(customer))
-                customersAtCounter.Add(customer);
-
-            return;
-        }
-
         if (other.gameObject.layer == LayerMask.NameToLayer("Cup"))
         {
             CupData cup = other.GetComponent<CupData>();
 
-            if (cup != null && customersAtCounter.Count > 0)
+            if (cup != null && customerManager != null)
             {
-                CustomerAI targetCustomer = customersAtCounter[0];
-                targetCustomer.CheckOrder(cup);
-
+                customerManager.receivedOrder = cup;
+                customerManager.CheckOrder(cup);
                 Destroy(other.gameObject);
             }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        CustomerAI customer = other.GetComponent<CustomerAI>();
-
-        if (customer != null)
-        {
-            customersAtCounter.Remove(customer);
         }
     }
 }
