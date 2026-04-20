@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 [System.Serializable]
 public class Sound
 {
@@ -34,13 +35,65 @@ public class AudioController : MonoBehaviour
         float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 50f);
         SetVolume(savedVolume);
 
-      
+
 
 
         float savedSfxVolume = PlayerPrefs.GetFloat("SFXVolume", 50f); //forever
         SetVolume(savedSfxVolume);
     }
+    //void Awake()
+    //{
+    //    if (Instance == null)
+    //    {
+    //        Instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //        SetupAudioSources();
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //        return;
+    //    }
 
+    //    LoadVolumes();
+    //}
+
+    //void SetupAudioSources()
+    //{
+
+    //    transform.SetParent(null);
+
+
+    //    AudioListener listener = GetComponent<AudioListener>();
+    //    if (listener != null)
+    //    {
+    //        Destroy(listener);
+    //    }
+
+    //    //create automatically
+    //    if (musicSource == null)
+    //    {
+    //        musicSource = gameObject.AddComponent<AudioSource>();
+    //        musicSource.loop = true;
+    //        musicSource.playOnAwake = false;
+    //    }
+
+    //    if (sfxSource == null)
+    //    {
+    //        sfxSource = gameObject.AddComponent<AudioSource>();
+    //        sfxSource.loop = false;
+    //        sfxSource.playOnAwake = false;
+    //    }
+    //}
+
+    //void LoadVolumes()
+    //{
+    //    float musicVol = PlayerPrefs.GetFloat("MusicVolume", 30f);
+    //    float sfxVol = PlayerPrefs.GetFloat("SFXVolume", 30f);
+
+    //    musicSource.volume = musicVol;
+    //    sfxSource.volume = sfxVol;
+    //}
     public void SetVolume(float volume)
     {
         musicSource.volume = volume;
