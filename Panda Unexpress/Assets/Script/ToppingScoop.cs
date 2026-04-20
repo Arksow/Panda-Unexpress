@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class ToppingScoop : MonoBehaviour
 {
@@ -7,16 +6,6 @@ public class ToppingScoop : MonoBehaviour
 
     public int heldParticles = 0;
     public float tiltThreshold = 0.5f;
-
-    void OnParticleTrigger()
-    {
-        ParticleSystem binParticles = GetComponent<ParticleSystem>();
-        List<ParticleSystem.Particle> enterParticles = new List<ParticleSystem.Particle>();
-
-        int numEnter = binParticles.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enterParticles);
-
-        heldParticles += numEnter;
-    }
 
     void Update()
     {

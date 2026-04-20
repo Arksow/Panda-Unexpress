@@ -108,4 +108,10 @@ public class CupData : MonoBehaviour
     {
         isTrashCup = true;
     }
+
+    public void AddBobaParticles(int amount)
+    {
+        bobaParticleCount += amount;
+        UpdateUI();
+    }
 }
