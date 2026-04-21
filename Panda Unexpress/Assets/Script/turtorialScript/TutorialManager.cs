@@ -1,76 +1,33 @@
-using System;
 using TMPro;
 using UnityEngine;
-
-[System.Serializable]
-public class TutorialStepData //open list here yes
-{
-    [TextArea]
-    public string stepText;
-    public TaskHighlight[] highlights;
-}
-
-
 
 public class TutorialManager : MonoBehaviour
 {
     public int currentSteps;
     public TMP_Text textUI;
 
-    public TutorialStepData[] steps;
+    public string[] steps;
 
     void Start()
     {
         UpdateSteps();
-
-
-        Invoke(nameof(AutoAdvanceFromWelcome), 6f);//complete step 0 auto to move on, cool thing i learnt
     }
-    void AutoAdvanceFromWelcome() //y
-    {
-        CompleteStep(0);
-    }
+
     public void UpdateSteps()
     {
-        if (currentSteps < 0 || currentSteps >= steps.Length)
-            return;
-
-        
-        textUI.text = steps[currentSteps].stepText;
-
-       
-        DisableAllHighlights();
-
-
-        //turn on
-        foreach (var h in steps[currentSteps].highlights)
-        {
-            if (h != null)
-                h.SetHighlight(true);
-        }
+        if (currentSteps >= 0 && currentSteps < steps.Length)
+            textUI.text = steps[currentSteps];
 
     }
-
-    private void DisableAllHighlights()
+    public void CompleteStep()
     {
-        foreach (var step in steps)
-        {
-            foreach (var h in step.highlights)
-            {
-                if (h != null)
-                    h.SetHighlight(false);
-            }
-        }
-    }
 
-    public void CompleteStep(int stepID)
-    {
-        
-        if (stepID != currentSteps)
+        if (currentSteps >= steps.Length)
             return;
 
-        currentSteps++;
 
+
+        currentSteps++; //go to next task
         if (currentSteps < steps.Length)
         {
             UpdateSteps();
@@ -81,11 +38,10 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-
     public void CompleteTurtorial()
     {
         textUI.text = "Completed Turtorial";
-        DisableAllHighlights();
+
         //return back to main scene ya
     }
 

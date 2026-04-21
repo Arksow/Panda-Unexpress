@@ -25,9 +25,15 @@ public class TaskHighlight : MonoBehaviour
 
     public void SetHighlight(bool isActive)
     {
-        if (outlineComponent == null)
-            return;
+        if (outlineComponent != null)
+        {
+            if (isActive/* && !RunSettings.OutlinesEnabled*/)
+            {
+                outlineComponent.enabled = false;
+                return;
+            }
 
-        outlineComponent.enabled = isActive;
+            outlineComponent.enabled = isActive;
+        }
     }
 }
