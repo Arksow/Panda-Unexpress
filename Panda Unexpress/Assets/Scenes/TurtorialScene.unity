@@ -6683,7 +6683,7 @@ MonoBehaviour:
   customerPrefab: {fileID: 7363462436892381181, guid: 2ebbcd473e21c6549aac989163d626ba, type: 3}
   spawnPoint: {fileID: 602100791}
   leaveLocation: {fileID: 224722885}
-  orderSystem: {fileID: 0}
+  orderSystem: {fileID: 1625447329}
   counterSlots:
   - position: {fileID: 164827160}
     isOccupied: 0
