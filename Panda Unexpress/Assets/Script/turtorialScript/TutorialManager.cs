@@ -15,11 +15,18 @@ public class TutorialManager : MonoBehaviour
 
     public void UpdateSteps()
     {
-        textUI.text = steps[currentSteps];
+        if (currentSteps >= 0 && currentSteps < steps.Length)
+            textUI.text = steps[currentSteps];
 
     }
     public void CompleteStep()
     {
+
+        if (currentSteps >= steps.Length)
+            return;
+
+
+
         currentSteps++; //go to next task
         if (currentSteps < steps.Length)
         {
@@ -36,5 +43,19 @@ public class TutorialManager : MonoBehaviour
         textUI.text = "Completed Turtorial";
 
         //return back to main scene ya
+    }
+
+
+    //getter 
+    public int GetCurrentStep()
+    {
+        return currentSteps;
+    }
+
+    //in case restart
+    public void ResetTutorial()
+    {
+        currentSteps = 0;
+        UpdateSteps();
     }
 }
