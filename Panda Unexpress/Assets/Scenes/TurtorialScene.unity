@@ -6691,7 +6691,7 @@ MonoBehaviour:
     isOccupied: 0
   - position: {fileID: 466478623}
     isOccupied: 0
-  orderUI: {fileID: 0}
+  orderUI: {fileID: 1746444030}
 --- !u!1 &708206799
 GameObject:
   m_ObjectHideFlags: 0
@@ -24697,6 +24697,7 @@ MonoBehaviour:
   base2: 0
   base2Amount: 0
   isTrashCup: 0
+  validRecipes: []
 --- !u!114 &1838320625
 MonoBehaviour:
   m_ObjectHideFlags: 0
