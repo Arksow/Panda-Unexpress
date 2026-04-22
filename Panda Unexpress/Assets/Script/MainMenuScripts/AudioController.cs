@@ -44,6 +44,7 @@ public class AudioController : MonoBehaviour
 
         //float savedSfxVolume = PlayerPrefs.GetFloat("SFXVolume", 50f); //forever
         //SetVolume(savedSfxVolume);
+        //get from music slider instead of old way
         masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
         sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
