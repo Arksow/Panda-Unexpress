@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 [System.Serializable]
@@ -17,6 +18,9 @@ public class AudioController : MonoBehaviour
     public Sound[] sfx;
 
     public string CurrentClip = "";
+    float masterVolume = 1f;
+    float musicVolume = 1f;
+    float sfxVolume = 1f;
     private void Awake()
     {
         //global //singleton
@@ -31,15 +35,20 @@ public class AudioController : MonoBehaviour
             return;
         }
 
-        // Load saved volume
-        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 50f);
-        SetVolume(savedVolume);
+        //// Load saved volume
+        //float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 50f);
+        //SetVolume(savedVolume);
 
 
 
 
-        float savedSfxVolume = PlayerPrefs.GetFloat("SFXVolume", 50f); //forever
-        SetVolume(savedSfxVolume);
+        //float savedSfxVolume = PlayerPrefs.GetFloat("SFXVolume", 50f); //forever
+        //SetVolume(savedSfxVolume);
+        masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+
+        ApplyVolumes();
     }
     //void Awake()
     //{
@@ -94,20 +103,45 @@ public class AudioController : MonoBehaviour
     //    musicSource.volume = musicVol;
     //    sfxSource.volume = sfxVol;
     //}
-    public void SetVolume(float volume)
+    //public void SetVolume(float volume)
+    //{
+    //    musicSource.volume = volume;
+    //    PlayerPrefs.SetFloat("MusicVolume", volume);
+    //    Debug.Log("Volume set to: " + volume);
+    //}
+
+    //public void SetVolumeOfSfx(float volume)
+    //{
+    //    sfxSource.volume = volume;
+    //    PlayerPrefs.SetFloat("SFXVolume", volume);
+    //    Debug.Log("Volume set to: " + volume);
+    //}
+    public void SetMasterVolume(float value)
     {
-        musicSource.volume = volume;
-        PlayerPrefs.SetFloat("MusicVolume", volume);
-        Debug.Log("Volume set to: " + volume);
+        masterVolume = value;
+        ApplyVolumes();
+        PlayerPrefs.SetFloat("MasterVolume", value);
     }
 
-    public void SetVolumeOfSfx(float volume)
+    public void SetVolume(float value)
     {
-        sfxSource.volume = volume;
-        PlayerPrefs.SetFloat("SFXVolume", volume);
-        Debug.Log("Volume set to: " + volume);
+        musicVolume = value;
+        ApplyVolumes();
+        PlayerPrefs.SetFloat("MusicVolume", value);
     }
 
+    public void SetVolumeOfSfx(float value)
+    {
+        sfxVolume = value;
+        ApplyVolumes();
+        PlayerPrefs.SetFloat("SFXVolume", value);
+    }
+
+    void ApplyVolumes()
+    {
+        musicSource.volume = masterVolume * musicVolume;
+        sfxSource.volume = masterVolume * sfxVolume; //general
+    }
     public void PlayMusic(string trackName) //create empty gameobject with audio source and SceneMusic Scrip
     {
         if (CurrentClip == trackName)
@@ -142,4 +176,6 @@ public class AudioController : MonoBehaviour
             }
         }
     }
+   
+
 }
