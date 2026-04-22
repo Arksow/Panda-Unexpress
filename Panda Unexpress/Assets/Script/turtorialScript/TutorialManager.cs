@@ -86,14 +86,14 @@ public class TutorialManager : MonoBehaviour
     {
         textUI.text = "Completed Turtorial";
         DisableAllHighlights();
-        //return back to main scene ya
+        //return back to main scene ya,or maybe direct to game dk yet
     }
 
 
     //getter 
     public int GetCurrentStep()
     {
-        return currentSteps;
+        return currentSteps; //put here from old project in cse
     }
 
     //in case restart
