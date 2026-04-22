@@ -24487,7 +24487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc169f3d9bd09bb4185c3d52e4734f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrderUIManager
-  orderText: {fileID: 0}
+  orderText: {fileID: 38335266}
 --- !u!4 &1746444031
 Transform:
   m_ObjectHideFlags: 0
