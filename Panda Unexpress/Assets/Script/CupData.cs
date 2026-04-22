@@ -26,6 +26,8 @@ public class CupData : MonoBehaviour
 
     public bool isTrashCup = false;
 
+    public DrinkRecipe[] validRecipes;
+
     void Start()
     {
         uiCanvas.SetActive(false);
@@ -89,18 +91,22 @@ public class CupData : MonoBehaviour
 
     private void ValidateRecipe()
     {
-        // Example: Valid Recipe is Tea + Milk (Milk Tea)
-        bool isMilkTea = (base1 == LiquidBase.Tea && base2 == LiquidBase.Milk) ||
-                         (base1 == LiquidBase.Milk && base2 == LiquidBase.Tea);
+        bool isValidCombo = false;
 
-        // Example: Valid Recipe is Matcha + Milk (Matcha Latte)
-        bool isMatchaLatte = (base1 == LiquidBase.Matcha && base2 == LiquidBase.Milk) ||
-                             (base1 == LiquidBase.Milk && base2 == LiquidBase.Matcha);
-
-        if (!isMilkTea && !isMatchaLatte)
+        foreach (DrinkRecipe recipe in validRecipes)
         {
-            // The combination doesn't exist
+            if (recipe.MatchesRecipe(base1, base2))
+            {
+                isValidCombo = true;
+                Debug.Log($"Successfully mixed a valid base for: {recipe.drinkName}");
+                break;
+            }
+        }
+
+        if (!isValidCombo)
+        {
             RuinCup();
+            Debug.Log("Invalid combo! Cup is ruined.");
         }
     }
 
