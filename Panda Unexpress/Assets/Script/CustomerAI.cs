@@ -172,6 +172,21 @@ public class CustomerAI : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Cup"))
+        {
+            CupData cup = other.GetComponent<CupData>();
+
+            if (cup != null)
+            {
+                receivedOrder = cup;
+                CheckOrder(cup);
+                Destroy(other.gameObject);
+            }
+        }
+    }
+
     public void SetPatienceMultiplier(float multiplier)
     {
         decreaseSpeed *= multiplier;
