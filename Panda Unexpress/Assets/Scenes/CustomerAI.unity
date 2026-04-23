@@ -802,7 +802,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4c8f56c3a478b469cb57545824ea38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
-  customerPrefab: {fileID: 7363462436892381181, guid: 2ebbcd473e21c6549aac989163d626ba, type: 3}
+  customerPrefabs:
+  - {fileID: 7363462436892381181, guid: 2ebbcd473e21c6549aac989163d626ba, type: 3}
   spawnPoint: {fileID: 591310801}
   leaveLocation: {fileID: 3774185}
   orderSystem: {fileID: 1866247530}
