@@ -17532,6 +17532,8 @@ GameObject:
   - component: {fileID: 1201549952}
   - component: {fileID: 1201549951}
   - component: {fileID: 1201549950}
+  - component: {fileID: 1201549954}
+  - component: {fileID: 1201549955}
   m_Layer: 0
   m_Name: IceBin
   m_TagString: IceBin
@@ -17649,6 +17651,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201549948}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1201549954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201549948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9978455ff8b4f184394a84f1e4452053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
+  outlineComponent: {fileID: 1201549955}
+  isPulsing: 1
+  minWidth: 5
+  maxWidth: 15
+  pulseSpeed: 5
+--- !u!114 &1201549955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201549948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6a4625820877748b360414b945ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.84604394, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1233355985
 GameObject:
   m_ObjectHideFlags: 0
@@ -24203,7 +24240,8 @@ MonoBehaviour:
     highlights:
     - {fileID: 1245508605}
   - stepText: dip ice scoop in ice box
-    highlights: []
+    highlights:
+    - {fileID: 1201549954}
 --- !u!1 &1641998270
 GameObject:
   m_ObjectHideFlags: 0
