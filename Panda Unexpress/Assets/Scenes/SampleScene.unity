@@ -23542,6 +23542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
   customerPrefabs:
   - {fileID: 7363462436892381181, guid: 2ebbcd473e21c6549aac989163d626ba, type: 3}
+  - {fileID: 5580090564196132669, guid: 0d10589449797dd40b49ea6f6b075493, type: 3}
   spawnPoint: {fileID: 1406570618}
   leaveLocation: {fileID: 1882924259}
   orderSystem: {fileID: 1625447329}
