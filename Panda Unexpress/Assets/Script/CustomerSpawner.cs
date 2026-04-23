@@ -13,7 +13,7 @@ public class CustomerSpawner : MonoBehaviour
     }
 
     [Header("Spawn Settings")]
-    public GameObject customerPrefab;
+    public GameObject[] customerPrefabs;
     public Transform spawnPoint;
 
     [Header("Locations")]
@@ -127,8 +127,10 @@ public class CustomerSpawner : MonoBehaviour
         if (freeSlot == null)
             return;
 
+        GameObject randomCustomer = customerPrefabs[Random.Range(0, customerPrefabs.Length)];
+
         GameObject customer = Instantiate(
-            customerPrefab,
+            randomCustomer,
             spawnPoint.position,
             spawnPoint.rotation
         );
