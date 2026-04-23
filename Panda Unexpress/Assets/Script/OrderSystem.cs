@@ -7,8 +7,7 @@ public class OrderSystem : MonoBehaviour
         CustomerOrder order = new CustomerOrder();
 
         //Base
-        order.base1 = GetRandomBase();
-        order.base2 = GetRandomBaseDifferent(order.base1);
+        SetBaseCombination(order);
 
         //Sugar
         order.sugarType = (SugarType)Random.Range(0, 3);
@@ -23,22 +22,27 @@ public class OrderSystem : MonoBehaviour
         return order;
     }
 
-    LiquidBase GetRandomBase()
+    void SetBaseCombination(CustomerOrder order)
     {
-        return (LiquidBase)Random.Range(1, 5);
-    }
+        int combo = Random.Range(0, 3);
 
-    LiquidBase GetRandomBaseDifferent(LiquidBase first)
-    {
-        LiquidBase second;
-
-        do
+        switch (combo)
         {
-            second = GetRandomBase();
-        }
-        while (second == first);
+            case 0:
+                order.base1 = LiquidBase.Matcha;
+                order.base2 = LiquidBase.Milk;
+                break;
 
-        return second;
+            case 1:
+                order.base1 = LiquidBase.Matcha;
+                order.base2 = LiquidBase.Tea;
+                break;
+
+            case 2:
+                order.base1 = LiquidBase.Milk;
+                order.base2 = LiquidBase.Tea;
+                break;
+        }
     }
 
     //Sugar values
