@@ -19,6 +19,11 @@ public class EconomyManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        currentMoney = 0;
+    }
+
     public void AddMoney(int amount)
     {
         currentMoney += amount;

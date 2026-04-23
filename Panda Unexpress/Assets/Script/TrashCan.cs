@@ -18,9 +18,9 @@ public class TrashCan : MonoBehaviour
 
             if (cup != null)
             {
-                if (SoundManager.instance != null && trashSound != null)
+                if (AudioController.Instance != null && trashSound != null)
                 {
-                    SoundManager.instance.PlaySpatialSFX(trashSound, transform.position);
+                    AudioController.Instance.PlaySpatialSFX(trashSound, transform.position);
                 }
 
                 Destroy(other.gameObject);

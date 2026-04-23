@@ -1,29 +1,19 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-[System.Serializable]
-public class Sound
-{
-    public string name;
-    public AudioClip clip;
-}
+
 public class AudioController : MonoBehaviour
 {
     public static AudioController Instance;
 
     public AudioSource musicSource;
-    public AudioSource sfxSource;
-
-    public Sound[] music; //put under audio list
-    public Sound[] sfx;
+    public AudioSource staticSource;
 
     public string CurrentClip = "";
     float masterVolume = 1f;
     float musicVolume = 1f;
-    float sfxVolume = 1f;
+    float staticVolume = 1f;
+
     private void Awake()
     {
-        //global //singleton
         if (Instance == null)
         {
             Instance = this;
@@ -35,88 +25,12 @@ public class AudioController : MonoBehaviour
             return;
         }
 
-        //// Load saved volume
-        //float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 50f);
-        //SetVolume(savedVolume);
-
-
-
-
-        //float savedSfxVolume = PlayerPrefs.GetFloat("SFXVolume", 50f); //forever
-        //SetVolume(savedSfxVolume);
-        //get from music slider instead of old way
         masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        staticVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
 
         ApplyVolumes();
     }
-    //void Awake()
-    //{
-    //    if (Instance == null)
-    //    {
-    //        Instance = this;
-    //        DontDestroyOnLoad(gameObject);
-    //        SetupAudioSources();
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //        return;
-    //    }
-
-    //    LoadVolumes();
-    //}
-
-    //void SetupAudioSources()
-    //{
-
-    //    transform.SetParent(null);
-
-
-    //    AudioListener listener = GetComponent<AudioListener>();
-    //    if (listener != null)
-    //    {
-    //        Destroy(listener);
-    //    }
-
-    //    //create automatically
-    //    if (musicSource == null)
-    //    {
-    //        musicSource = gameObject.AddComponent<AudioSource>();
-    //        musicSource.loop = true;
-    //        musicSource.playOnAwake = false;
-    //    }
-
-    //    if (sfxSource == null)
-    //    {
-    //        sfxSource = gameObject.AddComponent<AudioSource>();
-    //        sfxSource.loop = false;
-    //        sfxSource.playOnAwake = false;
-    //    }
-    //}
-
-    //void LoadVolumes()
-    //{
-    //    float musicVol = PlayerPrefs.GetFloat("MusicVolume", 30f);
-    //    float sfxVol = PlayerPrefs.GetFloat("SFXVolume", 30f);
-
-    //    musicSource.volume = musicVol;
-    //    sfxSource.volume = sfxVol;
-    //}
-    //public void SetVolume(float volume)
-    //{
-    //    musicSource.volume = volume;
-    //    PlayerPrefs.SetFloat("MusicVolume", volume);
-    //    Debug.Log("Volume set to: " + volume);
-    //}
-
-    //public void SetVolumeOfSfx(float volume)
-    //{
-    //    sfxSource.volume = volume;
-    //    PlayerPrefs.SetFloat("SFXVolume", volume);
-    //    Debug.Log("Volume set to: " + volume);
-    //}
     public void SetMasterVolume(float value)
     {
         masterVolume = value;
@@ -133,7 +47,7 @@ public class AudioController : MonoBehaviour
 
     public void SetVolumeOfSfx(float value)
     {
-        sfxVolume = value;
+        staticVolume = value;
         ApplyVolumes();
         PlayerPrefs.SetFloat("SFXVolume", value);
     }
@@ -141,42 +55,43 @@ public class AudioController : MonoBehaviour
     void ApplyVolumes()
     {
         musicSource.volume = masterVolume * musicVolume;
-        sfxSource.volume = masterVolume * sfxVolume; //general
+        staticSource.volume = masterVolume * staticVolume;
     }
-    public void PlayMusic(string trackName) //create empty gameobject with audio source and SceneMusic Scrip
+
+    public void PlayGlobalSFX(AudioClip clip)
     {
-        if (CurrentClip == trackName)
+        if (clip != null)
+        {
+            staticSource.PlayOneShot(clip);
+        }
+    }
+
+    public void PlaySpatialSFX(AudioClip clip, Vector3 position)
+    {
+        if (clip != null)
+        {
+            GameObject tempAudio = new GameObject("TempAudio");
+            tempAudio.transform.position = position;
+
+            AudioSource audioSource = tempAudio.AddComponent<AudioSource>();
+            audioSource.clip = clip;
+            audioSource.volume = masterVolume * staticVolume;
+            audioSource.spatialBlend = 1.0f;
+            audioSource.rolloffMode = AudioRolloffMode.Linear;
+            audioSource.minDistance = 1f;
+            audioSource.maxDistance = 10f;
+
+            audioSource.Play();
+            Destroy(tempAudio, clip.length);
+        }
+    }
+
+    public void PlayMusic(AudioClip newClip)
+    {
+        if (musicSource.clip == newClip)
             return;
 
-        foreach (Sound s in music)
-        {
-            if (s.name == trackName)
-            {
-                musicSource.clip = s.clip;
-                musicSource.loop = true;
-                musicSource.Play();
-                CurrentClip = trackName;
-
-                Debug.Log("Playing Music: " + trackName);
-                return;
-            }
-        }
-
-        Debug.LogWarning("Music not found: " + trackName);
+        musicSource.clip = newClip;
+        musicSource.Play();
     }
-
-   //play sfx
-    public void PlaySFX(string soundName) //just call into whatever button or what
-    {
-        foreach (Sound s in sfx)
-        {
-            if (s.name == soundName)
-            {
-                sfxSource.PlayOneShot(s.clip);
-                return;
-            }
-        }
-    }
-   
-
 }
