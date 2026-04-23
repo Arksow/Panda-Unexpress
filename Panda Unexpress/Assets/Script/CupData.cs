@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Net;
 
 public enum SugarType { None, Syrup, Honey }
 public enum LiquidBase { None, Tea, Matcha, Milk }
@@ -91,6 +92,9 @@ public class CupData : MonoBehaviour
 
     private void ValidateRecipe()
     {
+        if (validRecipes == null)
+            return;
+
         bool isValidCombo = false;
 
         foreach (DrinkRecipe recipe in validRecipes)

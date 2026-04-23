@@ -7,11 +7,13 @@ public class MenuController : MonoBehaviour
     public GameObject Level;
     public GameObject Controls;
 
+    public AudioClip menuBGM;
+
 
     public void Start()
     {
         menu.SetActive(true);
-        //in case add more
+        AudioController.Instance.PlayMusic(menuBGM);
     }
 
     public void OnClickPlay()
