@@ -24697,7 +24697,10 @@ MonoBehaviour:
   base2: 0
   base2Amount: 0
   isTrashCup: 0
-  validRecipes: []
+  validRecipes:
+  - {fileID: 11400000, guid: 0b499cafd9977fc4987012650b92054c, type: 2}
+  - {fileID: 11400000, guid: 522ab6ae51620ec47b54356f3c5ae9c2, type: 2}
+  - {fileID: 11400000, guid: 9ab1e64c9d02bb644a68314b0b294102, type: 2}
 --- !u!114 &1838320625
 MonoBehaviour:
   m_ObjectHideFlags: 0
