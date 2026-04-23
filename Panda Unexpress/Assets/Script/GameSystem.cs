@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class CustomerSpawner : MonoBehaviour
+public class GameSystem : MonoBehaviour
 {
     [System.Serializable]
     public class CustomerSlot
@@ -32,6 +32,11 @@ public class CustomerSpawner : MonoBehaviour
     [Header("UI")]
     public OrderUIManager orderUI;
 
+    [Header("End Game")]
+    private int maxFailedOrders = 100;
+    private int failedOrders = 0;
+    private bool isGameOver = false;
+
     private int nextID = 1;
     private int currentWave = 1;
     private int activeCustomers = 0;
@@ -46,7 +51,7 @@ public class CustomerSpawner : MonoBehaviour
 
     IEnumerator WaveLoop()
     {
-        while (true)
+        while (!isGameOver)
         {
             //Start wave
             List<int> extraDrinkIndexes = new List<int>();
@@ -63,6 +68,8 @@ public class CustomerSpawner : MonoBehaviour
 
             for (int i = 0; i < customersThisWave; i++)
             {
+                if (isGameOver) yield break;
+
                 while (!HasFreeSlot())
                 {
                     yield return null;
@@ -73,9 +80,9 @@ public class CustomerSpawner : MonoBehaviour
                 yield return new WaitForSeconds(spawnInterval);
             }
 
-            // Wait until all customers have left before starting next wave
             while (activeCustomers > 0)
             {
+                if (isGameOver) yield break;
                 yield return null;
             }
 
@@ -136,7 +143,7 @@ public class CustomerSpawner : MonoBehaviour
         );
 
         CustomerAI ai = customer.GetComponent<CustomerAI>();
-
+        ai.gameSystem = this;
         ai.customerID = nextID++;
         ai.customerLocation = freeSlot.position;
         ai.leaveLocation = leaveLocation;
@@ -162,5 +169,17 @@ public class CustomerSpawner : MonoBehaviour
                 return slot;
         }
         return null;
+    }
+    public void RegisterFailedOrder()
+    {
+        failedOrders++;
+
+        if (failedOrders >= maxFailedOrders)
+        {
+            isGameOver = true;
+            Debug.Log("Game Over!");
+
+            StopAllCoroutines();
+        }
     }
 }

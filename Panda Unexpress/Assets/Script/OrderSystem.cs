@@ -22,6 +22,7 @@ public class OrderSystem : MonoBehaviour
         return order;
     }
 
+    //Base Combinations
     void SetBaseCombination(CustomerOrder order)
     {
         int combo = Random.Range(0, 3);
