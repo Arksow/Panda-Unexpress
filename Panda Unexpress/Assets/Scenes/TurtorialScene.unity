@@ -6680,7 +6680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4c8f56c3a478b469cb57545824ea38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
-  customerPrefab: {fileID: 7363462436892381181, guid: 2ebbcd473e21c6549aac989163d626ba, type: 3}
+  customerPrefabs: []
   spawnPoint: {fileID: 602100791}
   leaveLocation: {fileID: 224722885}
   orderSystem: {fileID: 1625447329}
@@ -22512,6 +22512,9 @@ GameObject:
   - component: {fileID: 1245508602}
   - component: {fileID: 1245508601}
   - component: {fileID: 1245508600}
+  - component: {fileID: 1245508606}
+  - component: {fileID: 1245508605}
+  - component: {fileID: 1245508604}
   m_Layer: 0
   m_Name: IceScoop
   m_TagString: Untagged
@@ -22713,6 +22716,55 @@ Transform:
   - {fileID: 457721214}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1245508604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245508599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6a4625820877748b360414b945ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.78535163, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &1245508605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245508599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9978455ff8b4f184394a84f1e4452053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
+  outlineComponent: {fileID: 1245508604}
+  isPulsing: 1
+  minWidth: 5
+  maxWidth: 15
+  pulseSpeed: 5
+--- !u!114 &1245508606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245508599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2306f79c1d6d0b349952cd02aec0d02c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::cupTask
+  manager: {fileID: 1625447331}
+  currentTask: 2
 --- !u!1 &1286841047
 GameObject:
   m_ObjectHideFlags: 0
@@ -24144,12 +24196,13 @@ MonoBehaviour:
   steps:
   - stepText: welcome
     highlights: []
-  - stepText: use drink
+  - stepText: grab cup
     highlights:
     - {fileID: 1838320631}
-  - stepText: 'hello
-
-'
+  - stepText: get ice scoop
+    highlights:
+    - {fileID: 1245508605}
+  - stepText: dip ice scoop in ice box
     highlights: []
 --- !u!1 &1641998270
 GameObject:
@@ -25001,7 +25054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::cupTask
   manager: {fileID: 1625447331}
-  currentTask: 2
+  currentTask: 1
 --- !u!1 &1856312571
 GameObject:
   m_ObjectHideFlags: 0

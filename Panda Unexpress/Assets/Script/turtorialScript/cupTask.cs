@@ -27,9 +27,9 @@ public class cupTask : MonoBehaviour
 
     void OnGrabbed(SelectEnterEventArgs args)
     {
-        if (manager.currentSteps == 1)
-        {
-            manager.CompleteStep(1);
-        }
+        if (manager.currentSteps != currentTask)
+            return;
+        manager.CompleteStep(currentTask);
+       
     }
 }
