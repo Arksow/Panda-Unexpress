@@ -22547,6 +22547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1245508603}
   - component: {fileID: 1245508602}
+  - component: {fileID: 1245508607}
   - component: {fileID: 1245508601}
   - component: {fileID: 1245508600}
   - component: {fileID: 1245508606}
@@ -22802,6 +22803,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::cupTask
   manager: {fileID: 1625447331}
   currentTask: 2
+--- !u!114 &1245508607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245508599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06beac824b74ccc46a8947876b0843e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IceScoopTask
+  emptyScoopMesh: {fileID: 1114635250}
+  fullScoopMesh: {fileID: 39943875}
+  pourPoint: {fileID: 457721214}
+  cupLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  tiltThreshold: 0.5
+  manager: {fileID: 1625447331}
+  getIceStep: 3
+  pourIceStep: 4
 --- !u!1 &1286841047
 GameObject:
   m_ObjectHideFlags: 0
@@ -24242,6 +24265,19 @@ MonoBehaviour:
   - stepText: dip ice scoop in ice box
     highlights:
     - {fileID: 1201549954}
+    - {fileID: 1245508605}
+  - stepText: put ice in cup
+    highlights:
+    - {fileID: 1838320631}
+    - {fileID: 1245508605}
+  - stepText: put your base liquid
+    highlights:
+    - {fileID: 1838320631}
+    - {fileID: 1245508605}
+  - stepText: put toppings
+    highlights:
+    - {fileID: 1838320631}
+    - {fileID: 1245508605}
 --- !u!1 &1641998270
 GameObject:
   m_ObjectHideFlags: 0
