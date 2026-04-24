@@ -17,7 +17,7 @@ public class IceScoop : MonoBehaviour
         emptyScoopMesh.SetActive(true);
     }
 
-    void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("IceBin") && !isFull)
         {
@@ -39,7 +39,7 @@ public class IceScoop : MonoBehaviour
         }
     }
 
-    void TryPourIce()
+    protected virtual void TryPourIce()
     {
         Collider[] hitColliders = Physics.OverlapSphere(pourPoint.position, 0.15f, cupLayer);
         foreach (var hitCollider in hitColliders)

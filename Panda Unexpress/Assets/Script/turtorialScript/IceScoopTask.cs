@@ -1,18 +1,29 @@
 using UnityEngine;
 
-public class IceScoopTask : MonoBehaviour
+public class IceScoopTask : IceScoop
 {
     public TutorialManager manager;
-    public int currentTask;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public int getIceStep;   
+    public int pourIceStep;
+    protected override void OnTriggerEnter(Collider other) //inherit
     {
-        
+        base.OnTriggerEnter(other);
+
+        if (other.CompareTag("IceBin"))
+        {
+            //taskDone = true;
+            manager.CompleteStep(getIceStep);
+            Debug.Log("Ice collected - tutorial step completed");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void TryPourIce()
     {
-        
+   
+        base.TryPourIce();
+
+       
+        manager.CompleteStep(pourIceStep);
+        Debug.Log("Ice poured into cup - tutorial step completed");
     }
 }
