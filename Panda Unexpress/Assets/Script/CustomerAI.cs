@@ -14,6 +14,7 @@ public class CustomerAI : MonoBehaviour
 
     [Header("Customer Info")]
     public int customerID;
+    private bool hasFailed = false;
 
     public List<CustomerOrder> currentOrders = new List<CustomerOrder>();
     [HideInInspector] public int orderCount = 1;
@@ -23,7 +24,7 @@ public class CustomerAI : MonoBehaviour
     [HideInInspector] public OrderUIManager orderUI;
 
     [Header("Progress")]
-    private float decreaseSpeed = 0.001f;
+    private float decreaseSpeed = 1.0f;
     private bool orderGenerated = false;
 
     private NavMeshAgent agent;
@@ -33,6 +34,7 @@ public class CustomerAI : MonoBehaviour
     private bool isLeaving = false;
 
     public System.Action onCustomerLeave;
+    public GameSystem gameSystem;
 
     void Start()
     {
@@ -75,9 +77,10 @@ public class CustomerAI : MonoBehaviour
 
             progressImage.fillAmount -= decreaseSpeed * Time.deltaTime;
 
-            if (progressImage.fillAmount <= 0f)
+            if (progressImage.fillAmount <= 0f && !hasFailed)
             {
-                progressImage.fillAmount = 0f;
+                hasFailed = true;
+                gameSystem?.RegisterFailedOrder();
                 LeaveStore();
             }
         }
@@ -166,7 +169,13 @@ public class CustomerAI : MonoBehaviour
         else
         {
             Debug.Log($"Customer {customerID} is UNHAPPY!");
-            progressImage.fillAmount = 0f;
+
+            if (!hasFailed)
+            {
+                hasFailed = true;
+                gameSystem?.RegisterFailedOrder();
+            }
+
             ClearCustomerUI();
             LeaveStore();
         }

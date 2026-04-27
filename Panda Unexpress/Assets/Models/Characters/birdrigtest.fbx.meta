@@ -1,0 +1,435 @@
+fileFormatVersion: 2
+guid: 0005e59562042924ea9593608bf308c4
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bird_RIG_standardSurface2
+    second: {fileID: 2100000, guid: 587961ee3c84de84daac1c2570714708, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Bird_RIG:Hip
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:L_Leg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:R_Leg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:L_Knee
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:R_Knee
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:L_Ankle
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:R_Ankle
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:Spine2
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:L_UpperArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:R_UpperArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:L_LowerArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:R_LowerArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:L_Wrist
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bird_RIG:R_Wrist
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: birdrigtest(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:Bird_MESH
+      parentName: birdrigtest(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:head
+      parentName: Bird_RIG:Bird_MESH
+      position: {x: 0.0017159029, y: 0.32375485, z: 0.0021696216}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:Hair
+      parentName: Bird_RIG:head
+      position: {x: -0.0017159029, y: -0.32375485, z: -0.0021696216}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:FatHead
+      parentName: Bird_RIG:head
+      position: {x: -0.0017159029, y: -0.32375485, z: -0.0021696216}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:Eye_L
+      parentName: Bird_RIG:head
+      position: {x: -0.0017159029, y: -0.32375485, z: -0.0021696216}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:Beak_btm
+      parentName: Bird_RIG:head
+      position: {x: -0.0017159029, y: -0.32375485, z: -0.0021696216}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:Eye_R
+      parentName: Bird_RIG:head
+      position: {x: -0.0017159029, y: -0.32375485, z: -0.0021696216}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 0.9986896, z: 1}
+    - name: Bird_RIG:Beak_top
+      parentName: Bird_RIG:head
+      position: {x: -0.0017159029, y: -0.32375485, z: -0.0021696216}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG1:Pants
+      parentName: Bird_RIG:Bird_MESH
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:Bird_RIG
+      parentName: birdrigtest(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:RIG
+      parentName: Bird_RIG:Bird_RIG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:IK_Constraints
+      parentName: Bird_RIG:RIG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:L_Wrist_IK
+      parentName: Bird_RIG:IK_Constraints
+      position: {x: -0.1260352, y: 0.25300637, z: 0.00002486092}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:R_Wrist_IK
+      parentName: Bird_RIG:IK_Constraints
+      position: {x: 0.12603499, y: 0.25300598, z: 0.000024861009}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:L_Leg_IK
+      parentName: Bird_RIG:IK_Constraints
+      position: {x: -0.01964233, y: 0.0000000035865184, z: -0.0024626171}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:R_Leg_IK
+      parentName: Bird_RIG:IK_Constraints
+      position: {x: 0.0196423, y: 0.0000000036353758, z: -0.0024626201}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:L_Toe_IK
+      parentName: Bird_RIG:IK_Constraints
+      position: {x: -0.020563427, y: 0.000005002331, z: 0.021884605}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:R_Toe_IK
+      parentName: Bird_RIG:IK_Constraints
+      position: {x: 0.020563357, y: 0.000005001839, z: 0.021884616}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:Hip
+      parentName: Bird_RIG:RIG
+      position: {x: 0.0000000047148805, y: 0.16, z: 0}
+      rotation: {x: 0.030439278, y: -0, z: -0, w: 0.99953663}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:L_Leg
+      parentName: Bird_RIG:Hip
+      position: {x: -0.01821845, y: 0, z: 0}
+      rotation: {x: 0.6943732, y: 0.08092567, z: 0.7099768, w: 0.08502862}
+      scale: {x: 1.0000001, y: 0.9999998, z: 1}
+    - name: Bird_RIG:L_Knee
+      parentName: Bird_RIG:L_Leg
+      position: {x: -0, y: 0.08019658, z: -2.2138107e-16}
+      rotation: {x: -0.1349828, y: 0.68548155, z: 0.13156915, w: 0.7032669}
+      scale: {x: 0.9999998, y: 0.9999998, z: 0.9999999}
+    - name: Bird_RIG:L_Ankle
+      parentName: Bird_RIG:L_Knee
+      position: {x: 2.1850577e-16, y: 0.08040867, z: 8.718581e-15}
+      rotation: {x: 0.7755141, y: 0.014522163, z: -0.014375461, w: 0.6309995}
+      scale: {x: 1.0000002, y: 0.99999976, z: 0.9999998}
+    - name: Bird_RIG:L_Toe
+      parentName: Bird_RIG:L_Ankle
+      position: {x: 3.1225022e-18, y: 0.024364641, z: 2.153605e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:R_Leg
+      parentName: Bird_RIG:Hip
+      position: {x: 0.018218495, y: 0, z: 0}
+      rotation: {x: -0.08502864, y: 0.7099764, z: -0.080925666, w: 0.69437367}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:R_Knee
+      parentName: Bird_RIG:R_Leg
+      position: {x: -0.0000000036469239, y: -0.08019658, z: -0.000000030509664}
+      rotation: {x: -0.13498269, y: 0.6854814, z: 0.13156927, w: 0.703267}
+      scale: {x: 0.99999976, y: 0.9999999, z: 0.9999995}
+    - name: Bird_RIG:R_Ankle
+      parentName: Bird_RIG:R_Knee
+      position: {x: 0.000000053755393, y: -0.08040867, z: 0.0000000054306386}
+      rotation: {x: 0.7755141, y: 0.014522133, z: -0.014375543, w: 0.63099945}
+      scale: {x: 0.9999998, y: 0.9999999, z: 0.9999999}
+    - name: Bird_RIG:R_Toe
+      parentName: Bird_RIG:R_Ankle
+      position: {x: 0.0000000062504095, y: -0.024364654, z: -7.8900164e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:Spine1
+      parentName: Bird_RIG:Hip
+      position: {x: -0, y: 0.050092824, z: -3.6782575e-18}
+      rotation: {x: -0.010343151, y: -0, z: -0, w: 0.99994653}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:Spine2
+      parentName: Bird_RIG:Spine1
+      position: {x: -1.5881867e-24, y: 0.03493618, z: 5.884599e-17}
+      rotation: {x: -0.049263276, y: -0, z: -0, w: 0.99878585}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:R_UpperArm
+      parentName: Bird_RIG:Spine2
+      position: {x: 0.031513095, y: 0.008565593, z: -0.0039593605}
+      rotation: {x: -0.54733557, y: 0.57046664, z: 0.4486109, w: 0.4168212}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
+    - name: Bird_RIG:R_LowerArm
+      parentName: Bird_RIG:R_UpperArm
+      position: {x: -0.000000014756824, y: -0.056712855, z: 0.000000029951252}
+      rotation: {x: 0.056480914, y: 0.58197486, z: -0.04056954, w: 0.8102279}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Bird_RIG:R_Wrist
+      parentName: Bird_RIG:R_LowerArm
+      position: {x: 0.00000073548574, y: -0.03802974, z: -0.000000020801894}
+      rotation: {x: -0.0000000037252903, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000004}
+    - name: Bird_RIG:R_Hand
+      parentName: Bird_RIG:R_Wrist
+      position: {x: -0.000000111070285, y: -0.022920176, z: 0.000000055549457}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000004}
+    - name: Bird_RIG:L_UpperArm
+      parentName: Bird_RIG:Spine2
+      position: {x: -0.031513114, y: 0.008565266, z: -0.0039593796}
+      rotation: {x: 0.4168212, y: -0.44861093, z: 0.57046664, w: 0.5473355}
+      scale: {x: 1.0000001, y: 1.0000001, z: 0.9999999}
+    - name: Bird_RIG:L_LowerArm
+      parentName: Bird_RIG:L_UpperArm
+      position: {x: 1.2767564e-17, y: 0.056712855, z: -4.7878365e-17}
+      rotation: {x: 0.056480937, y: 0.58197504, z: -0.04056952, w: 0.81022775}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: Bird_RIG:L_Wrist
+      parentName: Bird_RIG:L_LowerArm
+      position: {x: 6.761952e-17, y: 0.03802993, z: 1.0880185e-16}
+      rotation: {x: -0.0000000037252903, y: -0.000000029802322, z: 0.000000007450581, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bird_RIG:L_Hand
+      parentName: Bird_RIG:L_Wrist
+      position: {x: -0.000000019055427, y: 0.022919495, z: 5.969219e-10}
+      rotation: {x: -0, y: -0, z: -1.110223e-16, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: Bird_RIG:Head
+      parentName: Bird_RIG:Spine2
+      position: {x: 1.0587912e-24, y: 0.043091297, z: -3.8090784e-17}
+      rotation: {x: 0.030432971, y: -0, z: -0, w: 0.9995369}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Bird_RIG:Head_end
+      parentName: Bird_RIG:Head
+      position: {x: -6.2562705e-18, y: 0.056351647, z: 9.5062845e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
