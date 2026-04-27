@@ -6997,6 +6997,7 @@ GameObject:
   - component: {fileID: 808956926}
   - component: {fileID: 808956928}
   - component: {fileID: 808956927}
+  - component: {fileID: 808956930}
   m_Layer: 0
   m_Name: PArti
   m_TagString: Untagged
@@ -11834,6 +11835,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1022006907}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &808956930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808956925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf21b1300ffb0f4081638fd2670065d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::bobaTask
+  manager: {fileID: 1625447331}
+  cup: {fileID: 1838320624}
+  bobaStep: 7
 --- !u!1 &815968155
 GameObject:
   m_ObjectHideFlags: 0
@@ -17811,7 +17827,6 @@ GameObject:
   - component: {fileID: 1233355986}
   - component: {fileID: 1233355990}
   - component: {fileID: 1233355991}
-  - component: {fileID: 1233355992}
   m_Layer: 0
   m_Name: Topping Bin
   m_TagString: Untagged
@@ -22686,21 +22701,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &1233355992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233355985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daf21b1300ffb0f4081638fd2670065d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  targetScoop: {fileID: 1022006906}
-  manager: {fileID: 1625447331}
-  bobaStep: 7
 --- !u!1 &1245508599
 GameObject:
   m_ObjectHideFlags: 0
@@ -24441,7 +24441,7 @@ MonoBehaviour:
   - stepText: put sugar
     highlights:
     - {fileID: 376022034}
-  - stepText: 'get toppings '
+  - stepText: get toppings, then you can put it in the cup
     highlights:
     - {fileID: 1233355990}
     - {fileID: 1022006911}
