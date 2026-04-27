@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BobaPourer : MonoBehaviour
 {
-    void OnParticleCollision(GameObject other)
+    public virtual void OnParticleCollision(GameObject other)
     {
         CupData cup = other.GetComponentInParent<CupData>();
 

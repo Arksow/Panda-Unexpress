@@ -31,6 +31,7 @@ public class CupData : MonoBehaviour
 
 
     public System.Action OnSugarAdded; //testing
+    public System.Action OnBobaAdded;
 
     void Start()
     {
@@ -128,5 +129,7 @@ public class CupData : MonoBehaviour
     {
         bobaParticleCount += amount;
         UpdateUI();
+
+        OnBobaAdded?.Invoke(); //invoke the boba taslk
     }
 }

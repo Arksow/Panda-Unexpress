@@ -15,7 +15,7 @@ public class SugarTask : MonoBehaviour
             cup.OnSugarAdded += OnSugarAdded;
     }
 
-    void OnDisable()
+    void OnDisable()  
     {
         if (cup != null)
             cup.OnSugarAdded -= OnSugarAdded;

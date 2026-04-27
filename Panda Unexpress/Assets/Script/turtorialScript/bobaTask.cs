@@ -1,19 +1,26 @@
 using UnityEngine;
 
-public class bobaTask : BobaBin
+public class bobaTask : MonoBehaviour
 {
     public TutorialManager manager;
+    public CupData cup;
     public int bobaStep;
 
-    protected override void OnParticleTrigger()
+    void OnEnable()
     {
-        base.OnParticleTrigger();
+        if (cup != null)
+            cup.OnBobaAdded += OnBobaAdded;
+    }
 
-        // if particles entered, scoop received boba
-        if (targetScoop != null && targetScoop.heldParticles > 0)
-        {
-            manager.CompleteStep(bobaStep);
-            Debug.Log("Boba collected - tutorial step completed");
-        }
+    void OnDisable()
+    {
+        if (cup != null)
+            cup.OnBobaAdded -= OnBobaAdded;
+    }
+
+    void OnBobaAdded()
+    {
+        manager.CompleteStep(bobaStep);
+        Debug.Log("Boba collected - tutorial step completed");
     }
 }
