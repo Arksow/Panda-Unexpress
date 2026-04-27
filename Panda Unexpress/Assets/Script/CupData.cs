@@ -35,7 +35,7 @@ public class CupData : MonoBehaviour
 
     void Start()
     {
-        uiCanvas.SetActive(false);
+        uiCanvas.SetActive(true);
         UpdateUI();
     }
 
