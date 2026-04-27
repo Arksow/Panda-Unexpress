@@ -29,7 +29,7 @@ public class SugarMachine : MonoBehaviour
         return sugarLevels[levelIndex];
     }
 
-    public void DispenseSugar()
+    public  void DispenseSugar()
     {
         if (cupSocket.hasSelection)
         {

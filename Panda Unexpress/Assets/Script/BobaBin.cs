@@ -13,7 +13,7 @@ public class BobaBin : MonoBehaviour
         binParticles = GetComponent<ParticleSystem>();
     }
 
-    void OnParticleTrigger()
+    protected virtual void OnParticleTrigger()
     {
         int numEnter = binParticles.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enterParticles);
 

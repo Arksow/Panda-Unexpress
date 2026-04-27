@@ -12,7 +12,7 @@ public class SpigotDispenser : MonoBehaviour
     public float fillSpeed = 0.2f;
 
     private XRGrabInteractable grabInteractable;
-    private bool isTriggerPulled = false;
+    public bool isTriggerPulled = false;
 
     void Awake()
     {
@@ -41,7 +41,7 @@ public class SpigotDispenser : MonoBehaviour
         liquidStream.Stop();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (isTriggerPulled && cupSocket.hasSelection)
         {

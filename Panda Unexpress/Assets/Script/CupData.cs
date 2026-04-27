@@ -26,8 +26,11 @@ public class CupData : MonoBehaviour
     public float base2Amount = 0f;
 
     public bool isTrashCup = false;
-
+  
     public DrinkRecipe[] validRecipes;
+
+
+    public System.Action OnSugarAdded; //testing
 
     void Start()
     {
@@ -40,11 +43,13 @@ public class CupData : MonoBehaviour
 
     public void AddIceScoop() { iceScoopCount++; UpdateUI(); }
 
-    public void SetSugar(float percentage, SugarType type)
+    public  void SetSugar(float percentage, SugarType type)
     {
         sugarPercentage = percentage;
         currentSugarType = type;
         UpdateUI();
+        OnSugarAdded?.Invoke(); //invoke, use events so sugar task actually works
+
     }
 
     private void UpdateUI()

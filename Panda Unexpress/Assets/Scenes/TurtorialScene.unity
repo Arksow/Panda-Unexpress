@@ -612,6 +612,7 @@ GameObject:
   - component: {fileID: 175603125}
   - component: {fileID: 175603124}
   - component: {fileID: 175603123}
+  - component: {fileID: 175603127}
   - component: {fileID: 175603122}
   - component: {fileID: 175603121}
   - component: {fileID: 175603120}
@@ -848,6 +849,7 @@ MonoBehaviour:
   cupSocket: {fileID: 1648780996}
   liquidStream: {fileID: 1923258409}
   fillSpeed: 0.2
+  isTriggerPulled: 0
 --- !u!65 &175603124
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -926,6 +928,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175603118}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &175603127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175603118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31503ead58e12b04b8982cb120ccb3cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  barrelLiquidType: 3
+  cupSocket: {fileID: 1648780996}
+  liquidStream: {fileID: 1923258409}
+  fillSpeed: 0.2
+  isTriggerPulled: 0
+  manager: {fileID: 1625447331}
+  pourLiquidStep: 5
 --- !u!1 &224722884
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +991,10 @@ GameObject:
   - component: {fileID: 376022031}
   - component: {fileID: 376022030}
   - component: {fileID: 376022029}
+  - component: {fileID: 376022036}
   - component: {fileID: 376022028}
+  - component: {fileID: 376022034}
+  - component: {fileID: 376022035}
   m_Layer: 0
   m_Name: Sugar machine
   m_TagString: Untagged
@@ -1120,6 +1144,56 @@ Transform:
   - {fileID: 428944552}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &376022034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376022027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9978455ff8b4f184394a84f1e4452053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
+  outlineComponent: {fileID: 376022035}
+  isPulsing: 1
+  minWidth: 5
+  maxWidth: 15
+  pulseSpeed: 5
+--- !u!114 &376022035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376022027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6a4625820877748b360414b945ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.7914926, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &376022036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376022027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a971586f00607264b937e17241bba21f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SugarTask
+  manager: {fileID: 1625447331}
+  sugarStep: 6
+  cup: {fileID: 1838320624}
 --- !u!1 &381170580
 GameObject:
   m_ObjectHideFlags: 0
@@ -16883,6 +16957,8 @@ GameObject:
   - component: {fileID: 1022006909}
   - component: {fileID: 1022006906}
   - component: {fileID: 1022006908}
+  - component: {fileID: 1022006912}
+  - component: {fileID: 1022006911}
   m_Layer: 0
   m_Name: ToppingScoop
   m_TagString: Untagged
@@ -17100,6 +17176,41 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1022006911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022006905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9978455ff8b4f184394a84f1e4452053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
+  outlineComponent: {fileID: 1022006912}
+  isPulsing: 1
+  minWidth: 5
+  maxWidth: 15
+  pulseSpeed: 5
+--- !u!114 &1022006912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022006905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6a4625820877748b360414b945ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.8207311, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1070714969
 GameObject:
   m_ObjectHideFlags: 0
@@ -17698,6 +17809,9 @@ GameObject:
   - component: {fileID: 1233355988}
   - component: {fileID: 1233355987}
   - component: {fileID: 1233355986}
+  - component: {fileID: 1233355990}
+  - component: {fileID: 1233355991}
+  - component: {fileID: 1233355992}
   m_Layer: 0
   m_Name: Topping Bin
   m_TagString: Untagged
@@ -22537,6 +22651,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1233355990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233355985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9978455ff8b4f184394a84f1e4452053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
+  outlineComponent: {fileID: 1233355991}
+  isPulsing: 1
+  minWidth: 5
+  maxWidth: 15
+  pulseSpeed: 5
+--- !u!114 &1233355991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233355985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6a4625820877748b360414b945ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &1233355992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233355985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf21b1300ffb0f4081638fd2670065d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  targetScoop: {fileID: 1022006906}
+  manager: {fileID: 1625447331}
+  bobaStep: 7
 --- !u!1 &1245508599
 GameObject:
   m_ObjectHideFlags: 0
@@ -24259,25 +24423,28 @@ MonoBehaviour:
   - stepText: grab cup
     highlights:
     - {fileID: 1838320631}
-  - stepText: get ice scoop
+  - stepText: get ice scoop and bring your cup with you
     highlights:
     - {fileID: 1245508605}
   - stepText: dip ice scoop in ice box
     highlights:
     - {fileID: 1201549954}
     - {fileID: 1245508605}
-  - stepText: put ice in cup
+  - stepText: tilt the scoop into the cup
     highlights:
     - {fileID: 1838320631}
     - {fileID: 1245508605}
   - stepText: put your base liquid
     highlights:
     - {fileID: 1838320631}
-    - {fileID: 1245508605}
-  - stepText: put toppings
+    - {fileID: 1856312573}
+  - stepText: put sugar
     highlights:
-    - {fileID: 1838320631}
-    - {fileID: 1245508605}
+    - {fileID: 376022034}
+  - stepText: 'get toppings '
+    highlights:
+    - {fileID: 1233355990}
+    - {fileID: 1022006911}
 --- !u!1 &1641998270
 GameObject:
   m_ObjectHideFlags: 0
@@ -25138,6 +25305,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1856312572}
+  - component: {fileID: 1856312573}
+  - component: {fileID: 1856312574}
   m_Layer: 0
   m_Name: Liquid dispenser
   m_TagString: Untagged
@@ -25165,6 +25334,41 @@ Transform:
   - {fileID: 1923258407}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1856312573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856312571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9978455ff8b4f184394a84f1e4452053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
+  outlineComponent: {fileID: 1856312574}
+  isPulsing: 1
+  minWidth: 5
+  maxWidth: 15
+  pulseSpeed: 5
+--- !u!114 &1856312574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856312571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6a4625820877748b360414b945ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.67345273, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1868634883
 GameObject:
   m_ObjectHideFlags: 0
