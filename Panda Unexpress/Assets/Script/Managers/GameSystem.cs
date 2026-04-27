@@ -33,7 +33,7 @@ public class GameSystem : MonoBehaviour
     public OrderUIManager orderUI;
 
     [Header("End Game")]
-    private int maxFailedOrders = 100;
+    private int maxFailedOrders = 3;
     private int failedOrders = 0;
     private bool isGameOver = false;
 
