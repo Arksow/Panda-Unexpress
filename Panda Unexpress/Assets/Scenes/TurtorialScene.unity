@@ -24662,7 +24662,6 @@ MonoBehaviour:
     - {fileID: 376022034}
   - stepText: get toppings, then you can put it in the cup
     highlights:
-    - {fileID: 1233355990}
     - {fileID: 1022006911}
 --- !u!1 &1641998270
 GameObject:
