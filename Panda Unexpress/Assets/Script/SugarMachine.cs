@@ -9,14 +9,34 @@ public class SugarMachine : MonoBehaviour
     public SugarType selectedType = SugarType.Syrup;
     private readonly float[] sugarLevels = { 0f, 25f, 50f, 100f };
 
-    [Header("Visuals")]
     public ParticleSystem syrupStream;
     public ParticleSystem honeyStream;
+
+    private float lastLeverAngle;
+    private int spinFixCount = 0;
 
     public void ToggleSugarType()
     {
         selectedType = (selectedType == SugarType.Syrup) ? SugarType.Honey : SugarType.Syrup;
         Debug.Log("Switched to: " + selectedType);
+    }
+
+    void Update()
+    {
+        if (EventManager.instance != null && EventManager.instance.currentEvent == Events.SugarSpoil)
+        {
+            if (Mathf.Abs(slotLever.angle - lastLeverAngle) > 10f)
+            {
+                spinFixCount++;
+                lastLeverAngle = slotLever.angle;
+
+                if (spinFixCount > 20)
+                {
+                    spinFixCount = 0;
+                    EventManager.instance.ResolveCurrentEvent();
+                }
+            }
+        }
     }
 
     public float GetSelectedSugarLevel()
@@ -31,6 +51,12 @@ public class SugarMachine : MonoBehaviour
 
     public void DispenseSugar()
     {
+        if (EventManager.instance.currentEvent == Events.SugarSpoil)
+        {
+            Debug.Log("Machine is jammed! Spin the lever!");
+            return;
+        }
+
         if (cupSocket.hasSelection)
         {
             IXRSelectInteractable cupInteractable = cupSocket.interactablesSelected[0];

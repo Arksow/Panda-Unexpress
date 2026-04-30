@@ -29,6 +29,8 @@ public class CupData : MonoBehaviour
 
     public DrinkRecipe[] validRecipes;
 
+    private float meltTimer = 5f;
+
     void Start()
     {
         uiCanvas.SetActive(false);
@@ -59,6 +61,23 @@ public class CupData : MonoBehaviour
                             $"Ice: {iceScoopCount} Scoops\n" +
                             $"Boba: {bobaScoops} Scoops\n" +
                             $"{sugarDisplay}";
+    }
+
+    void Update()
+    {
+        if (EventManager.instance != null && EventManager.instance.isHotWeather)
+        {
+            if (iceScoopCount > 0 && !isTrashCup)
+            {
+                meltTimer -= Time.deltaTime;
+                if (meltTimer <= 0f)
+                {
+                    Debug.Log("Ice melted in the heat! Cup ruined.");
+                    RuinCup();
+                    meltTimer = 5f;
+                }
+            }
+        }
     }
 
     public void AddLiquid(LiquidBase incomingBase, float amount)
