@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Net;
+using System;
 
 public enum SugarType { None, Syrup, Honey }
 public enum LiquidBase { None, Tea, Matcha, Milk }
@@ -31,9 +32,12 @@ public class CupData : MonoBehaviour
 
     private float meltTimer = 5f;
 
+    //don't touch
+    public System.Action OnSugarAdded;
+    public System.Action  OnBobaAdded;
     void Start()
     {
-        uiCanvas.SetActive(false);
+        uiCanvas.SetActive(true);
         UpdateUI();
     }
 
@@ -47,6 +51,7 @@ public class CupData : MonoBehaviour
         sugarPercentage = percentage;
         currentSugarType = type;
         UpdateUI();
+        OnSugarAdded?.Invoke();
     }
 
     private void UpdateUI()
@@ -142,5 +147,6 @@ public class CupData : MonoBehaviour
     {
         bobaParticleCount += amount;
         UpdateUI();
+        OnBobaAdded?.Invoke();
     }
 }
