@@ -24162,7 +24162,7 @@ GameObject:
   - component: {fileID: 1766236899}
   - component: {fileID: 1766236902}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29758,7 +29758,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104572871}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2104572875
 Camera:
   m_ObjectHideFlags: 0
