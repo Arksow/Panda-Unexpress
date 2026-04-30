@@ -26,16 +26,14 @@ public class CupData : MonoBehaviour
     public float base2Amount = 0f;
 
     public bool isTrashCup = false;
-  
+
     public DrinkRecipe[] validRecipes;
 
-
-    public System.Action OnSugarAdded; //testing
-    public System.Action OnBobaAdded;
+    private float meltTimer = 5f;
 
     void Start()
     {
-        uiCanvas.SetActive(true);
+        uiCanvas.SetActive(false);
         UpdateUI();
     }
 
@@ -44,13 +42,11 @@ public class CupData : MonoBehaviour
 
     public void AddIceScoop() { iceScoopCount++; UpdateUI(); }
 
-    public  void SetSugar(float percentage, SugarType type)
+    public void SetSugar(float percentage, SugarType type)
     {
         sugarPercentage = percentage;
         currentSugarType = type;
         UpdateUI();
-        OnSugarAdded?.Invoke(); //invoke, use events so sugar task actually works
-
     }
 
     private void UpdateUI()
@@ -65,6 +61,23 @@ public class CupData : MonoBehaviour
                             $"Ice: {iceScoopCount} Scoops\n" +
                             $"Boba: {bobaScoops} Scoops\n" +
                             $"{sugarDisplay}";
+    }
+
+    void Update()
+    {
+        if (EventManager.instance != null && EventManager.instance.isHotWeather)
+        {
+            if (iceScoopCount > 0 && !isTrashCup)
+            {
+                meltTimer -= Time.deltaTime;
+                if (meltTimer <= 0f)
+                {
+                    Debug.Log("Ice melted in the heat! Cup ruined.");
+                    RuinCup();
+                    meltTimer = 5f;
+                }
+            }
+        }
     }
 
     public void AddLiquid(LiquidBase incomingBase, float amount)
@@ -129,7 +142,5 @@ public class CupData : MonoBehaviour
     {
         bobaParticleCount += amount;
         UpdateUI();
-
-        OnBobaAdded?.Invoke(); //invoke the boba taslk
     }
 }
