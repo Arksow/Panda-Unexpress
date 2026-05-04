@@ -24867,6 +24867,7 @@ GameObject:
   - component: {fileID: 1625447330}
   - component: {fileID: 1625447329}
   - component: {fileID: 1625447331}
+  - component: {fileID: 1625447332}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -24942,6 +24943,24 @@ MonoBehaviour:
   - stepText: get toppings, then you can put it in the cup
     highlights:
     - {fileID: 1022006911}
+--- !u!114 &1625447332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625447328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c873dbbe46aa344fa45b5f3defa8afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventManager
+  consecutiveSuccesses: 0
+  successesToTriggerEvent: 3
+  currentEvent: 0
+  isHotWeather: 0
+  thirstTimer: 30
+  gameSystem: {fileID: 1058979138}
 --- !u!1 &1641998270
 GameObject:
   m_ObjectHideFlags: 0
