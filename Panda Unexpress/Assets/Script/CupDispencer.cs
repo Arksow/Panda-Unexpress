@@ -1,44 +1,83 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using Oculus.Interaction;
 
 public class CupDispenser : MonoBehaviour
 {
-    public XRSocketInteractor cupSocket;
-    public XRGrabInteractable dummyCupPrefab;
-    public XRGrabInteractable realCupPrefab;
-    public XRInteractionManager interactManager;
+    public Transform spawnPoint;
+    public GameObject cupPrefab;
 
-    private XRGrabInteractable currentDummy;
+    public int maxCups = 10;
+    private int cupsRemaining;
+
+    private Grabbable currentCup;
+    private Rigidbody currentRb;
 
     private void Start()
     {
-        SpawnNewDummy();
+        cupsRemaining = maxCups;
+        SpawnNewCup();
     }
 
-    private void OnEnable()
+    private void Update()
     {
-        cupSocket.selectExited.AddListener(OnCupRemoved);
+        if (currentCup != null && currentCup.SelectingPointsCount > 0)
+        {
+            OnCupGrabbed();
+        }
     }
 
-    private void OnDisable()
+    private void SpawnNewCup()
     {
-        cupSocket.selectExited.RemoveListener(OnCupRemoved);
+        GameObject newCup = Instantiate(cupPrefab, spawnPoint.position, spawnPoint.rotation);
+
+        currentCup = newCup.GetComponent<Grabbable>();
+        currentRb = newCup.GetComponent<Rigidbody>();
+
+        if (currentRb != null)
+        {
+            currentRb.isKinematic = true;
+        }
+
+        CupData cupData = newCup.GetComponent<CupData>();
+        if (cupData != null)
+        {
+            cupData.enabled = false;
+        }
     }
 
-    private void SpawnNewDummy()
+    private void OnCupGrabbed()
     {
-        currentDummy = Instantiate(dummyCupPrefab, cupSocket.transform.position, cupSocket.transform.rotation);
-        interactManager.SelectEnter((IXRSelectInteractor)cupSocket, (IXRSelectInteractable)currentDummy);
+        if (currentRb != null)
+        {
+            currentRb.isKinematic = false;
+        }
+
+        CupData cupData = currentCup.GetComponent<CupData>();
+        if (cupData != null)
+        {
+            cupData.enabled = true;
+        }
+
+        currentCup = null;
+        cupsRemaining--;
+
+        if (cupsRemaining > 0)
+        {
+            SpawnNewCup();
+        }
+        else
+        {
+            Debug.Log("Dispenser empty! Say 'refill'...");
+        }
     }
 
-    private void OnCupRemoved(SelectExitEventArgs args)
+    public void RefillDispenser()
     {
-        IXRSelectInteractor playersHand = args.interactorObject;
-        Destroy(currentDummy.gameObject);
-        XRGrabInteractable realCup = Instantiate(realCupPrefab, playersHand.transform.position, playersHand.transform.rotation);
-        interactManager.SelectEnter(playersHand, (IXRSelectInteractable)realCup);
-        SpawnNewDummy();
+        cupsRemaining = maxCups;
+        if (currentCup == null)
+        {
+            SpawnNewCup();
+        }
+        Debug.Log("Dispenser Refilled via Voice Command!");
     }
 }

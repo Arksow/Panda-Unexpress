@@ -7,17 +7,16 @@ public class SprigotTask : SpigotDispenser
 
     protected override void Update()
     {
-        base.Update(); 
+        base.Update();
 
-      
-        if (cupSocket.hasSelection && isTriggerPulled)
+
+        if (cupSocket.HasCup())
         {
-            var cupInteractable = cupSocket.interactablesSelected[0];
-            CupData cup = cupInteractable.transform.GetComponent<CupData>();
+            CupData cup = cupSocket.currentCup;
 
-            if (cup != null && !cup.isTrashCup)
+            if (cup != null)
             {
-             
+
                 manager.CompleteStep(pourLiquidStep);
             }
         }
