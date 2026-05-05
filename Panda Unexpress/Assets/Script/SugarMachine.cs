@@ -1,11 +1,9 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class SugarMachine : MonoBehaviour
 {
     public HingeJoint slotLever;
-    public XRSocketInteractor cupSocket;
+    public CupSocket cupSocket;
     public SugarType selectedType = SugarType.Syrup;
     private readonly float[] sugarLevels = { 0f, 25f, 50f, 100f };
 
@@ -49,18 +47,17 @@ public class SugarMachine : MonoBehaviour
         return sugarLevels[levelIndex];
     }
 
-    public  void DispenseSugar()
+    public void DispenseSugar()
     {
-        if (EventManager.instance.currentEvent == Events.SugarSpoil)
+        if (EventManager.instance != null && EventManager.instance.currentEvent == Events.SugarSpoil)
         {
             Debug.Log("Machine is jammed! Spin the lever!");
             return;
         }
 
-        if (cupSocket.hasSelection)
+        if (cupSocket.HasCup())
         {
-            IXRSelectInteractable cupInteractable = cupSocket.interactablesSelected[0];
-            CupData cup = cupInteractable.transform.GetComponent<CupData>();
+            CupData cup = cupSocket.currentCup;
 
             if (cup != null)
             {

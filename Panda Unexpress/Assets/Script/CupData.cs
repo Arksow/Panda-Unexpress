@@ -100,15 +100,16 @@ public class CupData : MonoBehaviour
             base2 = incomingBase;
             base2Amount += amount;
             if (base2Amount > 0.5f) base2Amount = 0.5f;
-
-            if (base2Amount >= 0.5f)
-            {
-                ValidateRecipe();
-            }
         }
         else
         {
             RuinCup();
+            return;
+        }
+
+        if (base1Amount + base2Amount >= 1.0f)
+        {
+            ValidateRecipe();
         }
 
         UpdateUI();
