@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1161c872940c6bf479248c42c72c5cf9
+guid: 675007486e9e28843b6adb627355fd4d
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: VRAM page #14.066
-    second: {fileID: 2100000, guid: d34ce2a515c63314fb2b4f1700c3c581, type: 2}
+      name: aiStandardSurface9
+    second: {fileID: 2100000, guid: 521b242f9c3d15a49ac7be1e2fcc92fd, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
