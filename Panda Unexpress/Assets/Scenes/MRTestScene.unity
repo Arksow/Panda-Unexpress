@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -746,6 +746,7 @@ GameObject:
   - component: {fileID: 175603122}
   - component: {fileID: 175603121}
   - component: {fileID: 175603120}
+  - component: {fileID: 175603128}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -976,7 +977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpigotDispenser
   barrelLiquidType: 3
-  cupSocket: {fileID: 1648780996}
+  cupSocket: {fileID: 0}
   liquidStream: {fileID: 1923258409}
   fillSpeed: 0.2
   isTriggerPulled: 0
@@ -1071,12 +1072,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   barrelLiquidType: 3
-  cupSocket: {fileID: 1648780996}
+  cupSocket: {fileID: 0}
   liquidStream: {fileID: 1923258409}
   fillSpeed: 0.2
   isTriggerPulled: 0
   manager: {fileID: 1625447331}
   pourLiquidStep: 5
+--- !u!114 &175603128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175603118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Oculus.VR::OVRGrabbable
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []
 --- !u!1 &177464846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,7 +1413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SugarMachine
   slotLever: {fileID: 1620021892}
-  cupSocket: {fileID: 1000153096}
+  cupSocket: {fileID: 0}
   selectedType: 1
   syrupStream: {fileID: 815968156}
   honeyStream: {fileID: 457987425}
@@ -17740,7 +17758,7 @@ MonoBehaviour:
   requestEyeTrackingPermissionOnStartup: 0
   requestScenePermissionOnStartup: 1
   requestRecordAudioPermissionOnStartup: 0
-  requestPassthroughCameraAccessPermissionOnStartup: 0
+  requestPassthroughCameraAccessPermissionOnStartup: 1
   _localDimming: 1
   _trackingOriginType: 1
   usePositionTracking: 1
@@ -32435,7 +32453,7 @@ MonoBehaviour:
     e32: 0
     e33: 1
   SceneSettings:
-    DataSource: 2
+    DataSource: 0
     RoomIndex: -1
     RoomPrefabs:
     - {fileID: 5618556046422172173, guid: 4b454e8ccd6764ccdbcd91586969863f, type: 3}
