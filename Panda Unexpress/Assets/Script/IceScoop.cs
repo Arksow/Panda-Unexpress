@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class IceScoop : MonoBehaviour
 {
-    public GameObject emptyScoopMesh;
-    public GameObject fullScoopMesh;
+    public GameObject Ice;
 
     public Transform pourPoint;
     public LayerMask cupLayer;
@@ -13,8 +12,7 @@ public class IceScoop : MonoBehaviour
 
     void Start()
     {
-        fullScoopMesh.SetActive(false);
-        emptyScoopMesh.SetActive(true);
+        Ice.SetActive(false);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -22,8 +20,7 @@ public class IceScoop : MonoBehaviour
         if (other.CompareTag("IceBin") && !isFull)
         {
             isFull = true;
-            fullScoopMesh.SetActive(true);
-            emptyScoopMesh.SetActive(false);
+            Ice.SetActive(true);
         }
     }
 
@@ -50,8 +47,7 @@ public class IceScoop : MonoBehaviour
                 cup.AddIceScoop();
 
                 isFull = false;
-                fullScoopMesh.SetActive(false);
-                emptyScoopMesh.SetActive(true);
+                Ice.SetActive(false);
                 return;
             }
         }

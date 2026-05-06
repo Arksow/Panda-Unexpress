@@ -82,9 +82,9 @@ public class MetaSocket : MonoBehaviour
         
         if (currentRigidbody != null)
         {
-            currentRigidbody.isKinematic = true;
             currentRigidbody.linearVelocity = Vector3.zero;
             currentRigidbody.angularVelocity = Vector3.zero;
+            currentRigidbody.isKinematic = true;
         }
 
         currentItem.transform.position = attachPoint.position;
@@ -114,5 +114,13 @@ public class MetaSocket : MonoBehaviour
             return currentItem.GetComponent<CupData>();
         }
         return null;
+    }
+
+    public void ForceSocket(Grabbable newObj)
+    {
+        hoveringItem = null;
+        if (hologram != null) hologram.SetActive(false);
+
+        SocketIt(newObj, newObj.GetComponent<Rigidbody>());
     }
 }
