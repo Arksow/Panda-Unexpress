@@ -431,6 +431,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1245508603}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &43150295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 43150296}
+  m_Layer: 0
+  m_Name: Customers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &43150296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43150295}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1058979137}
+  - {fileID: 367363816}
+  - {fileID: 437209599}
+  - {fileID: 389365909}
+  - {fileID: 425095412}
+  m_Father: {fileID: 920373313}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &127095590
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,6 +648,7 @@ GameObject:
   - component: {fileID: 175603125}
   - component: {fileID: 175603124}
   - component: {fileID: 175603123}
+  - component: {fileID: 175603127}
   - component: {fileID: 175603122}
   - component: {fileID: 175603121}
   - component: {fileID: 175603120}
@@ -848,6 +885,7 @@ MonoBehaviour:
   cupSocket: {fileID: 1648780996}
   liquidStream: {fileID: 1923258409}
   fillSpeed: 0.2
+  isTriggerPulled: 0
 --- !u!65 &175603124
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -926,6 +964,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175603118}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &175603127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175603118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31503ead58e12b04b8982cb120ccb3cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  barrelLiquidType: 3
+  cupSocket: {fileID: 1648780996}
+  liquidStream: {fileID: 1923258409}
+  fillSpeed: 0.2
+  isTriggerPulled: 0
+  manager: {fileID: 1625447331}
+  pourLiquidStep: 5
 --- !u!1 &224722884
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,6 +1014,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1466608451}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &367363815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 367363816}
+  m_Layer: 0
+  m_Name: Queue Location 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &367363816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367363815}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -1.251, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 43150296}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &376022027
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +1058,10 @@ GameObject:
   - component: {fileID: 376022031}
   - component: {fileID: 376022030}
   - component: {fileID: 376022029}
+  - component: {fileID: 376022036}
   - component: {fileID: 376022028}
+  - component: {fileID: 376022034}
+  - component: {fileID: 376022035}
   m_Layer: 0
   m_Name: Sugar machine
   m_TagString: Untagged
@@ -1120,6 +1211,56 @@ Transform:
   - {fileID: 428944552}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &376022034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376022027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9978455ff8b4f184394a84f1e4452053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
+  outlineComponent: {fileID: 376022035}
+  isPulsing: 1
+  minWidth: 5
+  maxWidth: 15
+  pulseSpeed: 5
+--- !u!114 &376022035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376022027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6a4625820877748b360414b945ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.7914926, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &376022036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376022027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a971586f00607264b937e17241bba21f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SugarTask
+  manager: {fileID: 1625447331}
+  sugarStep: 6
+  cup: {fileID: 1838320624}
 --- !u!1 &381170580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1341,37 @@ MonoBehaviour:
     m_ObjectReferenceObject: {fileID: 0}
     m_ManualValue: {x: 0, y: 0}
   m_UseGravity: 1
+--- !u!1 &389365908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 389365909}
+  m_Layer: 0
+  m_Name: Queue Location 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &389365909
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389365908}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 1.259, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 43150296}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &402751012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,6 +1602,37 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &425095411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 425095412}
+  m_Layer: 0
+  m_Name: Exit Location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &425095412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425095411}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: 0, z: 3.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 43150296}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &428944551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,6 +1862,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428944551}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &437209598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 437209599}
+  m_Layer: 0
+  m_Name: Queue Location 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &437209599
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437209598}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 43150296}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &443975251
 GameObject:
   m_ObjectHideFlags: 0
@@ -6680,7 +6914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4c8f56c3a478b469cb57545824ea38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
-  customerPrefab: {fileID: 7363462436892381181, guid: 2ebbcd473e21c6549aac989163d626ba, type: 3}
+  customerPrefabs: []
   spawnPoint: {fileID: 602100791}
   leaveLocation: {fileID: 224722885}
   orderSystem: {fileID: 1625447329}
@@ -6923,6 +7157,7 @@ GameObject:
   - component: {fileID: 808956926}
   - component: {fileID: 808956928}
   - component: {fileID: 808956927}
+  - component: {fileID: 808956930}
   m_Layer: 0
   m_Name: PArti
   m_TagString: Untagged
@@ -11760,6 +11995,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1022006907}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &808956930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808956925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf21b1300ffb0f4081638fd2670065d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::bobaTask
+  manager: {fileID: 1625447331}
+  cup: {fileID: 1838320624}
+  bobaStep: 7
 --- !u!1 &815968155
 GameObject:
   m_ObjectHideFlags: 0
@@ -16663,6 +16913,7 @@ Transform:
   - {fileID: 1448923441}
   - {fileID: 1201549949}
   - {fileID: 1466608451}
+  - {fileID: 43150296}
   - {fileID: 1695963498}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16883,6 +17134,8 @@ GameObject:
   - component: {fileID: 1022006909}
   - component: {fileID: 1022006906}
   - component: {fileID: 1022006908}
+  - component: {fileID: 1022006912}
+  - component: {fileID: 1022006911}
   m_Layer: 0
   m_Name: ToppingScoop
   m_TagString: Untagged
@@ -17100,6 +17353,99 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1022006911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022006905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9978455ff8b4f184394a84f1e4452053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
+  outlineComponent: {fileID: 1022006912}
+  isPulsing: 1
+  minWidth: 5
+  maxWidth: 15
+  pulseSpeed: 5
+--- !u!114 &1022006912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022006905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6a4625820877748b360414b945ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.8207311, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!1 &1058979136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1058979137}
+  - component: {fileID: 1058979138}
+  m_Layer: 0
+  m_Name: Spawn Location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1058979137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058979136}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3, y: 0, z: 3.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 43150296}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1058979138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058979136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4c8f56c3a478b469cb57545824ea38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
+  customerPrefabs:
+  - {fileID: 7363462436892381181, guid: 2ebbcd473e21c6549aac989163d626ba, type: 3}
+  - {fileID: 5580090564196132669, guid: 0d10589449797dd40b49ea6f6b075493, type: 3}
+  spawnPoint: {fileID: 1058979137}
+  leaveLocation: {fileID: 425095412}
+  orderSystem: {fileID: 1625447329}
+  counterSlots:
+  - position: {fileID: 367363816}
+    isOccupied: 0
+  - position: {fileID: 437209599}
+    isOccupied: 0
+  - position: {fileID: 389365909}
+    isOccupied: 0
+  orderUI: {fileID: 1746444030}
 --- !u!1 &1070714969
 GameObject:
   m_ObjectHideFlags: 0
@@ -17532,6 +17878,8 @@ GameObject:
   - component: {fileID: 1201549952}
   - component: {fileID: 1201549951}
   - component: {fileID: 1201549950}
+  - component: {fileID: 1201549954}
+  - component: {fileID: 1201549955}
   m_Layer: 0
   m_Name: IceBin
   m_TagString: IceBin
@@ -17649,6 +17997,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201549948}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1201549954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201549948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9978455ff8b4f184394a84f1e4452053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
+  outlineComponent: {fileID: 1201549955}
+  isPulsing: 1
+  minWidth: 5
+  maxWidth: 15
+  pulseSpeed: 5
+--- !u!114 &1201549955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201549948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6a4625820877748b360414b945ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.84604394, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1233355985
 GameObject:
   m_ObjectHideFlags: 0
@@ -17661,6 +18044,8 @@ GameObject:
   - component: {fileID: 1233355988}
   - component: {fileID: 1233355987}
   - component: {fileID: 1233355986}
+  - component: {fileID: 1233355990}
+  - component: {fileID: 1233355991}
   m_Layer: 0
   m_Name: Topping Bin
   m_TagString: Untagged
@@ -22500,6 +22885,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1233355990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233355985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9978455ff8b4f184394a84f1e4452053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
+  outlineComponent: {fileID: 1233355991}
+  isPulsing: 1
+  minWidth: 5
+  maxWidth: 15
+  pulseSpeed: 5
+--- !u!114 &1233355991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233355985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6a4625820877748b360414b945ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1245508599
 GameObject:
   m_ObjectHideFlags: 0
@@ -22510,8 +22930,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1245508603}
   - component: {fileID: 1245508602}
+  - component: {fileID: 1245508607}
   - component: {fileID: 1245508601}
   - component: {fileID: 1245508600}
+  - component: {fileID: 1245508606}
+  - component: {fileID: 1245508605}
+  - component: {fileID: 1245508604}
   m_Layer: 0
   m_Name: IceScoop
   m_TagString: Untagged
@@ -22713,6 +23137,77 @@ Transform:
   - {fileID: 457721214}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1245508604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245508599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6a4625820877748b360414b945ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.78535163, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &1245508605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245508599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9978455ff8b4f184394a84f1e4452053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
+  outlineComponent: {fileID: 1245508604}
+  isPulsing: 1
+  minWidth: 5
+  maxWidth: 15
+  pulseSpeed: 5
+--- !u!114 &1245508606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245508599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2306f79c1d6d0b349952cd02aec0d02c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::cupTask
+  manager: {fileID: 1625447331}
+  currentTask: 2
+--- !u!114 &1245508607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245508599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06beac824b74ccc46a8947876b0843e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IceScoopTask
+  emptyScoopMesh: {fileID: 1114635250}
+  fullScoopMesh: {fileID: 39943875}
+  pourPoint: {fileID: 457721214}
+  cupLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  tiltThreshold: 0.5
+  manager: {fileID: 1625447331}
+  getIceStep: 3
+  pourIceStep: 4
 --- !u!1 &1286841047
 GameObject:
   m_ObjectHideFlags: 0
@@ -23200,7 +23695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1466608451
 Transform:
   m_ObjectHideFlags: 0
@@ -24144,13 +24639,30 @@ MonoBehaviour:
   steps:
   - stepText: welcome
     highlights: []
-  - stepText: use drink
+  - stepText: grab cup
     highlights:
     - {fileID: 1838320631}
-  - stepText: 'hello
-
-'
-    highlights: []
+  - stepText: get ice scoop and bring your cup with you
+    highlights:
+    - {fileID: 1245508605}
+  - stepText: dip ice scoop in ice box
+    highlights:
+    - {fileID: 1201549954}
+    - {fileID: 1245508605}
+  - stepText: tilt the scoop into the cup
+    highlights:
+    - {fileID: 1838320631}
+    - {fileID: 1245508605}
+  - stepText: put your base liquid
+    highlights:
+    - {fileID: 1838320631}
+    - {fileID: 1856312573}
+  - stepText: put sugar
+    highlights:
+    - {fileID: 376022034}
+  - stepText: get toppings, then you can put it in the cup
+    highlights:
+    - {fileID: 1022006911}
 --- !u!1 &1641998270
 GameObject:
   m_ObjectHideFlags: 0
@@ -25001,7 +25513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::cupTask
   manager: {fileID: 1625447331}
-  currentTask: 2
+  currentTask: 1
 --- !u!1 &1856312571
 GameObject:
   m_ObjectHideFlags: 0
@@ -25011,6 +25523,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1856312572}
+  - component: {fileID: 1856312573}
+  - component: {fileID: 1856312574}
   m_Layer: 0
   m_Name: Liquid dispenser
   m_TagString: Untagged
@@ -25038,6 +25552,41 @@ Transform:
   - {fileID: 1923258407}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1856312573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856312571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9978455ff8b4f184394a84f1e4452053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
+  outlineComponent: {fileID: 1856312574}
+  isPulsing: 1
+  minWidth: 5
+  maxWidth: 15
+  pulseSpeed: 5
+--- !u!114 &1856312574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856312571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6a4625820877748b360414b945ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.67345273, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1868634883
 GameObject:
   m_ObjectHideFlags: 0

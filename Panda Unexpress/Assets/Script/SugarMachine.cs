@@ -1,22 +1,40 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class SugarMachine : MonoBehaviour
 {
     public HingeJoint slotLever;
-    public XRSocketInteractor cupSocket;
+    public MetaSocket cupSocket;
     public SugarType selectedType = SugarType.Syrup;
     private readonly float[] sugarLevels = { 0f, 25f, 50f, 100f };
 
-    [Header("Visuals")]
     public ParticleSystem syrupStream;
     public ParticleSystem honeyStream;
+
+    private float lastLeverAngle;
+    private int spinFixCount = 0;
 
     public void ToggleSugarType()
     {
         selectedType = (selectedType == SugarType.Syrup) ? SugarType.Honey : SugarType.Syrup;
         Debug.Log("Switched to: " + selectedType);
+    }
+
+    void Update()
+    {
+        if (EventManager.instance != null && EventManager.instance.currentEvent == Events.SugarSpoil)
+        {
+            if (Mathf.Abs(slotLever.angle - lastLeverAngle) > 10f)
+            {
+                spinFixCount++;
+                lastLeverAngle = slotLever.angle;
+
+                if (spinFixCount > 20)
+                {
+                    spinFixCount = 0;
+                    EventManager.instance.ResolveCurrentEvent();
+                }
+            }
+        }
     }
 
     public float GetSelectedSugarLevel()
@@ -31,10 +49,15 @@ public class SugarMachine : MonoBehaviour
 
     public void DispenseSugar()
     {
-        if (cupSocket.hasSelection)
+        if (EventManager.instance != null && EventManager.instance.currentEvent == Events.SugarSpoil)
         {
-            IXRSelectInteractable cupInteractable = cupSocket.interactablesSelected[0];
-            CupData cup = cupInteractable.transform.GetComponent<CupData>();
+            Debug.Log("Machine is jammed! Spin the lever!");
+            return;
+        }
+
+        if (cupSocket.HasItem())
+        {
+            CupData cup = cupSocket.GetSocketItem();
 
             if (cup != null)
             {

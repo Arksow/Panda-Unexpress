@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Net;
+using System;
 
 public enum SugarType { None, Syrup, Honey }
 public enum LiquidBase { None, Tea, Matcha, Milk }
@@ -29,9 +30,14 @@ public class CupData : MonoBehaviour
 
     public DrinkRecipe[] validRecipes;
 
+    private float meltTimer = 5f;
+
+    public System.Action OnSugarAdded;
+    public System.Action  OnBobaAdded;
+
     void Start()
     {
-        uiCanvas.SetActive(false);
+        uiCanvas.SetActive(true);
         UpdateUI();
     }
 
@@ -45,6 +51,7 @@ public class CupData : MonoBehaviour
         sugarPercentage = percentage;
         currentSugarType = type;
         UpdateUI();
+        OnSugarAdded?.Invoke();
     }
 
     private void UpdateUI()
@@ -59,6 +66,23 @@ public class CupData : MonoBehaviour
                             $"Ice: {iceScoopCount} Scoops\n" +
                             $"Boba: {bobaScoops} Scoops\n" +
                             $"{sugarDisplay}";
+    }
+
+    void Update()
+    {
+        if (EventManager.instance != null && EventManager.instance.isHotWeather)
+        {
+            if (iceScoopCount > 0 && !isTrashCup)
+            {
+                meltTimer -= Time.deltaTime;
+                if (meltTimer <= 0f)
+                {
+                    Debug.Log("Ice melted in the heat! Cup ruined.");
+                    RuinCup();
+                    meltTimer = 5f;
+                }
+            }
+        }
     }
 
     public void AddLiquid(LiquidBase incomingBase, float amount)
@@ -76,15 +100,16 @@ public class CupData : MonoBehaviour
             base2 = incomingBase;
             base2Amount += amount;
             if (base2Amount > 0.5f) base2Amount = 0.5f;
-
-            if (base2Amount >= 0.5f)
-            {
-                ValidateRecipe();
-            }
         }
         else
         {
             RuinCup();
+            return;
+        }
+
+        if (base1Amount + base2Amount >= 1.0f)
+        {
+            ValidateRecipe();
         }
 
         UpdateUI();
@@ -123,5 +148,6 @@ public class CupData : MonoBehaviour
     {
         bobaParticleCount += amount;
         UpdateUI();
+        OnBobaAdded?.Invoke();
     }
 }

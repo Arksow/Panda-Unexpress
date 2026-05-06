@@ -18,5 +18,14 @@ public class ToppingScoop : MonoBehaviour
                 heldParticles = 0;
             }
         }
+
+        if (EventManager.instance != null && EventManager.instance.currentEvent == Events.LeakyScoop)
+        {
+            if (heldParticles > 0 && Time.frameCount % 30 == 0)
+            {
+                heldParticles--;
+                scoopEmitter.Emit(1);
+            }
+        }
     }
 }

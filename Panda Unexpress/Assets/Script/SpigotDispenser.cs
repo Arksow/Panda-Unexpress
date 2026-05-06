@@ -1,56 +1,50 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using Oculus.Interaction;
 
 public class SpigotDispenser : MonoBehaviour
 {
     [Header("Dispenser Settings")]
     public LiquidBase barrelLiquidType;
-    public XRSocketInteractor cupSocket;
+
+    public MetaSocket cupSocket;
+
     public ParticleSystem liquidStream;
     public float fillSpeed = 0.2f;
 
-    private XRGrabInteractable grabInteractable;
-    private bool isTriggerPulled = false;
+    private Grabbable grabbable;
+    public bool isTriggerPulled = false;
 
     void Awake()
     {
-        grabInteractable = GetComponent<XRGrabInteractable>();
-        liquidStream.Stop();
-
-        grabInteractable.activated.AddListener(OnTriggerPressed);
-        grabInteractable.deactivated.AddListener(OnTriggerReleased);
+        grabbable = GetComponent<Grabbable>();
+        if (liquidStream != null) liquidStream.Stop();
     }
 
-    void OnDestroy()
+    protected virtual void Update()
     {
-        grabInteractable.activated.RemoveListener(OnTriggerPressed);
-        grabInteractable.deactivated.RemoveListener(OnTriggerReleased);
-    }
-
-    private void OnTriggerPressed(ActivateEventArgs args)
-    {
-        isTriggerPulled = true;
-        liquidStream.Play();
-    }
-
-    private void OnTriggerReleased(DeactivateEventArgs args)
-    {
-        isTriggerPulled = false;
-        liquidStream.Stop();
-    }
-
-    void Update()
-    {
-        if (isTriggerPulled && cupSocket.hasSelection)
+        if (grabbable != null && grabbable.SelectingPointsCount > 0)
         {
-            IXRSelectInteractable cupInteractable = cupSocket.interactablesSelected[0];
-            CupData cup = cupInteractable.transform.GetComponent<CupData>();
+            float leftTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.LTouch);
+            float rightTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
 
-            if (cup != null && !cup.isTrashCup)
+            isTriggerPulled = (leftTrigger > 0.5f) || (rightTrigger > 0.5f);
+        }
+        else
+        {
+            isTriggerPulled = false;
+        }
+
+        if (isTriggerPulled && !liquidStream.isPlaying) liquidStream.Play();
+        else if (!isTriggerPulled && liquidStream.isPlaying) liquidStream.Stop();
+
+        if (isTriggerPulled && cupSocket.HasItem())
+        {
+            CupData cup = cupSocket.GetSocketItem();
+
+            if (cup != null)
             {
-                cup.AddLiquid(barrelLiquidType, fillSpeed * Time.deltaTime);
+                float fillAmount = fillSpeed * Time.deltaTime;
+                cup.AddLiquid(barrelLiquidType, fillAmount);
             }
         }
     }
