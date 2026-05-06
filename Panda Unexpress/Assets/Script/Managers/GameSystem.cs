@@ -9,6 +9,7 @@ public class GameSystem : MonoBehaviour
     public class CustomerSlot
     {
         public Transform position;
+        public OrderUIManager slotUI;
         public bool isOccupied;
     }
 
@@ -28,9 +29,6 @@ public class GameSystem : MonoBehaviour
     [Header("Progression")]
     private float spawnInterval = 1f;
     private float waveDelay = 5f;
-
-    [Header("UI")]
-    public OrderUIManager orderUI;
 
     [Header("End Game")]
     private int maxFailedOrders = 3;
@@ -53,7 +51,7 @@ public class GameSystem : MonoBehaviour
     {
         while (!isGameOver)
         {
-            //Start wave
+            // Prepare which customers get extra drinks
             List<int> extraDrinkIndexes = new List<int>();
 
             while (extraDrinkIndexes.Count < customersWithExtraDrink)
@@ -66,6 +64,7 @@ public class GameSystem : MonoBehaviour
                 }
             }
 
+            // Spawn customers
             for (int i = 0; i < customersThisWave; i++)
             {
                 if (isGameOver) yield break;
@@ -77,9 +76,11 @@ public class GameSystem : MonoBehaviour
 
                 bool giveExtraDrink = extraDrinkIndexes.Contains(i);
                 SpawnCustomer(giveExtraDrink);
+
                 yield return new WaitForSeconds(spawnInterval);
             }
 
+            // Wait until all customers leave
             while (activeCustomers > 0)
             {
                 if (isGameOver) yield break;
@@ -88,6 +89,7 @@ public class GameSystem : MonoBehaviour
 
             currentWave++;
             ApplyRandomModifier();
+
             yield return new WaitForSeconds(waveDelay);
         }
     }
@@ -101,17 +103,14 @@ public class GameSystem : MonoBehaviour
         {
             int randomModifier = Random.Range(0, 2);
 
-            // Modifier (+1 Customer)
             if (randomModifier == 0)
             {
-                customersThisWave++;
+                customersThisWave++; // +1 customer
             }
-            // Modifier (Customer gets 2 drinks)
             else
             {
                 customersWithExtraDrink++;
 
-                // Ensure we don't assign more extra drinks than customers
                 customersWithExtraDrink = Mathf.Min(customersWithExtraDrink, customersThisWave);
             }
         }
@@ -143,14 +142,15 @@ public class GameSystem : MonoBehaviour
         );
 
         CustomerAI ai = customer.GetComponent<CustomerAI>();
+
         ai.gameSystem = this;
         ai.customerID = nextID++;
         ai.customerLocation = freeSlot.position;
         ai.leaveLocation = leaveLocation;
         ai.orderGenerator = orderSystem;
-        ai.orderUI = orderUI;
         ai.orderCount = extraDrink ? 2 : 1;
-
+        ai.orderUI = freeSlot.slotUI;
+        freeSlot.slotUI.SetCustomer(ai);
         freeSlot.isOccupied = true;
         activeCustomers++;
 
@@ -158,6 +158,7 @@ public class GameSystem : MonoBehaviour
         {
             freeSlot.isOccupied = false;
             activeCustomers--;
+            freeSlot.slotUI.ClearCustomer(ai);
         };
     }
 
@@ -170,6 +171,7 @@ public class GameSystem : MonoBehaviour
         }
         return null;
     }
+
     public void RegisterFailedOrder()
     {
         failedOrders++;

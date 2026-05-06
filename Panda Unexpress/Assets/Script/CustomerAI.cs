@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -24,7 +24,7 @@ public class CustomerAI : MonoBehaviour
     [HideInInspector] public OrderUIManager orderUI;
 
     [Header("Progress")]
-    private float decreaseSpeed = 1.0f;
+    private float decreaseSpeed = 0.01f;
     private bool orderGenerated = false;
 
     private NavMeshAgent agent;
@@ -115,12 +115,14 @@ public class CustomerAI : MonoBehaviour
             currentOrders.Add(order);
         }
 
-        orderUI?.AddCustomer(this);
+        // ✅ NEW: Set THIS customer to THIS slot UI
+        orderUI?.SetCustomer(this);
     }
 
     void LeaveStore()
     {
         ClearCustomerUI();
+
         isLeaving = true;
         agent.isStopped = false;
         agent.updateRotation = true;
@@ -151,19 +153,17 @@ public class CustomerAI : MonoBehaviour
             Debug.Log($"Customer {customerID} order completed!");
 
             currentOrders.RemoveAt(0);
+
+            // ✅ Update ONLY this slot UI
             orderUI?.UpdateUI();
 
-            // Leave only after all drinks served
             if (currentOrders.Count == 0)
             {
                 Debug.Log($"Customer {customerID} is HAPPY and leaving!");
                 progressImage.fillAmount = 0f;
+
                 ClearCustomerUI();
                 LeaveStore();
-            }
-            else
-            {
-                Debug.Log($"Remaining orders: {currentOrders.Count}");
             }
         }
         else
@@ -205,7 +205,7 @@ public class CustomerAI : MonoBehaviour
     {
         if (orderUI != null)
         {
-            orderUI?.RemoveCustomer(this);
+            orderUI.ClearCustomer(this);
         }
     }
 }
