@@ -10,12 +10,13 @@ public class SprigotTask : SpigotDispenser
         base.Update();
 
 
-        if (isTriggerPulled && cupSocket.HasCup())
+        if (cupSocket.HasItem())
         {
-            CupData cup = cupSocket.currentCup;
+            CupData cup = cupSocket.GetSocketItem();
 
-            if (cup != null && !cup.isTrashCup)
+            if (cup != null)
             {
+
                 manager.CompleteStep(pourLiquidStep);
             }
         }

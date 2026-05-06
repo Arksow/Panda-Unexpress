@@ -32,9 +32,9 @@ public class CupData : MonoBehaviour
 
     private float meltTimer = 5f;
 
-    //don't touch
     public System.Action OnSugarAdded;
     public System.Action  OnBobaAdded;
+
     void Start()
     {
         uiCanvas.SetActive(true);
