@@ -1,8 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR.Interaction.Toolkit.AffordanceSystem.Receiver.Primitives;
-using static UnityEngine.Rendering.DebugUI;
 
 public class MusicSlider : MonoBehaviour
 {
