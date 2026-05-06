@@ -3,7 +3,7 @@ using UnityEngine;
 public class SugarMachine : MonoBehaviour
 {
     public HingeJoint slotLever;
-    public CupSocket cupSocket;
+    public MetaSocket cupSocket;
     public SugarType selectedType = SugarType.Syrup;
     private readonly float[] sugarLevels = { 0f, 25f, 50f, 100f };
 
@@ -55,9 +55,9 @@ public class SugarMachine : MonoBehaviour
             return;
         }
 
-        if (cupSocket.HasCup())
+        if (cupSocket.HasItem())
         {
-            CupData cup = cupSocket.currentCup;
+            CupData cup = cupSocket.GetSocketItem();
 
             if (cup != null)
             {

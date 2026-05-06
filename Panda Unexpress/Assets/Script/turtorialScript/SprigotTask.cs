@@ -10,9 +10,9 @@ public class SprigotTask : SpigotDispenser
         base.Update();
 
 
-        if (cupSocket.HasCup())
+        if (cupSocket.HasItem())
         {
-            CupData cup = cupSocket.currentCup;
+            CupData cup = cupSocket.GetSocketItem();
 
             if (cup != null)
             {

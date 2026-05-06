@@ -51,7 +51,7 @@ public class VoiceCommandManager : MonoBehaviour
         string lowerText = transcript.ToLower();
         Debug.Log($"Player said: {lowerText}");
 
-        if (lowerText.Contains("refill") || lowerText.Contains("cups"))
+        if (lowerText.Contains("refill"))
         {
             if (cupDispenser != null)
             {
