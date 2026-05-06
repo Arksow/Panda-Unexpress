@@ -28,7 +28,11 @@ public class GameSystem : MonoBehaviour
 
     [Header("Progression")]
     private float spawnInterval = 1f;
-    private float waveDelay = 5f;
+    private float waveDelay = 20f;
+
+    [Header("Wave UI")]
+    public GameObject wavePanel;
+    public TextMeshProUGUI waveText;
 
     [Header("End Game")]
     private int maxFailedOrders = 3;
@@ -42,8 +46,13 @@ public class GameSystem : MonoBehaviour
     private int customersThisWave = 1;
     private int customersWithExtraDrink = 0;
 
+    private bool waitingForNextWave = false;
+
     void Start()
     {
+        if (wavePanel != null)
+            wavePanel.SetActive(false);
+
         StartCoroutine(WaveLoop());
     }
 
@@ -87,11 +96,64 @@ public class GameSystem : MonoBehaviour
                 yield return null;
             }
 
+            ShowWaveUI();
+
+            // Wait for player OR timeout
+            waitingForNextWave = true;
+            float timer = 0f;
+
+            while (waitingForNextWave)
+            {
+                if (isGameOver) yield break;
+
+                timer += Time.deltaTime;
+
+                // Optional countdown text
+                if (waveText != null)
+                {
+                    int secondsLeft = Mathf.CeilToInt(waveDelay - timer);
+                    secondsLeft = Mathf.Max(0, secondsLeft);
+                    waveText.text = $"Wave {currentWave} Complete!\nNext in {secondsLeft}s";
+                }
+
+                // Auto next wave
+                if (timer >= waveDelay)
+                {
+                    waitingForNextWave = false;
+                }
+
+                yield return null;
+            }
+
+            // Hide UI
+            if (wavePanel != null)
+                wavePanel.SetActive(false);
+
+            // Move to next wave
             currentWave++;
             ApplyRandomModifier();
-
-            yield return new WaitForSeconds(waveDelay);
         }
+    }
+
+    void ShowWaveUI()
+    {
+        if (wavePanel != null)
+        {
+            wavePanel.SetActive(true);
+
+            if (waveText != null)
+            {
+                waveText.text = $"Wave {currentWave} Complete!";
+            }
+        }
+    }
+
+    public void NextWaveButton()
+    {
+        waitingForNextWave = false;
+
+        if (wavePanel != null)
+            wavePanel.SetActive(false);
     }
 
     void ApplyRandomModifier()
@@ -105,12 +167,11 @@ public class GameSystem : MonoBehaviour
 
             if (randomModifier == 0)
             {
-                customersThisWave++; // +1 customer
+                customersThisWave++;
             }
             else
             {
                 customersWithExtraDrink++;
-
                 customersWithExtraDrink = Mathf.Min(customersWithExtraDrink, customersThisWave);
             }
         }
@@ -151,6 +212,7 @@ public class GameSystem : MonoBehaviour
         ai.orderCount = extraDrink ? 2 : 1;
         ai.orderUI = freeSlot.slotUI;
         freeSlot.slotUI.SetCustomer(ai);
+
         freeSlot.isOccupied = true;
         activeCustomers++;
 
