@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -6,52 +5,41 @@ public class OrderUIManager : MonoBehaviour
 {
     public TextMeshProUGUI orderText;
 
-    private List<CustomerAI> customers = new List<CustomerAI>();
+    private CustomerAI currentCustomer;
 
-    public void AddCustomer(CustomerAI customer)
+    public void SetCustomer(CustomerAI customer)
     {
-        if (!customers.Contains(customer))
-            customers.Add(customer);
-
+        currentCustomer = customer;
         UpdateUI();
     }
 
-    public void RemoveCustomer(CustomerAI customer)
+    public void ClearCustomer(CustomerAI customer)
     {
-        customers.Remove(customer);
-
-        if (customers.Count == 0)
+        if (currentCustomer == customer)
         {
-            orderText.text = "Order List";
-        }
-        else
-        {
-            UpdateUI();
+            currentCustomer = null;
+            orderText.text = "";
         }
     }
 
     public void UpdateUI()
     {
-        string text = "";
-        text += "Order List:\n";
-
-        foreach (var c in customers)
+        if (currentCustomer == null)
         {
-            if (c == null) continue;
+            orderText.text = "";
+            return;
+        }
 
-            for (int i = 0; i < c.currentOrders.Count; i++)
-            {
-                var order = c.currentOrders[i];
+        string text = "";
 
-                text += $" Drink {i + 1}:\n";
-                text += "- Base: " + order.base1 + "\n";
-                text += "- Base: " + order.base2 + "\n";
-                text += "- Sugar: " + order.sugarPercent + "%\n";
-                text += "- " + GetIceText(order.iceAmount) + "\n";
-                text += "- " + GetBobaText(order.bobaAmount) + "\n\n";
-            }
+        for (int i = 0; i < currentCustomer.currentOrders.Count; i++)
+        {
+            var order = currentCustomer.currentOrders[i];
 
-            text += "-----------------\n";
+            text += "" + order.base1 + " " + order.base2 + "\n";
+            text += "- Sugar Level: " + order.sugarPercent + "%\n";
+            text += "- " + GetIceText(order.iceAmount) + "\n";
+            text += "- " + GetBobaText(order.bobaAmount) + "\n\n";
         }
 
         orderText.text = text;
