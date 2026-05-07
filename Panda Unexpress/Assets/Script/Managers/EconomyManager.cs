@@ -31,14 +31,14 @@ public class EconomyManager : MonoBehaviour
 
     public void EndGame(string playerName)
     {
-        float prevHighscore = PlayerPrefs.GetInt(playerName + "_HighScore", 0);
+        float prevHighscore = PlayerPrefs.GetInt(SaveKeys.GetHighScoreKey(playerName), 0);
         if (prevHighscore < currentMoney)
         {
-            PlayerPrefs.SetInt(playerName + "_HighScore", currentMoney);
+            PlayerPrefs.SetInt(SaveKeys.GetHighScoreKey(playerName), currentMoney);
         }
 
-        int totalMoney = PlayerPrefs.GetInt(playerName + "_TotalMoney", 0) + currentMoney;
-        PlayerPrefs.SetInt(playerName + "_TotalMoney", totalMoney + currentMoney);
+        int totalMoney = PlayerPrefs.GetInt(SaveKeys.GetTotalMoneyKey(playerName), 0);
+        PlayerPrefs.SetInt(SaveKeys.GetTotalMoneyKey(playerName), totalMoney + currentMoney);
         PlayerPrefs.Save();
     }
 }

@@ -3,7 +3,7 @@ using Oculus.Interaction;
 
 public class CupDispenser : MonoBehaviour
 {
-    public Transform spawnPoint;
+    public MetaSocket dispenserSocket;
     public GameObject cupPrefab;
 
     public int maxCups = 10;
@@ -20,7 +20,7 @@ public class CupDispenser : MonoBehaviour
 
     private void Update()
     {
-        if (currentCup != null && currentCup.SelectingPointsCount > 0)
+        if (currentCup != null && !dispenserSocket.HasItem())
         {
             OnCupGrabbed();
         }
@@ -28,30 +28,22 @@ public class CupDispenser : MonoBehaviour
 
     private void SpawnNewCup()
     {
-        GameObject newCup = Instantiate(cupPrefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject newCup = Instantiate(cupPrefab, dispenserSocket.attachPoint.position, dispenserSocket.attachPoint.rotation);
 
         currentCup = newCup.GetComponent<Grabbable>();
-        currentRb = newCup.GetComponent<Rigidbody>();
-
-        if (currentRb != null)
-        {
-            currentRb.isKinematic = true;
-        }
 
         CupData cupData = newCup.GetComponent<CupData>();
+
         if (cupData != null)
         {
             cupData.enabled = false;
         }
+
+        dispenserSocket.ForceSocket(currentCup);
     }
 
     private void OnCupGrabbed()
     {
-        if (currentRb != null)
-        {
-            currentRb.isKinematic = false;
-        }
-
         CupData cupData = currentCup.GetComponent<CupData>();
         if (cupData != null)
         {
@@ -64,10 +56,6 @@ public class CupDispenser : MonoBehaviour
         if (cupsRemaining > 0)
         {
             SpawnNewCup();
-        }
-        else
-        {
-            Debug.Log("Dispenser empty! Say 'refill'...");
         }
     }
 

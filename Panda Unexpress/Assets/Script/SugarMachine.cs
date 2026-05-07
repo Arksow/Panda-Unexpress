@@ -1,9 +1,13 @@
 using UnityEngine;
+using Oculus.Interaction;
 
 public class SugarMachine : MonoBehaviour
 {
-    public HingeJoint slotLever;
+    [Header("Lever Setup")]
+    public Transform slotLever;
     public MetaSocket cupSocket;
+
+    public enum SugarType { Syrup, Honey }
     public SugarType selectedType = SugarType.Syrup;
     private readonly float[] sugarLevels = { 0f, 25f, 50f, 100f };
 
@@ -19,14 +23,32 @@ public class SugarMachine : MonoBehaviour
         Debug.Log("Switched to: " + selectedType);
     }
 
+    public void SetToSyrup()
+    {
+        selectedType = SugarType.Syrup;
+        Debug.Log("Switched to: " + selectedType);
+    }
+
+    public void SetToHoney()
+    {
+        selectedType = SugarType.Honey;
+        Debug.Log("Switched to: " + selectedType);
+    }
+
+    private float GetCurrentLeverAngle()
+    {
+        return slotLever.localEulerAngles.x;
+    }
+
     void Update()
     {
         if (EventManager.instance != null && EventManager.instance.currentEvent == Events.SugarSpoil)
         {
-            if (Mathf.Abs(slotLever.angle - lastLeverAngle) > 10f)
+            float currentAngle = GetCurrentLeverAngle();
+            if (Mathf.Abs(currentAngle - lastLeverAngle) > 10f)
             {
                 spinFixCount++;
-                lastLeverAngle = slotLever.angle;
+                lastLeverAngle = currentAngle;
 
                 if (spinFixCount > 20)
                 {
@@ -39,8 +61,10 @@ public class SugarMachine : MonoBehaviour
 
     public float GetSelectedSugarLevel()
     {
-        float currentAngle = slotLever.angle;
-        float normalizedLever = Mathf.InverseLerp(-45f, 45f, currentAngle);
+        float currentAngle = GetCurrentLeverAngle();
+
+        float normalizedLever = Mathf.InverseLerp(130f, 230f, currentAngle);
+
         int levelIndex = Mathf.RoundToInt(normalizedLever * 3f);
         levelIndex = Mathf.Clamp(levelIndex, 0, 3);
 
@@ -66,7 +90,7 @@ public class SugarMachine : MonoBehaviour
                 if (selectedType == SugarType.Syrup) syrupStream.Play();
                 if (selectedType == SugarType.Honey) honeyStream.Play();
 
-                cup.SetSugar(levelToDispense, selectedType);
+                Debug.Log("Dispensed " + levelToDispense + "% " + selectedType);
             }
         }
     }

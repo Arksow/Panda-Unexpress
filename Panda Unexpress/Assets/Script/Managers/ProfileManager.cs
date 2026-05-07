@@ -7,8 +7,8 @@ public class ProfileManager : MonoBehaviour
 
     public void LoadPlayerProfile(string playerName)
     {
-        highScore = PlayerPrefs.GetInt(playerName + "_HighScore", 0);
-        PlayerPrefs.SetString("CurrentPlayer", playerName);
+        highScore = PlayerPrefs.GetInt(SaveKeys.GetHighScoreKey(playerName), 0);
+        PlayerPrefs.SetString(SaveKeys.CURRENT_PLAYER, playerName);
         PlayerPrefs.Save();
     }
 }
