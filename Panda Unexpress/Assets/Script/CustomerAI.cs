@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -15,6 +16,9 @@ public class CustomerAI : MonoBehaviour
     [Header("Customer Info")]
     public int customerID;
     private bool hasFailed = false;
+
+    [Header("Animations")]
+    public Animator animator;
 
     public List<CustomerOrder> currentOrders = new List<CustomerOrder>();
     [HideInInspector] public int orderCount = 1;
@@ -39,6 +43,7 @@ public class CustomerAI : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator.SetBool("Walking", true);
 
         if (progressImage != null)
             progressImage.fillAmount = 1f;
@@ -62,6 +67,8 @@ public class CustomerAI : MonoBehaviour
             agent.ResetPath();
             agent.velocity = Vector3.zero;
             agent.updateRotation = false;
+            animator.SetBool("Walking", false);
+            animator.SetTrigger("Ordering");
         }
 
         // WAITING STATE
@@ -81,7 +88,8 @@ public class CustomerAI : MonoBehaviour
             {
                 hasFailed = true;
                 gameSystem?.RegisterFailedOrder();
-                LeaveStore();
+                animator.SetTrigger("Angry");
+                StartCoroutine(LeaveAfterAngry());
             }
         }
 
@@ -115,14 +123,13 @@ public class CustomerAI : MonoBehaviour
             currentOrders.Add(order);
         }
 
-        // ✅ NEW: Set THIS customer to THIS slot UI
         orderUI?.SetCustomer(this);
     }
 
     void LeaveStore()
     {
         ClearCustomerUI();
-
+        animator.SetBool("Walking", true);
         isLeaving = true;
         agent.isStopped = false;
         agent.updateRotation = true;
@@ -154,7 +161,6 @@ public class CustomerAI : MonoBehaviour
 
             currentOrders.RemoveAt(0);
 
-            // ✅ Update ONLY this slot UI
             orderUI?.UpdateUI();
 
             if (currentOrders.Count == 0)
@@ -176,6 +182,7 @@ public class CustomerAI : MonoBehaviour
                 gameSystem?.RegisterFailedOrder();
             }
 
+            StartCoroutine(LeaveAfterAngry());
             ClearCustomerUI();
             LeaveStore();
         }
@@ -207,5 +214,11 @@ public class CustomerAI : MonoBehaviour
         {
             orderUI.ClearCustomer(this);
         }
+    }
+
+    IEnumerator LeaveAfterAngry()
+    {
+        yield return new WaitForSeconds(2f);
+        LeaveStore();
     }
 }
