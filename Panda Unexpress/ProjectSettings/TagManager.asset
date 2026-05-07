@@ -8,6 +8,7 @@ TagManager:
   - Exit
   - Queue
   - Customer
+  - PlayerFinger
   layers:
   - Default
   - TransparentFX
