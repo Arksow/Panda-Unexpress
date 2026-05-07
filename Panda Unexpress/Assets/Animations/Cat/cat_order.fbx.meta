@@ -1,0 +1,541 @@
+fileFormatVersion: 2
+guid: 6578d2293cebb1a43b841944f08b09a4
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cat_RIG1_standardSurface2
+    second: {fileID: 2100000, guid: 19517b8b6b4f08b4eaa2a997ba975342, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Cat_RIG1:Spine2' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      internalID: 1827226128182048838
+      firstFrame: 0
+      lastFrame: 159
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Cat_RIG1:Hip
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:L_Leg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:R_Leg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:L_Knee
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:R_Knee
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:L_Ankle
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:R_Ankle
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:Spine1
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:L_Upperarm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:R_Upperarm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:L_Lowerarm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:R_Lowerarm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:L_Wrist
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:R_Wrist
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:L_Foot
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cat_RIG1:R_Foot
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: cat_idle(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:Cat_MESH
+      parentName: cat_idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:Body
+      parentName: Cat_RIG1:Cat_MESH
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:Tail
+      parentName: Cat_RIG1:Cat_MESH
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:Glasses
+      parentName: Cat_RIG1:Cat_MESH
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:Whiskers
+      parentName: Cat_RIG1:Cat_MESH
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:L_eye
+      parentName: Cat_RIG1:Cat_MESH
+      position: {x: -0.00617584, y: 0.07404259, z: 0.0075377887}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:L_Eye
+      parentName: Cat_RIG1:L_eye
+      position: {x: 0.00617584, y: -0.07468988, z: -0.009695041}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:L_Pupil
+      parentName: Cat_RIG1:L_eye
+      position: {x: 0.00617584, y: -0.07468988, z: -0.009695041}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:L_Eyelid
+      parentName: Cat_RIG1:L_eye
+      position: {x: 0.00617584, y: -0.07468988, z: -0.009695041}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:L_Eyelash1
+      parentName: Cat_RIG1:L_eye
+      position: {x: 0.00617584, y: -0.07404259, z: -0.0075377887}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:L_Eyelash2
+      parentName: Cat_RIG1:L_eye
+      position: {x: 0.00617584, y: -0.07468988, z: -0.009695041}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:R_eye
+      parentName: Cat_RIG1:Cat_MESH
+      position: {x: 0.00617584, y: 0.07404259, z: 0.0075377887}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:R_Eyelid
+      parentName: Cat_RIG1:R_eye
+      position: {x: -0.00617584, y: -0.07468988, z: -0.009695042}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:R_Eyelash1
+      parentName: Cat_RIG1:R_eye
+      position: {x: -0.00617584, y: -0.07468988, z: -0.009695042}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:R_Eyelash2
+      parentName: Cat_RIG1:R_eye
+      position: {x: -0.00617584, y: -0.07468988, z: -0.009695042}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:R_Eye
+      parentName: Cat_RIG1:R_eye
+      position: {x: -0.00617584, y: -0.07468988, z: -0.009695042}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:R_Pupil
+      parentName: Cat_RIG1:R_eye
+      position: {x: -0.00617584, y: -0.07468988, z: -0.009695042}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:Cat_RIG
+      parentName: cat_idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:RIG
+      parentName: Cat_RIG1:Cat_RIG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:Hip
+      parentName: Cat_RIG1:RIG
+      position: {x: 0, y: 0.041472472, z: -1.7763568e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:Spine1
+      parentName: Cat_RIG1:Hip
+      position: {x: -0, y: 0.0074483156, z: 0}
+      rotation: {x: 0.000000005820765, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:Spine2
+      parentName: Cat_RIG1:Spine1
+      position: {x: -0, y: 0.0074483105, z: 0}
+      rotation: {x: 0.0000000058207688, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Cat_RIG1:Neck
+      parentName: Cat_RIG1:Spine2
+      position: {x: -0, y: 0.004357581, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:Head
+      parentName: Cat_RIG1:Neck
+      position: {x: -0, y: 0.0028960656, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cat_RIG1:Head_end
+      parentName: Cat_RIG1:Head
+      position: {x: -0, y: 0.020144138, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 0.9999999, z: 0.9999999}
+    - name: Cat_RIG1:L_Upperarm
+      parentName: Cat_RIG1:Spine2
+      position: {x: -0.004505334, y: 0.002155934, z: 0}
+      rotation: {x: -0.4848878, y: 0.45576277, z: 0.5146687, w: 0.5406295}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1}
+    - name: Cat_RIG1:L_Lowerarm
+      parentName: Cat_RIG1:L_Upperarm
+      position: {x: 1.850922e-18, y: 0.00887567, z: 8.008541e-18}
+      rotation: {x: 0.03645584, y: -0.6645998, z: 0.032495175, w: 0.74560195}
+      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000006}
+    - name: Cat_RIG1:L_Wrist
+      parentName: Cat_RIG1:L_Lowerarm
+      position: {x: 2.387095e-17, y: 0.011514695, z: -9.0514894e-17}
+      rotation: {x: 0.012773922, y: -0.62662476, z: 0.010273448, w: 0.7791487}
+      scale: {x: 1, y: 1.0000006, z: 1.0000011}
+    - name: Cat_RIG1:L_Hand
+      parentName: Cat_RIG1:L_Wrist
+      position: {x: -6.7644806e-17, y: 0.008981886, z: 2.941148e-16}
+      rotation: {x: -0, y: -0.000000029802315, z: 9.3132235e-10, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 1.0000002}
+    - name: Cat_RIG1:R_Upperarm
+      parentName: Cat_RIG1:Spine2
+      position: {x: 0.0045053298, y: 0.0021559482, z: 0}
+      rotation: {x: 0.54062927, y: -0.5146686, z: 0.45576304, w: 0.48488802}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: Cat_RIG1:R_Lowerarm
+      parentName: Cat_RIG1:R_Upperarm
+      position: {x: 7.422181e-10, y: -0.00887568, z: -8.5548464e-11}
+      rotation: {x: -0.03645572, y: 0.66459984, z: -0.03249517, w: -0.7456019}
+      scale: {x: 1.0000001, y: 1, z: 0.99999976}
+    - name: Cat_RIG1:R_Wrist
+      parentName: Cat_RIG1:R_Lowerarm
+      position: {x: -1.7763568e-17, y: -0.011514711, z: 7.723935e-10}
+      rotation: {x: -0.01277382, y: 0.6266247, z: -0.010273273, w: -0.77914876}
+      scale: {x: 1.0000006, y: 1.0000001, z: 1.0000002}
+    - name: Cat_RIG1:R_Hand
+      parentName: Cat_RIG1:R_Wrist
+      position: {x: 0.0000000016706352, y: -0.0089818295, z: -0.000000020874362}
+      rotation: {x: -0, y: 0.000000029802315, z: -9.3132235e-10, w: 1}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1}
+    - name: Cat_RIG1:L_Leg
+      parentName: Cat_RIG1:Hip
+      position: {x: -0.0053624315, y: 0, z: 0}
+      rotation: {x: 0.7066901, y: 0.024272889, z: 0.7066901, w: 0.024272889}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000002}
+    - name: Cat_RIG1:L_Knee
+      parentName: Cat_RIG1:L_Leg
+      position: {x: 1.3877787e-18, y: 0.019723386, z: -1.2837326e-16}
+      rotation: {x: -0.112295285, y: 0.6981331, z: 0.112295285, w: 0.6981331}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1}
+    - name: Cat_RIG1:L_Ankle
+      parentName: Cat_RIG1:L_Knee
+      position: {x: -1.3685968e-16, y: 0.021249814, z: 0}
+      rotation: {x: 0.78984064, y: -0, z: -0, w: 0.6133121}
+      scale: {x: 1.0000007, y: 1.0000002, z: 1.0000005}
+    - name: Cat_RIG1:L_Foot
+      parentName: Cat_RIG1:L_Ankle
+      position: {x: 3.9902643e-18, y: 0.011501153, z: -3.1922112e-19}
+      rotation: {x: 0.000000029802319, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000002}
+    - name: Cat_RIG1:R_Leg
+      parentName: Cat_RIG1:Hip
+      position: {x: 0.00536243, y: -0.000000025413511, z: 0}
+      rotation: {x: -0.02427289, y: 0.7066901, z: -0.02427289, w: 0.7066901}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: Cat_RIG1:R_Knee
+      parentName: Cat_RIG1:R_Leg
+      position: {x: 0.0000000029280045, y: -0.019723382, z: 1.8762768e-16}
+      rotation: {x: -0.11229528, y: 0.6981331, z: 0.11229528, w: 0.6981331}
+      scale: {x: 1.0000002, y: 0.9999999, z: 1.0000004}
+    - name: Cat_RIG1:R_Ankle
+      parentName: Cat_RIG1:R_Knee
+      position: {x: -5.551115e-17, y: -0.021249792, z: 0.0000000021411042}
+      rotation: {x: 0.78984064, y: -0, z: -0, w: 0.6133121}
+      scale: {x: 1.0000007, y: 1.0000004, z: 1.0000004}
+    - name: Cat_RIG1:R_Foot
+      parentName: Cat_RIG1:R_Ankle
+      position: {x: -2.3869793e-16, y: -0.01150115, z: 9.576631e-19}
+      rotation: {x: -0.000000029802319, y: -0, z: -0, w: -1}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000002}
+    - name: Cat_RIG1:Tail
+      parentName: Cat_RIG1:Hip
+      position: {x: 5.4210107e-22, y: -0.0022615718, z: -0.0033337774}
+      rotation: {x: -0.7071068, y: 0.000003198057, z: -0.0000032062887, w: 0.7071068}
+      scale: {x: 1, y: 1.0000002, z: 1.0000001}
+    - name: Cat_RIG1:Tail1
+      parentName: Cat_RIG1:Tail
+      position: {x: -0, y: 0.010406127, z: 0}
+      rotation: {x: -0, y: 0.00000003492414, z: 0.000000014552141, w: 1}
+      scale: {x: 1, y: 1.0000002, z: 1.0000002}
+    - name: Cat_RIG1:Tail2
+      parentName: Cat_RIG1:Tail1
+      position: {x: -0, y: 0.00892905, z: 0}
+      rotation: {x: 0.0000031959996, y: 0.7071068, z: 0.7071068, w: -0.0000031754196}
+      scale: {x: 1.0000002, y: 0.99999994, z: 1.0000002}
+    - name: Cat_RIG1:Tail3
+      parentName: Cat_RIG1:Tail2
+      position: {x: -1.0467296e-18, y: 9.496166e-24, z: 0.008547242}
+      rotation: {x: -0.00000011920937, y: 0.0000000058214473, z: -0.000009057113, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Cat_RIG1:Tail4
+      parentName: Cat_RIG1:Tail3
+      position: {x: -0, y: 0, z: 0.008977913}
+      rotation: {x: -0.0003007181, y: 0.0003009021, z: -0.70710355, w: 0.7071099}
+      scale: {x: 1.0000001, y: 1.0000002, z: 0.99999994}
+    - name: Cat_RIG1:Tail5
+      parentName: Cat_RIG1:Tail4
+      position: {x: -6.1369476e-19, y: 4.936438e-21, z: 0.009361516}
+      rotation: {x: -0, y: -1.45519135e-11, z: 0.0000000010797406, w: 1}
+      scale: {x: 1, y: 1.0000002, z: 1.0000001}
+    - name: Blendshapes_Eye1
+      parentName: cat_idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Blendshapes_Eye2
+      parentName: cat_idle(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: c1408c319e516c54ba735c0889757d61, type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

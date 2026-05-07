@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c84a9d91633286146bbe9542ea6ac15e
+guid: 806c7a92a7b500f43a9e4c06b4aed6c1
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Cat_RIG_standardSurface2
-    second: {fileID: 2100000, guid: c19a7454adc211d4fb52c18e425e35f6, type: 2}
+      name: standardSurface1
+    second: {fileID: 2100000, guid: f2d28737ccbf3774ba82bbb13aab4de7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -99,13 +99,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 133e280c2c657464ebc74c84dc4f1df7, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 3
+  animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
