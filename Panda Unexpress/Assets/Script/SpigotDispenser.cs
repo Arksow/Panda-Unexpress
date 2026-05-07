@@ -3,26 +3,42 @@ using Oculus.Interaction;
 
 public class SpigotDispenser : MonoBehaviour
 {
-    [Header("Dispenser Settings")]
     public LiquidBase barrelLiquidType;
     public MetaSocket cupSocket;
 
     public ParticleSystem liquidStream;
     public float fillSpeed = 0.2f;
-    public Transform spigotHandle;
-    public float pourAngleThreshold = 45f;
 
+    public Transform spigotHandle;
+
+    public float pourAngleThreshold = 45f;
+    public float springSpeed = 10f;
+
+    private Grabbable handleGrabbable;
     public bool isPouring = false;
 
     void Awake()
     {
         if (liquidStream != null) liquidStream.Stop();
+        if (spigotHandle != null)
+        {
+            handleGrabbable = spigotHandle.GetComponent<Grabbable>();
+        }
     }
 
     protected virtual void Update()
     {
         if (spigotHandle != null)
         {
+            bool isBeingGrabbed = handleGrabbable != null && handleGrabbable.SelectingPointsCount > 0;
+
+            if (!isBeingGrabbed)
+            {
+                float currentX = spigotHandle.localEulerAngles.x;
+                float newX = Mathf.LerpAngle(currentX, 0f, Time.deltaTime * springSpeed);
+                spigotHandle.localEulerAngles = new Vector3(newX, spigotHandle.localEulerAngles.y, spigotHandle.localEulerAngles.z);
+            }
+
             float currentAngle = spigotHandle.localEulerAngles.x;
 
             if (currentAngle > 180f) currentAngle -= 360f;
