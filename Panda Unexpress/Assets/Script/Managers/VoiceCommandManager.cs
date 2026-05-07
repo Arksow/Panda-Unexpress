@@ -28,10 +28,10 @@ public class VoiceCommandManager : MonoBehaviour
 
     private void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.One))
-        {
-            StartListening();
-        }
+        //if (OVRInput.GetDown(OVRInput.Button.One))
+        //{
+        //    StartListening();
+        //}
     }
 
     public void StartListening()
