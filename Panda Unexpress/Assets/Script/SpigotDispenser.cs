@@ -5,46 +5,41 @@ public class SpigotDispenser : MonoBehaviour
 {
     [Header("Dispenser Settings")]
     public LiquidBase barrelLiquidType;
-
     public MetaSocket cupSocket;
 
     public ParticleSystem liquidStream;
     public float fillSpeed = 0.2f;
+    public Transform spigotHandle;
+    public float pourAngleThreshold = 45f;
 
-    private Grabbable grabbable;
-    public bool isTriggerPulled = false;
+    public bool isPouring = false;
 
     void Awake()
     {
-        grabbable = GetComponent<Grabbable>();
         if (liquidStream != null) liquidStream.Stop();
     }
 
     protected virtual void Update()
     {
-        if (grabbable != null && grabbable.SelectingPointsCount > 0)
+        if (spigotHandle != null)
         {
-            float leftTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.LTouch);
-            float rightTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
+            float currentAngle = spigotHandle.localEulerAngles.x;
 
-            isTriggerPulled = (leftTrigger > 0.5f) || (rightTrigger > 0.5f);
-        }
-        else
-        {
-            isTriggerPulled = false;
+            if (currentAngle > 180f) currentAngle -= 360f;
+
+            isPouring = currentAngle > pourAngleThreshold;
         }
 
-        if (isTriggerPulled && !liquidStream.isPlaying) liquidStream.Play();
-        else if (!isTriggerPulled && liquidStream.isPlaying) liquidStream.Stop();
+        if (isPouring && !liquidStream.isPlaying) liquidStream.Play();
+        else if (!isPouring && liquidStream.isPlaying) liquidStream.Stop();
 
-        if (isTriggerPulled && cupSocket.HasItem())
+        if (isPouring && cupSocket.HasItem())
         {
             CupData cup = cupSocket.GetSocketItem();
 
             if (cup != null)
             {
-                float fillAmount = fillSpeed * Time.deltaTime;
-                cup.AddLiquid(barrelLiquidType, fillAmount);
+                cup.AddLiquid(barrelLiquidType, fillSpeed * Time.deltaTime);
             }
         }
     }

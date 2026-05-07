@@ -8,14 +8,14 @@ public class GameOverUIManager : MonoBehaviour
 
     private void Start()
     {
-        string currentPlayer = PlayerPrefs.GetString("PlayerName", "Player");
+        string currentPlayer = PlayerPrefs.GetString(SaveKeys.CURRENT_PLAYER, "Player");
 
         if (EconomyManager.instance != null)
         {
             int earnings = EconomyManager.instance.currentMoney;
             earningsText.text = $"Earnings: ${earnings}";
             EconomyManager.instance.EndGame(currentPlayer);
-            int highscore = PlayerPrefs.GetInt($"{currentPlayer}_Highscore", 0);
+            int highscore = PlayerPrefs.GetInt(SaveKeys.GetHighScoreKey(currentPlayer), 0);
             highscoreText.text = $"Highscore: ${highscore}";
         }
     }

@@ -23,20 +23,25 @@ public class SugarMachine : MonoBehaviour
         Debug.Log("Switched to: " + selectedType);
     }
 
+    public void SetToSyrup()
+    {
+        selectedType = SugarType.Syrup;
+        Debug.Log("Switched to: " + selectedType);
+    }
+
+    public void SetToHoney()
+    {
+        selectedType = SugarType.Honey;
+        Debug.Log("Switched to: " + selectedType);
+    }
+
     private float GetCurrentLeverAngle()
     {
-        float angle = slotLever.localEulerAngles.x;
-
-        if (angle > 225f && angle <= 360f)
-        {
-            angle -= 360f;
-        }
-        return angle;
+        return slotLever.localEulerAngles.x;
     }
 
     void Update()
     {
-        // Your jam mechanic!
         if (EventManager.instance != null && EventManager.instance.currentEvent == Events.SugarSpoil)
         {
             float currentAngle = GetCurrentLeverAngle();
@@ -58,8 +63,7 @@ public class SugarMachine : MonoBehaviour
     {
         float currentAngle = GetCurrentLeverAngle();
 
-        // Calculate the 0% to 100% based on your new -45 to 225 range
-        float normalizedLever = Mathf.InverseLerp(-45f, 225f, currentAngle);
+        float normalizedLever = Mathf.InverseLerp(130f, 230f, currentAngle);
 
         int levelIndex = Mathf.RoundToInt(normalizedLever * 3f);
         levelIndex = Mathf.Clamp(levelIndex, 0, 3);
