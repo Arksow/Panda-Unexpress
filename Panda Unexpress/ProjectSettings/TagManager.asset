@@ -9,6 +9,7 @@ TagManager:
   - Queue
   - Customer
   - PlayerFinger
+  - BobaBin
   layers:
   - Default
   - TransparentFX

@@ -3,94 +3,71 @@ using Oculus.Interaction;
 
 public class SugarMachine : MonoBehaviour
 {
-    [Header("Lever Setup")]
     public Transform slotLever;
     public MetaSocket cupSocket;
 
-    public enum SugarType { Syrup, Honey }
     public SugarType selectedType = SugarType.Syrup;
     private readonly float[] sugarLevels = { 0f, 25f, 50f, 100f };
 
     public ParticleSystem syrupStream;
     public ParticleSystem honeyStream;
 
-    private float lastLeverAngle;
-    private int spinFixCount = 0;
+    public Axis rotationAxis = Axis.X;
+    public enum Axis { X, Y, Z }
 
-    public void ToggleSugarType()
-    {
-        selectedType = (selectedType == SugarType.Syrup) ? SugarType.Honey : SugarType.Syrup;
-        Debug.Log("Switched to: " + selectedType);
-    }
+    public float zeroPercentAngle = -50f;
+    public float hundredPercentAngle = 50f;
 
-    public void SetToSyrup()
-    {
-        selectedType = SugarType.Syrup;
-        Debug.Log("Switched to: " + selectedType);
-    }
-
-    public void SetToHoney()
-    {
-        selectedType = SugarType.Honey;
-        Debug.Log("Switched to: " + selectedType);
-    }
+    public void ToggleSugarType() { selectedType = (selectedType == SugarType.Syrup) ? SugarType.Honey : SugarType.Syrup; }
+    public void SetToSyrup() { selectedType = SugarType.Syrup; }
+    public void SetToHoney() { selectedType = SugarType.Honey; }
 
     private float GetCurrentLeverAngle()
     {
-        return slotLever.localEulerAngles.x;
-    }
+        float angle = 0f;
 
-    void Update()
-    {
-        if (EventManager.instance != null && EventManager.instance.currentEvent == Events.SugarSpoil)
-        {
-            float currentAngle = GetCurrentLeverAngle();
-            if (Mathf.Abs(currentAngle - lastLeverAngle) > 10f)
-            {
-                spinFixCount++;
-                lastLeverAngle = currentAngle;
+        if (rotationAxis == Axis.X) angle = slotLever.localEulerAngles.x;
+        else if (rotationAxis == Axis.Y) angle = slotLever.localEulerAngles.y;
+        else if (rotationAxis == Axis.Z) angle = slotLever.localEulerAngles.z;
 
-                if (spinFixCount > 20)
-                {
-                    spinFixCount = 0;
-                    EventManager.instance.ResolveCurrentEvent();
-                }
-            }
-        }
+        if (angle > 180f) angle -= 360f;
+
+        return angle;
     }
 
     public float GetSelectedSugarLevel()
     {
         float currentAngle = GetCurrentLeverAngle();
 
-        float normalizedLever = Mathf.InverseLerp(130f, 230f, currentAngle);
+        float normalizedLever = Mathf.InverseLerp(zeroPercentAngle, hundredPercentAngle, currentAngle);
 
         int levelIndex = Mathf.RoundToInt(normalizedLever * 3f);
         levelIndex = Mathf.Clamp(levelIndex, 0, 3);
 
-        return sugarLevels[levelIndex];
+        float finalSugar = sugarLevels[levelIndex];
+
+        Debug.Log($"Lever Axis: {rotationAxis} | Current Angle: {currentAngle} | Final Sugar: {finalSugar}%");
+
+        return finalSugar;
     }
 
     public void DispenseSugar()
     {
-        if (EventManager.instance != null && EventManager.instance.currentEvent == Events.SugarSpoil)
-        {
-            Debug.Log("Machine is jammed! Spin the lever!");
-            return;
-        }
+        if (EventManager.instance != null && EventManager.instance.currentEvent == Events.SugarSpoil) return;
 
         if (cupSocket.HasItem())
         {
             CupData cup = cupSocket.GetSocketItem();
-
             if (cup != null)
             {
                 float levelToDispense = GetSelectedSugarLevel();
 
-                if (selectedType == SugarType.Syrup) syrupStream.Play();
-                if (selectedType == SugarType.Honey) honeyStream.Play();
+                if (selectedType == SugarType.Syrup && syrupStream != null) syrupStream.Play();
+                if (selectedType == SugarType.Honey && honeyStream != null) honeyStream.Play();
 
-                Debug.Log("Dispensed " + levelToDispense + "% " + selectedType);
+                cup.sugarPercentage = levelToDispense;
+                cup.currentSugarType = selectedType;
+                cup.ShowUI();
             }
         }
     }

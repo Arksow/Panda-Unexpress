@@ -2,29 +2,47 @@ using UnityEngine;
 
 public class ToppingScoop : MonoBehaviour
 {
-    public ParticleSystem scoopEmitter;
+    public Transform bowlCenter;
+    public float dropAngleThreshold = 0.2f;
 
-    public int heldParticles = 0;
-    public float tiltThreshold = 0.5f;
+    private GameObject currentPearl;
+    private Rigidbody pearlRb;
+
+    void OnTriggerStay(Collider other)
+    {
+        if (currentPearl == null)
+        {
+            BobaPearl touchedPearl = other.GetComponent<BobaPearl>();
+
+            if (touchedPearl != null && !touchedPearl.isScooped)
+            {
+                touchedPearl.isScooped = true;
+
+                currentPearl = touchedPearl.gameObject;
+                currentPearl.transform.SetParent(bowlCenter);
+                currentPearl.transform.localPosition = Vector3.zero;
+                pearlRb = currentPearl.GetComponent<Rigidbody>();
+                if (pearlRb != null)
+                {
+                    pearlRb.isKinematic = true;
+                }
+
+                Debug.Log("Physically caught a Boba Ball!");
+            }
+        }
+    }
 
     void Update()
     {
-        if (heldParticles > 0)
+        if (currentPearl != null && pearlRb != null && pearlRb.isKinematic)
         {
-            float tilt = Vector3.Dot(transform.up, Vector3.down);
-            if (tilt > tiltThreshold)
+            if (Vector3.Dot(transform.up, Vector3.up) < dropAngleThreshold)
             {
-                scoopEmitter.Emit(heldParticles);
-                heldParticles = 0;
-            }
-        }
+                currentPearl.transform.SetParent(null);
+                pearlRb.isKinematic = false;
 
-        if (EventManager.instance != null && EventManager.instance.currentEvent == Events.LeakyScoop)
-        {
-            if (heldParticles > 0 && Time.frameCount % 30 == 0)
-            {
-                heldParticles--;
-                scoopEmitter.Emit(1);
+                pearlRb = null;
+                currentPearl = null;
             }
         }
     }

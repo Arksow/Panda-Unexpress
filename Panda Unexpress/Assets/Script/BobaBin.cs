@@ -3,33 +3,32 @@ using System.Collections.Generic;
 
 public class BobaBin : MonoBehaviour
 {
-    public ToppingScoop targetScoop;
+    public GameObject bobaPrefab;
+    public Transform spawnPoint;
+    public int maxBobaInBin = 5;
 
-    private ParticleSystem binParticles;
-    private List<ParticleSystem.Particle> enterParticles = new List<ParticleSystem.Particle>();
+    private List<GameObject> activeBobaList = new List<GameObject>();
 
     void Start()
     {
-        binParticles = GetComponent<ParticleSystem>();
+        InvokeRepeating("CheckAndRefillBin", 1f, 1f);
     }
 
-    protected virtual void OnParticleTrigger()
+    void CheckAndRefillBin()
     {
-        int numEnter = binParticles.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enterParticles);
+        activeBobaList.RemoveAll(item => item == null);
 
-        if (numEnter > 0 && targetScoop != null)
+        if (activeBobaList.Count < maxBobaInBin)
         {
-            targetScoop.heldParticles += numEnter;
-            Debug.Log($"Caught {numEnter} boba! Total held: {targetScoop.heldParticles}");
-
-            for (int i = 0; i < numEnter; i++)
-            {
-                ParticleSystem.Particle p = enterParticles[i];
-                p.remainingLifetime = 0f;
-                enterParticles[i] = p;
-            }
-
-            binParticles.SetTriggerParticles(ParticleSystemTriggerEventType.Enter, enterParticles);
+            SpawnBoba();
         }
+    }
+
+    public void SpawnBoba()
+    {
+        GameObject newBoba = Instantiate(bobaPrefab, spawnPoint.position, Quaternion.identity);
+        newBoba.transform.SetParent(transform);
+
+        activeBobaList.Add(newBoba);
     }
 }

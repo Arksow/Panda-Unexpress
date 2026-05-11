@@ -7,6 +7,7 @@ public class IceScoop : MonoBehaviour
     public Transform pourPoint;
     public LayerMask cupLayer;
     public float tiltThreshold = 0.5f;
+    public float pourRadius = 0.25f;
 
     private bool isFull = false;
 
@@ -28,7 +29,7 @@ public class IceScoop : MonoBehaviour
     {
         if (isFull)
         {
-            float tilt = Vector3.Dot(transform.up, Vector3.down);
+            float tilt = Vector3.Dot(-transform.right, Vector3.down);
             if (tilt > tiltThreshold)
             {
                 TryPourIce();
@@ -38,7 +39,7 @@ public class IceScoop : MonoBehaviour
 
     protected virtual void TryPourIce()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(pourPoint.position, 0.15f, cupLayer);
+        Collider[] hitColliders = Physics.OverlapSphere(pourPoint.position, pourRadius, cupLayer);
         foreach (var hitCollider in hitColliders)
         {
             CupData cup = hitCollider.GetComponent<CupData>();
@@ -50,6 +51,15 @@ public class IceScoop : MonoBehaviour
                 Ice.SetActive(false);
                 return;
             }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (pourPoint != null)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(pourPoint.position, pourRadius);
         }
     }
 }
