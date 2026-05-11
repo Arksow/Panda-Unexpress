@@ -1,34 +1,76 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameOverUIManager : MonoBehaviour
 {
+    [Header("UI Canvas")]
+    public GameObject gameOverCanvas;
+
+    [Header("UI Elements")]
     public TextMeshProUGUI earningsText;
     public TextMeshProUGUI highscoreText;
+    public GameObject newHighscoreAlert;
 
     private void Start()
     {
+        if (gameOverCanvas != null)
+        {
+            gameOverCanvas.SetActive(false);
+        }
+    }
+
+    public void ShowGameOverUI()
+    {
+        if (gameOverCanvas != null)
+        {
+            gameOverCanvas.SetActive(true);
+        }
+
         string currentPlayer = PlayerPrefs.GetString(SaveKeys.CURRENT_PLAYER, "Player");
+        int oldHighscore = PlayerPrefs.GetInt(SaveKeys.GetHighScoreKey(currentPlayer), 0);
 
         if (EconomyManager.instance != null)
         {
             int earnings = EconomyManager.instance.currentMoney;
             earningsText.text = $"Earnings: ${earnings}";
+
             EconomyManager.instance.EndGame(currentPlayer);
-            int highscore = PlayerPrefs.GetInt(SaveKeys.GetHighScoreKey(currentPlayer), 0);
-            highscoreText.text = $"Highscore: ${highscore}";
+
+            int updatedHighscore = PlayerPrefs.GetInt(SaveKeys.GetHighScoreKey(currentPlayer), 0);
+            highscoreText.text = $"Highscore: ${updatedHighscore}";
+
+            if (earnings > oldHighscore && newHighscoreAlert != null)
+            {
+                newHighscoreAlert.SetActive(true);
+            }
+            else if (newHighscoreAlert != null)
+            {
+                newHighscoreAlert.SetActive(false);
+            }
         }
     }
 
     public void OnRetry()
     {
-        EconomyManager.instance.currentMoney = 0;
-        SceneTransitionManager.instance.StartShift();
+        if (EconomyManager.instance != null)
+        {
+            EconomyManager.instance.currentMoney = 0;
+        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OnMainMenu()
     {
-        EconomyManager.instance.currentMoney = 0;
-        SceneTransitionManager.instance.ReturnToMenu();
+        if (EconomyManager.instance != null)
+        {
+            EconomyManager.instance.currentMoney = 0;
+        }
+
+        if (SceneTransitionManager.instance != null)
+        {
+            SceneTransitionManager.instance.ReturnToMenu();
+        }
     }
 }
