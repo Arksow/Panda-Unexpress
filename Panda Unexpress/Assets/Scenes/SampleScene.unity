@@ -18773,6 +18773,7 @@ GameObject:
   - component: {fileID: 1625447331}
   - component: {fileID: 1625447333}
   - component: {fileID: 1625447332}
+  - component: {fileID: 1625447334}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -18974,6 +18975,21 @@ MonoBehaviour:
   usePlatformServices: 0
   enableConsoleLogging: 0
   sendTranscriptionEventsForMessages: 0
+--- !u!114 &1625447334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625447328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ba22a644c1f7344bfcc53609bd3072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOverUIManager
+  earningsText: {fileID: 0}
+  highscoreText: {fileID: 0}
+  newHighscoreAlert: {fileID: 0}
 --- !u!1 &1655650670
 GameObject:
   m_ObjectHideFlags: 0
