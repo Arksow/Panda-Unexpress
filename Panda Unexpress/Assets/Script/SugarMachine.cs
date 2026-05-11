@@ -68,6 +68,8 @@ public class SugarMachine : MonoBehaviour
                 cup.sugarPercentage = levelToDispense;
                 cup.currentSugarType = selectedType;
                 cup.ShowUI();
+
+                cup.OnSugarAdded?.Invoke();
             }
         }
     }

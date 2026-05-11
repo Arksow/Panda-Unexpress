@@ -20,6 +20,7 @@ public class BobaReceiver : MonoBehaviour
             if (cupData != null)
             {
                 cupData.AddBobaParticles(30);
+                cupData.OnBobaAdded?.Invoke();
                 Debug.Log("1 Boba Scoop added to cup!");
             }
         }
