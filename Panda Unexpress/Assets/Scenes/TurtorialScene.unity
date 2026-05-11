@@ -4404,6 +4404,7 @@ Transform:
   - {fileID: 438388960}
   - {fileID: 1813030922}
   - {fileID: 1060577051}
+  - {fileID: 899474394}
   m_Father: {fileID: 402447542}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &280288888
@@ -4418,7 +4419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2173b1725157d7f4a8997dadc931189f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BobaBin
-  targetScoop: {fileID: 0}
+  targetScoop: {fileID: 1529738375}
 --- !u!1 &281501998
 GameObject:
   m_ObjectHideFlags: 0
@@ -6564,7 +6565,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402751012}
   m_LocalRotation: {x: -0, y: 0.99999726, z: -0, w: 0.0023460127}
-  m_LocalPosition: {x: 0, y: 0, z: 1.025}
+  m_LocalPosition: {x: 0, y: 0, z: 1.256}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -6574,7 +6575,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 179.731, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 9.992, y: 1.69}
+  m_AnchoredPosition: {x: 9.991, y: 1.266}
   m_SizeDelta: {x: 4.3019, y: 2.4649}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &404453393
@@ -39792,11 +39793,11 @@ Transform:
   m_GameObject: {fileID: 899474393}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.0771, y: -0.1068, z: 0.1109}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: -0.012349917, y: -0.018575644, z: 0.015452111}
+  m_LocalScale: {x: 0.0064535, y: 0.0064534997, z: 0.0064534997}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1529738370}
+  m_Father: {fileID: 280288887}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &899474395
 MonoBehaviour:
@@ -77373,7 +77374,6 @@ GameObject:
   - component: {fileID: 1343689005}
   - component: {fileID: 1343689004}
   - component: {fileID: 1343689006}
-  - component: {fileID: 1343689007}
   m_Layer: 0
   m_Name: pSphere3
   m_TagString: Untagged
@@ -77468,27 +77468,12 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.010298277
   m_Center: {x: 0.000000037837935, y: -0.0043188655, z: 0.00000011431887}
---- !u!114 &1343689007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343689002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0758c96007f6f2748870c958e8524e64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ToppingScoop
-  scoopEmitter: {fileID: 899474397}
-  heldParticles: 0
-  tiltThreshold: 0.5
 --- !u!1 &1344314921 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4031846141794586238, guid: 009a2bfcdc5f1dd429902e80f6042f1d, type: 3}
@@ -85736,6 +85721,8 @@ GameObject:
   - component: {fileID: 1529738370}
   - component: {fileID: 1529738374}
   - component: {fileID: 1529738371}
+  - component: {fileID: 1529738376}
+  - component: {fileID: 1529738375}
   m_Layer: 0
   m_Name: Scoop
   m_TagString: Untagged
@@ -85758,7 +85745,6 @@ Transform:
   m_Children:
   - {fileID: 1112175599}
   - {fileID: 1343689003}
-  - {fileID: 899474394}
   m_Father: {fileID: 402447542}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1529738371
@@ -85811,6 +85797,42 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1529738375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529738369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0758c96007f6f2748870c958e8524e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToppingScoop
+  scoopEmitter: {fileID: 899474397}
+  heldParticles: 0
+  tiltThreshold: 0.5
+--- !u!135 &1529738376
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529738369}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.011845869
+  m_Center: {x: -0.088154145, y: 0.012, z: 0.12}
 --- !u!1 &1529755944
 GameObject:
   m_ObjectHideFlags: 0
@@ -87131,6 +87153,11 @@ MonoBehaviour:
   - stepText: get toppings, then you can put it in the cup
     highlights:
     - {fileID: 1022006911}
+  - stepText: now use the speaker and say the order!
+    highlights: []
+  - stepText: You have learnt how to make boba, and a customer has came. Serve him
+      his order to complete the turtorial!
+    highlights: []
 --- !u!114 &1625447332
 MonoBehaviour:
   m_ObjectHideFlags: 0
