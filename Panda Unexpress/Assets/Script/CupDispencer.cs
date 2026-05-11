@@ -9,6 +9,8 @@ public class CupDispenser : MonoBehaviour
     public int maxCups = 10;
     private int cupsRemaining;
 
+    public DrinkRecipe[] masterRecipeList;
+
     private Grabbable currentCup;
     private Rigidbody currentRb;
 
@@ -37,6 +39,7 @@ public class CupDispenser : MonoBehaviour
         if (cupData != null)
         {
             cupData.enabled = false;
+            cupData.validRecipes = this.masterRecipeList;
         }
 
         dispenserSocket.ForceSocket(currentCup);

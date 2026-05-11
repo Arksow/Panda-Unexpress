@@ -24,7 +24,7 @@ public class Buttons : MonoBehaviour
         if (!isPressed && other.CompareTag("PlayerFinger"))
         {
             isPressed = true;
-            buttonCap.localPosition = originalPosition - new Vector3(0, pressDownDistance, 0);
+            buttonCap.localPosition = originalPosition - new Vector3(0, 0, pressDownDistance);
             onButtonPressed.Invoke();
         }
     }

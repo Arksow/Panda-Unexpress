@@ -7,15 +7,17 @@ public class SpigotDispenser : MonoBehaviour
     public MetaSocket cupSocket;
 
     public ParticleSystem liquidStream;
-    public float fillSpeed = 0.2f;
+    public float fillSpeed = 15f;
 
     public Transform spigotHandle;
-
     public float pourAngleThreshold = 45f;
     public float springSpeed = 10f;
 
     private Grabbable handleGrabbable;
     public bool isPouring = false;
+
+    private Quaternion restingRotation;
+    private Vector3 restingPosition;
 
     void Awake()
     {
@@ -23,6 +25,8 @@ public class SpigotDispenser : MonoBehaviour
         if (spigotHandle != null)
         {
             handleGrabbable = spigotHandle.GetComponent<Grabbable>();
+            restingRotation = spigotHandle.localRotation;
+            restingPosition = spigotHandle.localPosition;
         }
     }
 
@@ -34,25 +38,23 @@ public class SpigotDispenser : MonoBehaviour
 
             if (!isBeingGrabbed)
             {
-                float currentX = spigotHandle.localEulerAngles.x;
-                float newX = Mathf.LerpAngle(currentX, 0f, Time.deltaTime * springSpeed);
-                spigotHandle.localEulerAngles = new Vector3(newX, spigotHandle.localEulerAngles.y, spigotHandle.localEulerAngles.z);
+                spigotHandle.localRotation = Quaternion.Lerp(spigotHandle.localRotation, restingRotation, Time.deltaTime * springSpeed);
+                spigotHandle.localPosition = Vector3.Lerp(spigotHandle.localPosition, restingPosition, Time.deltaTime * springSpeed);
             }
 
-            float currentAngle = spigotHandle.localEulerAngles.x;
-
-            if (currentAngle > 180f) currentAngle -= 360f;
-
-            isPouring = currentAngle > pourAngleThreshold;
+            float pullDistance = Quaternion.Angle(restingRotation, spigotHandle.localRotation);
+            isPouring = pullDistance > pourAngleThreshold;
         }
 
-        if (isPouring && !liquidStream.isPlaying) liquidStream.Play();
-        else if (!isPouring && liquidStream.isPlaying) liquidStream.Stop();
+        if (liquidStream != null)
+        {
+            if (isPouring && !liquidStream.isPlaying) liquidStream.Play();
+            else if (!isPouring && liquidStream.isPlaying) liquidStream.Stop();
+        }
 
         if (isPouring && cupSocket.HasItem())
         {
             CupData cup = cupSocket.GetSocketItem();
-
             if (cup != null)
             {
                 cup.AddLiquid(barrelLiquidType, fillSpeed * Time.deltaTime);

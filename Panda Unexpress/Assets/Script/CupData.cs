@@ -56,7 +56,7 @@ public class CupData : MonoBehaviour
 
     private void UpdateUI()
     {
-        int bobaScoops = Mathf.RoundToInt((float)bobaParticleCount / 30f);
+        int bobaScoops = Mathf.FloorToInt((float)bobaParticleCount / 30f);
 
         string sugarDisplay = sugarPercentage > 0
             ? $"{currentSugarType}: {Mathf.RoundToInt(sugarPercentage)}%"
