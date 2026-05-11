@@ -27,6 +27,7 @@ public class CupData : MonoBehaviour
     public float base2Amount = 0f;
 
     public bool isTrashCup = false;
+    public string DrinkName = "Unknown Drink";
 
     public DrinkRecipe[] validRecipes;
 
@@ -62,7 +63,27 @@ public class CupData : MonoBehaviour
             ? $"{currentSugarType}: {Mathf.RoundToInt(sugarPercentage)}%"
             : "Sugar: 0%";
 
+        string drinkStatus = "Empty";
+
+        if (isTrashCup)
+        {
+            drinkStatus = "<color=red>Ruined (Trash)</color>";
+        }
+        else if (!string.IsNullOrEmpty(DrinkName))
+        {
+            drinkStatus = $"<color=green>{DrinkName}</color>";
+        }
+        else if (base1 != LiquidBase.None)
+        {
+            drinkStatus = base1.ToString();
+            if (base2 != LiquidBase.None)
+            {
+                drinkStatus += $" & {base2.ToString()}";
+            }
+        }
+
         contentsText.text = "<u>Cup Contents</u>\n" +
+                            $"Base: {drinkStatus}\n" +
                             $"Ice: {iceScoopCount} Scoops\n" +
                             $"Boba: {bobaScoops} Scoops\n" +
                             $"{sugarDisplay}";
@@ -127,6 +148,7 @@ public class CupData : MonoBehaviour
             if (recipe.MatchesRecipe(base1, base2))
             {
                 isValidCombo = true;
+                DrinkName = recipe.drinkName;
                 Debug.Log($"Successfully mixed a valid base for: {recipe.drinkName}");
                 break;
             }
