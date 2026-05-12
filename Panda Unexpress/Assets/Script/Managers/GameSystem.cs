@@ -35,13 +35,14 @@ public class GameSystem : MonoBehaviour
     public TextMeshProUGUI waveText;
 
     [Header("End Game")]
-    private int maxFailedOrders = 3;
-    private int failedOrders = 0;
+    public GameOverUIManager gameOverUI;
+    public int maxFailedOrders = 3;
+    public int failedOrders = 0;
     private bool isGameOver = false;
 
     private int nextID = 1;
-    private int currentWave = 1;
-    private int activeCustomers = 0;
+    public int currentWave = 1;
+    public int activeCustomers = 0;
 
     private int customerStartingWave = 5;
     private int customersWithExtraDrink = 0;
@@ -230,12 +231,42 @@ public class GameSystem : MonoBehaviour
 
     public void RegisterFailedOrder()
     {
+        if (isGameOver) return;
+
         failedOrders++;
 
         if (failedOrders >= maxFailedOrders)
         {
-            isGameOver = true;
-            StopAllCoroutines();
+            TriggerGameOver();
+        }
+    }
+
+    private void TriggerGameOver()
+    {
+        isGameOver = true;
+        Debug.Log("Shift Over! Too many angry customers.");
+
+        CustomerAI[] allCustomers = FindObjectsByType<CustomerAI>(FindObjectsSortMode.None);
+
+        foreach (CustomerAI ai in allCustomers)
+        {
+            ai.enabled = false;
+
+            UnityEngine.AI.NavMeshAgent agent = ai.GetComponent<UnityEngine.AI.NavMeshAgent>();
+            if (agent != null)
+            {
+                agent.isStopped = true;
+            }
+
+            if (ai.animator != null)
+            {
+                ai.animator.speed = 0f;
+            }
+        }
+
+        if (gameOverUI != null)
+        {
+            gameOverUI.ShowGameOverUI();
         }
     }
 }

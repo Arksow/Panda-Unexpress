@@ -6,6 +6,7 @@ public class GameOverUIManager : MonoBehaviour
 {
     [Header("UI Canvas")]
     public GameObject gameOverCanvas;
+    public GameObject button;
 
     [Header("UI Elements")]
     public TextMeshProUGUI earningsText;
@@ -17,6 +18,7 @@ public class GameOverUIManager : MonoBehaviour
         if (gameOverCanvas != null)
         {
             gameOverCanvas.SetActive(false);
+            button.SetActive(false);
         }
     }
 
@@ -25,6 +27,7 @@ public class GameOverUIManager : MonoBehaviour
         if (gameOverCanvas != null)
         {
             gameOverCanvas.SetActive(true);
+            button.SetActive(true);
         }
 
         string currentPlayer = PlayerPrefs.GetString(SaveKeys.CURRENT_PLAYER, "Player");

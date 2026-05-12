@@ -29,7 +29,7 @@ public class IceScoop : MonoBehaviour
     {
         if (isFull)
         {
-            float tilt = Vector3.Dot(-transform.right, Vector3.down);
+            float tilt = Vector3.Dot(transform.up, Vector3.down);
             if (tilt > tiltThreshold)
             {
                 TryPourIce();
@@ -39,19 +39,27 @@ public class IceScoop : MonoBehaviour
 
     protected virtual void TryPourIce()
     {
+        bool pouredInCup = false;
         Collider[] hitColliders = Physics.OverlapSphere(pourPoint.position, pourRadius, cupLayer);
+
         foreach (var hitCollider in hitColliders)
         {
             CupData cup = hitCollider.GetComponent<CupData>();
             if (cup != null)
             {
                 cup.AddIceScoop();
-
-                isFull = false;
-                Ice.SetActive(false);
-                return;
+                pouredInCup = true;
+                break;
             }
         }
+
+        if (!pouredInCup)
+        {
+            Debug.Log("Ice dropped on the floor!");
+        }
+
+        isFull = false;
+        Ice.SetActive(false);
     }
 
     private void OnDrawGizmos()

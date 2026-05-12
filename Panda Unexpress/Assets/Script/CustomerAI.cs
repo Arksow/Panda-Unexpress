@@ -138,6 +138,8 @@ public class CustomerAI : MonoBehaviour
 
     public void CheckOrder(CupData cup)
     {
+        if (isLeaving) return;
+
         receivedOrder = cup;
 
         if (currentOrders.Count == 0)
@@ -148,12 +150,18 @@ public class CustomerAI : MonoBehaviour
 
         CustomerOrder currentOrder = currentOrders[0];
 
+        int cupBobaScoops = Mathf.FloorToInt(receivedOrder.bobaParticleCount / 30f);
+
+        bool baseMatch = (currentOrder.base1 == receivedOrder.base1 && currentOrder.base2 == receivedOrder.base2) ||
+                     (currentOrder.base1 == receivedOrder.base2 && currentOrder.base2 == receivedOrder.base1);
+
         bool correct =
             currentOrder.sugarPercent == receivedOrder.sugarPercentage &&
             currentOrder.sugarType == receivedOrder.currentSugarType &&
             currentOrder.iceAmount == receivedOrder.iceScoopCount &&
-            currentOrder.base1 == receivedOrder.base1 &&
-            currentOrder.base2 == receivedOrder.base2;
+            currentOrder.bobaAmount == cupBobaScoops &&
+            baseMatch &&
+            !receivedOrder.isTrashCup;
 
         if (correct)
         {

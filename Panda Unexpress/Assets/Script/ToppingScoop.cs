@@ -41,6 +41,8 @@ public class ToppingScoop : MonoBehaviour
                 currentPearl.transform.SetParent(null);
                 pearlRb.isKinematic = false;
 
+                Destroy(currentPearl, 3f);
+
                 pearlRb = null;
                 currentPearl = null;
             }
