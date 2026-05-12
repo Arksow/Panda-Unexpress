@@ -28,7 +28,7 @@ public class CustomerAI : MonoBehaviour
     [HideInInspector] public OrderUIManager orderUI;
 
     [Header("Progress")]
-    private float decreaseSpeed = 0.01f;
+    private float decreaseSpeed = 0.001f;
     private bool orderGenerated = false;
 
     private NavMeshAgent agent;
