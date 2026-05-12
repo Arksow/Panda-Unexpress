@@ -19450,21 +19450,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Buttons
   buttonCap: {fileID: 467782631}
   pressDownDistance: 0.02
-  onButtonPressed:
+  onButtonDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1712323410}
-        m_TargetAssemblyTypeName: SugarMachine, Assembly-CSharp
-        m_MethodName: DispenseSugar
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  onButtonHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  onButtonUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &467782633
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -28121,6 +28115,11 @@ MonoBehaviour:
     isOccupied: 0
   wavePanel: {fileID: 0}
   waveText: {fileID: 0}
+  gameOverUI: {fileID: 0}
+  maxFailedOrders: 3
+  failedOrders: 0
+  currentWave: 1
+  activeCustomers: 0
 --- !u!1 &602913181
 GameObject:
   m_ObjectHideFlags: 0
@@ -36568,21 +36567,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Buttons
   buttonCap: {fileID: 739928261}
   pressDownDistance: 0.0025
-  onButtonPressed:
+  onButtonDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: VoiceCommandManager, Assembly-CSharp
-        m_MethodName: StartListening
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  onButtonHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  onButtonUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &739928263
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -37252,21 +37245,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Buttons
   buttonCap: {fileID: 765345482}
   pressDownDistance: 0.02
-  onButtonPressed:
+  onButtonDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1712323410}
-        m_TargetAssemblyTypeName: SugarMachine, Assembly-CSharp
-        m_MethodName: SetToSyrup
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  onButtonHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  onButtonUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &765345484
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -56512,7 +56499,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.083333336
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 585e186ea4a8637449f60ec15c798947, type: 2}
   m_BuildHeightMesh: 0
@@ -64706,6 +64693,11 @@ MonoBehaviour:
     isOccupied: 0
   wavePanel: {fileID: 0}
   waveText: {fileID: 0}
+  gameOverUI: {fileID: 0}
+  maxFailedOrders: 3
+  failedOrders: 0
+  currentWave: 1
+  activeCustomers: 0
 --- !u!1 &1060577050
 GameObject:
   m_ObjectHideFlags: 0
@@ -93785,7 +93777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Buttons
   buttonCap: {fileID: 1351341440}
   pressDownDistance: 0.001
-  onButtonPressed:
+  onButtonDown:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1665167644}
@@ -93800,6 +93792,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onButtonHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  onButtonUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &1351341442
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -106309,6 +106307,11 @@ MonoBehaviour:
     isOccupied: 0
   wavePanel: {fileID: 0}
   waveText: {fileID: 0}
+  gameOverUI: {fileID: 0}
+  maxFailedOrders: 3
+  failedOrders: 0
+  currentWave: 1
+  activeCustomers: 0
 --- !u!114 &1625447334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109607,14 +109610,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 920373313}
     m_Modifications:
-    - target: {fileID: 7657229330616203839, guid: afe8019921dbe2e4cabcbd9f4bb35922, type: 3}
-      propertyPath: manager
-      value: 
-      objectReference: {fileID: 1625447331}
-    - target: {fileID: 7657229330616203839, guid: afe8019921dbe2e4cabcbd9f4bb35922, type: 3}
-      propertyPath: currentTask
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5341444913540730815, guid: a0f8be24fcedcd743a0ea11753f7ba35, type: 3}
       propertyPath: maxWidth
       value: 5
@@ -109667,6 +109662,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7112041274424257103, guid: a0f8be24fcedcd743a0ea11753f7ba35, type: 3}
+      propertyPath: validRecipes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112041274424257103, guid: a0f8be24fcedcd743a0ea11753f7ba35, type: 3}
+      propertyPath: 'validRecipes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0b499cafd9977fc4987012650b92054c, type: 2}
+    - target: {fileID: 7112041274424257103, guid: a0f8be24fcedcd743a0ea11753f7ba35, type: 3}
+      propertyPath: 'validRecipes.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ab1e64c9d02bb644a68314b0b294102, type: 2}
+    - target: {fileID: 7112041274424257103, guid: a0f8be24fcedcd743a0ea11753f7ba35, type: 3}
+      propertyPath: 'validRecipes.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 522ab6ae51620ec47b54356f3c5ae9c2, type: 2}
     - target: {fileID: 8178492693596412042, guid: a0f8be24fcedcd743a0ea11753f7ba35, type: 3}
       propertyPath: m_UseGravity
       value: 0
@@ -109674,6 +109685,14 @@ PrefabInstance:
     - target: {fileID: 8958696451032635468, guid: a0f8be24fcedcd743a0ea11753f7ba35, type: 3}
       propertyPath: m_Name
       value: Cup 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657229330616203839, guid: afe8019921dbe2e4cabcbd9f4bb35922, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 1625447331}
+    - target: {fileID: 7657229330616203839, guid: afe8019921dbe2e4cabcbd9f4bb35922, type: 3}
+      propertyPath: currentTask
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -110857,7 +110876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Buttons
   buttonCap: {fileID: 1798472122}
   pressDownDistance: 0.001
-  onButtonPressed:
+  onButtonDown:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1665167644}
@@ -110872,6 +110891,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onButtonHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  onButtonUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &1798472124
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -118874,21 +118899,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Buttons
   buttonCap: {fileID: 1914138168}
   pressDownDistance: 0.02
-  onButtonPressed:
+  onButtonDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1712323410}
-        m_TargetAssemblyTypeName: SugarMachine, Assembly-CSharp
-        m_MethodName: SetToHoney
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  onButtonHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  onButtonUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &1914138170
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -127828,7 +127847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Buttons
   buttonCap: {fileID: 2047517025}
   pressDownDistance: 0.001
-  onButtonPressed:
+  onButtonDown:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1665167644}
@@ -127843,6 +127862,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onButtonHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  onButtonUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &2047517027
 SphereCollider:
   m_ObjectHideFlags: 0
