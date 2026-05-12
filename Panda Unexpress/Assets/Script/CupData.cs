@@ -55,7 +55,7 @@ public class CupData : MonoBehaviour
         OnSugarAdded?.Invoke();
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         int bobaScoops = Mathf.FloorToInt((float)bobaParticleCount / 30f);
 

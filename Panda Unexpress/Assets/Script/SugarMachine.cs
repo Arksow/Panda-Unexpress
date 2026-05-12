@@ -7,7 +7,7 @@ public class SugarMachine : MonoBehaviour
     public MetaSocket cupSocket;
 
     public SugarType selectedType = SugarType.Syrup;
-    private readonly float[] sugarLevels = { 0f, 25f, 50f, 100f };
+    private readonly float[] sugarLevels = { 0f, 25f, 50f, 75f, 100f };
 
     public ParticleSystem syrupStream;
     public ParticleSystem honeyStream;
@@ -41,8 +41,8 @@ public class SugarMachine : MonoBehaviour
 
         float normalizedLever = Mathf.InverseLerp(zeroPercentAngle, hundredPercentAngle, currentAngle);
 
-        int levelIndex = Mathf.RoundToInt(normalizedLever * 3f);
-        levelIndex = Mathf.Clamp(levelIndex, 0, 3);
+        int levelIndex = Mathf.RoundToInt(normalizedLever * 4f);
+        levelIndex = Mathf.Clamp(levelIndex, 0, 4);
 
         float finalSugar = sugarLevels[levelIndex];
 

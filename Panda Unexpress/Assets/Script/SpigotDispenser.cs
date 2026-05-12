@@ -48,11 +48,29 @@ public class SpigotDispenser : MonoBehaviour
 
         if (liquidStream != null)
         {
-            if (isPouring && !liquidStream.isPlaying) liquidStream.Play();
-            else if (!isPouring && liquidStream.isPlaying) liquidStream.Stop();
+            if (isPouring && !liquidStream.isPlaying)
+            {
+                liquidStream.Play();
+            }
+            else if (!isPouring && liquidStream.isPlaying)
+            {
+                liquidStream.Stop();
+
+                if (cupSocket != null && cupSocket.HasItem())
+                {
+                    CupData cup = cupSocket.GetSocketItem();
+                    if (cup != null)
+                    {
+                        if (cup.base1 == barrelLiquidType) cup.base1Amount = 0.5f;
+                        else if (cup.base2 == barrelLiquidType) cup.base2Amount = 0.5f;
+
+                        cup.UpdateUI();
+                    }
+                }
+            }
         }
 
-        if (isPouring && cupSocket.HasItem())
+        if (isPouring && cupSocket != null && cupSocket.HasItem())
         {
             CupData cup = cupSocket.GetSocketItem();
             if (cup != null)

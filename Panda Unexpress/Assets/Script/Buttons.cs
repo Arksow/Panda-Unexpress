@@ -6,10 +6,16 @@ public class Buttons : MonoBehaviour
     public Transform buttonCap;
     public float pressDownDistance = 0.02f;
 
-    public UnityEvent onButtonPressed;
+    [Header("Button Events")]
+    public UnityEvent onButtonDown;
+    public UnityEvent onButtonHeld;
+    public UnityEvent onButtonUp;
 
     private Vector3 originalPosition;
     private bool isPressed = false;
+
+    private float lastTouchTime = 0f;
+    private float releaseTolerance = 0.15f;
 
     void Start()
     {
@@ -19,22 +25,43 @@ public class Buttons : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void Update()
     {
-        if (!isPressed && other.CompareTag("PlayerFinger"))
+        if (isPressed)
         {
-            isPressed = true;
-            buttonCap.localPosition = originalPosition - new Vector3(0, 0, pressDownDistance);
-            onButtonPressed.Invoke();
+            if (onButtonHeld != null) onButtonHeld.Invoke();
+
+            if (Time.time - lastTouchTime > releaseTolerance)
+            {
+                ReleaseButton();
+            }
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (isPressed && other.CompareTag("PlayerFinger"))
+        if (other.CompareTag("PlayerFinger"))
         {
-            isPressed = false;
-            buttonCap.localPosition = originalPosition;
+            lastTouchTime = Time.time;
+
+            if (!isPressed)
+            {
+                PressButton();
+            }
         }
+    }
+
+    private void PressButton()
+    {
+        isPressed = true;
+        buttonCap.localPosition = originalPosition - new Vector3(0, 0, pressDownDistance);
+        if (onButtonDown != null) onButtonDown.Invoke();
+    }
+
+    private void ReleaseButton()
+    {
+        isPressed = false;
+        buttonCap.localPosition = originalPosition;
+        if (onButtonUp != null) onButtonUp.Invoke();
     }
 }

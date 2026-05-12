@@ -29,6 +29,12 @@ public class EconomyManager : MonoBehaviour
         Debug.Log("Added " + amount + " money. Current total: " + currentMoney);
     }
 
+    public void DeductMoney(int amount)
+    {
+        currentMoney -= amount;
+        if (currentMoney < 0) currentMoney = 0;
+    }
+
     public void EndGame(string playerName)
     {
         float prevHighscore = PlayerPrefs.GetInt(SaveKeys.GetHighScoreKey(playerName), 0);

@@ -18,6 +18,7 @@ public class AchievementManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            LoadAchievements();
         }
         else
         {

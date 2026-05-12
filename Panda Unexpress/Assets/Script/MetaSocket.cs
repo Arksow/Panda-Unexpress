@@ -87,12 +87,6 @@ public class MetaSocket : MonoBehaviour
             currentRigidbody.isKinematic = true;
         }
 
-        Phyics phyics = currentItem.GetComponent<Phyics>();
-        if (phyics != null)
-        {
-            phyics.isSocketed = true;
-        }
-
         currentItem.transform.position = attachPoint.position;
         currentItem.transform.rotation = attachPoint.rotation;
     }
@@ -102,12 +96,6 @@ public class MetaSocket : MonoBehaviour
         if (currentRigidbody != null)
         {
             currentRigidbody.isKinematic = false;
-        }
-
-        Phyics phyics = currentItem.GetComponent<Phyics>();
-        if (phyics != null)
-        {
-            phyics.isSocketed = false;
         }
 
         hoveringItem = currentItem;
