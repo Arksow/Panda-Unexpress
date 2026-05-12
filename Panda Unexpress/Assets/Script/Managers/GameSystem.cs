@@ -43,7 +43,7 @@ public class GameSystem : MonoBehaviour
     private int currentWave = 1;
     private int activeCustomers = 0;
 
-    private int customersThisWave = 1;
+    private int customerStartingWave = 5;
     private int customersWithExtraDrink = 0;
 
     private bool waitingForNextWave = false;
@@ -65,7 +65,7 @@ public class GameSystem : MonoBehaviour
 
             while (extraDrinkIndexes.Count < customersWithExtraDrink)
             {
-                int randomIndex = Random.Range(0, customersThisWave);
+                int randomIndex = Random.Range(0, customerStartingWave);
 
                 if (!extraDrinkIndexes.Contains(randomIndex))
                 {
@@ -74,7 +74,7 @@ public class GameSystem : MonoBehaviour
             }
 
             // Spawn customers
-            for (int i = 0; i < customersThisWave; i++)
+            for (int i = 0; i < customerStartingWave; i++)
             {
                 if (isGameOver) yield break;
 
@@ -108,7 +108,6 @@ public class GameSystem : MonoBehaviour
 
                 timer += Time.deltaTime;
 
-                // Optional countdown text
                 if (waveText != null)
                 {
                     int secondsLeft = Mathf.CeilToInt(waveDelay - timer);
@@ -140,11 +139,6 @@ public class GameSystem : MonoBehaviour
         if (wavePanel != null)
         {
             wavePanel.SetActive(true);
-
-            if (waveText != null)
-            {
-                waveText.text = $"Wave {currentWave} Complete!";
-            }
         }
     }
 
@@ -167,12 +161,12 @@ public class GameSystem : MonoBehaviour
 
             if (randomModifier == 0)
             {
-                customersThisWave++;
+                customerStartingWave++;
             }
             else
             {
                 customersWithExtraDrink++;
-                customersWithExtraDrink = Mathf.Min(customersWithExtraDrink, customersThisWave);
+                customersWithExtraDrink = Mathf.Min(customersWithExtraDrink, customerStartingWave);
             }
         }
     }
@@ -241,8 +235,6 @@ public class GameSystem : MonoBehaviour
         if (failedOrders >= maxFailedOrders)
         {
             isGameOver = true;
-            Debug.Log("Game Over!");
-
             StopAllCoroutines();
         }
     }
