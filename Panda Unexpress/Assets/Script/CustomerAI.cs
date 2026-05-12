@@ -88,7 +88,6 @@ public class CustomerAI : MonoBehaviour
             {
                 hasFailed = true;
                 gameSystem?.RegisterFailedOrder();
-                animator.SetTrigger("Angry");
                 StartCoroutine(LeaveAfterAngry());
             }
         }
@@ -192,7 +191,6 @@ public class CustomerAI : MonoBehaviour
 
             StartCoroutine(LeaveAfterAngry());
             ClearCustomerUI();
-            LeaveStore();
         }
     }
 
@@ -226,7 +224,8 @@ public class CustomerAI : MonoBehaviour
 
     IEnumerator LeaveAfterAngry()
     {
-        yield return new WaitForSeconds(2f);
+        animator.SetTrigger("Angry");
+        yield return new WaitForSeconds(3f);
         LeaveStore();
     }
 }
