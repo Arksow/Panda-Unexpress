@@ -31,6 +31,10 @@ public class CustomerAI : MonoBehaviour
     private float decreaseSpeed = 0.001f;
     private bool orderGenerated = false;
 
+    [Header("Speech Bubble")]
+    [SerializeField] private GameObject textBubble;
+    private float bubbleDuration = 2f;
+
     private NavMeshAgent agent;
     [SerializeField] private Image progressImage;
 
@@ -50,6 +54,9 @@ public class CustomerAI : MonoBehaviour
 
         if (customerLocation != null)
             agent.SetDestination(customerLocation.position);
+
+        if (textBubble != null)
+            textBubble.SetActive(false);
     }
 
     void Update()
@@ -69,6 +76,7 @@ public class CustomerAI : MonoBehaviour
             agent.updateRotation = false;
             animator.SetBool("Walking", false);
             animator.SetTrigger("Ordering");
+            StartCoroutine(ShowTextBubble());
         }
 
         // WAITING STATE
@@ -227,5 +235,12 @@ public class CustomerAI : MonoBehaviour
         animator.SetTrigger("Angry");
         yield return new WaitForSeconds(3f);
         LeaveStore();
+    }
+
+    IEnumerator ShowTextBubble()
+    {
+        textBubble.SetActive(true);
+        yield return new WaitForSeconds(bubbleDuration);
+        textBubble.SetActive(false);
     }
 }
