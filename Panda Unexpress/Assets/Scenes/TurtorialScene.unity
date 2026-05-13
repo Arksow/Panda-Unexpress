@@ -74483,7 +74483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1251179205865955213, guid: 329487ed031689d44afed5ccae84d862, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.838
+      value: 0.795
       objectReference: {fileID: 0}
     - target: {fileID: 1251179205865955213, guid: 329487ed031689d44afed5ccae84d862, type: 3}
       propertyPath: m_LocalPosition.z
@@ -106614,10 +106614,13 @@ MonoBehaviour:
   - stepText: tilt the scoop into the cup
     highlights:
     - {fileID: 406880498}
-  - stepText: put some base drink into the cup. You can combine two bases to make
-      a receipe. But be careful! Some bases don't mix well and ruins the cup.
+  - stepText: You can combine two bases to make a receipe. But be careful! Some bases
+      don't mix well and ruins the cup. Put some milk.
     highlights:
     - {fileID: 2041936614}
+  - stepText: Next some tea to make milk tea
+    highlights:
+    - {fileID: 1983252893}
   - stepText: put sugar,control the level to set amount
     highlights:
     - {fileID: 426899533}
@@ -106625,7 +106628,7 @@ MonoBehaviour:
     highlights:
     - {fileID: 1102328927}
     - {fileID: 1755148663}
-  - stepText: now use the speaker and get a fresh up from the dispenser
+  - stepText: now use the speaker and get a fresh cup from the dispenser
     highlights:
     - {fileID: 2106703194}
     - {fileID: 739928266}
@@ -107990,7 +107993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SugarTask
   manager: {fileID: 1625447331}
-  sugarStep: 6
+  sugarStep: 7
   cup: {fileID: 1394139123}
 --- !u!1 &1666340064
 GameObject:
@@ -110639,7 +110642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::bobaTask
   manager: {fileID: 1625447331}
   cup: {fileID: 1394139123}
-  bobaStep: 7
+  bobaStep: 8
 --- !u!1 &1761845204
 GameObject:
   m_ObjectHideFlags: 0
@@ -116822,7 +116825,7 @@ Transform:
   m_GameObject: {fileID: 1830152996}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.2958, y: 0, z: -0.3458}
+  m_LocalPosition: {x: 8.81, y: 0, z: -0.3458}
   m_LocalScale: {x: 20.5915, y: 0.1, z: 17.861559}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -125619,6 +125622,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1983252889}
   - component: {fileID: 1983252890}
+  - component: {fileID: 1983252893}
+  - component: {fileID: 1983252892}
+  - component: {fileID: 1983252891}
   m_Layer: 0
   m_Name: group73 (1)
   m_TagString: Untagged
@@ -125666,6 +125672,64 @@ MonoBehaviour:
   pourAngleThreshold: 45
   springSpeed: 10
   isPouring: 0
+--- !u!114 &1983252891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983252888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31503ead58e12b04b8982cb120ccb3cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SprigotTask
+  barrelLiquidType: 1
+  cupSocket: {fileID: 622334856}
+  liquidStream: {fileID: 0}
+  fillSpeed: 15
+  spigotHandle: {fileID: 1609525188}
+  pourAngleThreshold: 45
+  springSpeed: 10
+  isPouring: 0
+  manager: {fileID: 1625447331}
+  pourLiquidStep: 6
+  requiredPourTime: 1.2
+--- !u!114 &1983252892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983252888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6a4625820877748b360414b945ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.8818743, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &1983252893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983252888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9978455ff8b4f184394a84f1e4452053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
+  outlineComponent: {fileID: 1983252892}
+  isPulsing: 1
+  minWidth: 2
+  maxWidth: 5
+  pulseSpeed: 5
 --- !u!1 &1984368605
 GameObject:
   m_ObjectHideFlags: 0
@@ -130379,7 +130443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CupDispenser
   dispenserSocket: {fileID: 149068017}
   cupPrefab: {fileID: 8958696451032635468, guid: 1c270239ade7b7041a6e01af867b542e, type: 3}
-  maxCups: 5
+  maxCups: 0
   masterRecipeList:
   - {fileID: 11400000, guid: 0b499cafd9977fc4987012650b92054c, type: 2}
   - {fileID: 11400000, guid: 522ab6ae51620ec47b54356f3c5ae9c2, type: 2}
