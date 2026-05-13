@@ -13,7 +13,7 @@ public class CupDispenser : MonoBehaviour
 
     private Grabbable currentCup;
     private Rigidbody currentRb;
-
+    public System.Action OnDispenserRefilled;
     private void Start()
     {
         cupsRemaining = maxCups;
@@ -70,5 +70,7 @@ public class CupDispenser : MonoBehaviour
             SpawnNewCup();
         }
         Debug.Log("Dispenser Refilled via Voice Command!");
+
+        OnDispenserRefilled?.Invoke();
     }
 }
