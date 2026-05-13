@@ -19,19 +19,15 @@ public class VoiceCommandManager : MonoBehaviour
     private void OnEnable()
     {
         voiceExperience.VoiceEvents.OnFullTranscription.AddListener(OnTranscriptReceived);
+        voiceExperience.VoiceEvents.OnStoppedListening.AddListener(ResetListeningState);
+        voiceExperience.VoiceEvents.OnError.AddListener(OnVoiceError);
     }
 
     private void OnDisable()
     {
         voiceExperience.VoiceEvents.OnFullTranscription.RemoveListener(OnTranscriptReceived);
-    }
-
-    private void Update()
-    {
-        //if (OVRInput.GetDown(OVRInput.Button.One))
-        //{
-        //    StartListening();
-        //}
+        voiceExperience.VoiceEvents.OnStoppedListening.RemoveListener(ResetListeningState);
+        voiceExperience.VoiceEvents.OnError.RemoveListener(OnVoiceError);
     }
 
     public void StartListening()
@@ -44,10 +40,17 @@ public class VoiceCommandManager : MonoBehaviour
         }
     }
 
+    public void StopListening()
+    {
+        if (isListening)
+        {
+            Debug.Log("Walkie-Talkie OFF: Stopped listening.");
+            voiceExperience.Deactivate();
+        }
+    }
+
     private void OnTranscriptReceived(string transcript)
     {
-        isListening = false;
-
         string lowerText = transcript.ToLower();
         Debug.Log($"Player said: {lowerText}");
 
@@ -58,5 +61,29 @@ public class VoiceCommandManager : MonoBehaviour
                 cupDispenser.RefillDispenser();
             }
         }
+
+        if (lowerText.Contains("please god") || lowerText.Contains("please, god") || lowerText.Contains("please stop"))
+        {
+            if (EventManager.instance != null && EventManager.instance.currentEvent == Events.HotWeather)
+            {
+                Debug.Log("The heavens have answered! Hot weather ended.");
+                EventManager.instance.ResolveCurrentEvent();
+            }
+            else
+            {
+                Debug.Log("You begged, but the weather wasn't hot anyway.");
+            }
+        }
+    }
+
+    private void ResetListeningState()
+    {
+        isListening = false;
+    }
+
+    private void OnVoiceError(string error, string message)
+    {
+        Debug.LogError($"Voice SDK Error: {error} - {message}");
+        isListening = false;
     }
 }
