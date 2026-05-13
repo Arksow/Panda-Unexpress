@@ -106631,10 +106631,10 @@ MonoBehaviour:
   orderSystem: {fileID: 1625447329}
   counterSlots:
   - position: {fileID: 2140790561}
-    slotUI: {fileID: 1422387568}
+    slotUI: {fileID: 643084169}
     isOccupied: 0
   - position: {fileID: 2054515204}
-    slotUI: {fileID: 1448910378}
+    slotUI: {fileID: 2132350938}
     isOccupied: 0
   wavePanel: {fileID: 0}
   waveText: {fileID: 0}
@@ -110183,7 +110183,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746444029}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc169f3d9bd09bb4185c3d52e4734f7a, type: 3}
   m_Name: 
