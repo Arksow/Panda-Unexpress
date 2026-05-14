@@ -27,7 +27,7 @@ public class OrderSystem : MonoBehaviour
     {
         bool hasChocolateUpgrade = false;
 
-        if (PlayerPrefs.GetInt("ChocolateUpgrade", 0) == 1)
+        if (PlayerPrefs.GetInt("BaseUpgrade", 0) == 1)
         {
             hasChocolateUpgrade = true;
         }
