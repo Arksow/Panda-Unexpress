@@ -69,8 +69,15 @@ public class CupDispenser : MonoBehaviour
 
         if (cupsRemaining > 0)
         {
-            Invoke(nameof(SpawnNewCup), 0.75f);
+            StartCoroutine(WaitAndSpawnCup());
         }
+    }
+
+    private System.Collections.IEnumerator WaitAndSpawnCup()
+    {
+        yield return new WaitForSeconds(0.75f);
+        yield return new WaitUntil(() => !dispenserSocket.IsBlocked());
+        SpawnNewCup();
     }
 
     private void StopHaptics()
