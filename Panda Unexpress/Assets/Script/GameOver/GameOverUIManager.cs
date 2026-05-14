@@ -66,7 +66,14 @@ public class GameOverUIManager : MonoBehaviour
             EconomyManager.instance.currentMoney = 0;
         }
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (SceneTransitionManager.instance != null)
+        {
+            SceneTransitionManager.instance.StartShift();
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     public void OnMainMenu()

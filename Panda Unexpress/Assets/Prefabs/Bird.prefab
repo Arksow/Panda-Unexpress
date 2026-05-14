@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 3280876208593767041}
   - component: {fileID: 7114706447080809602}
   - component: {fileID: 1591816120522588946}
+  - component: {fileID: 1565852052831939175}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Customer
@@ -258,9 +259,26 @@ MonoBehaviour:
   orderUI: {fileID: 0}
   decreaseSpeed: 0.001
   textBubble: {fileID: 6130658321879856375}
+  correctOrder: {fileID: 0}
   wrongOrder: {fileID: 8300000, guid: 61c9e3e5759491f4aa2fe27e6a89a24c, type: 3}
   progressImage: {fileID: 1143933482538336016}
   gameSystem: {fileID: 0}
+--- !u!208 &1565852052831939175
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580090564196132669}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6130658321879856375
 GameObject:
   m_ObjectHideFlags: 0
