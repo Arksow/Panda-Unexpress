@@ -25,7 +25,21 @@ public class OrderSystem : MonoBehaviour
     //Base Combinations
     void SetBaseCombination(CustomerOrder order)
     {
-        int combo = Random.Range(0, 3);
+        bool hasChocolateUpgrade = false;
+
+        if (PlayerPrefs.GetInt("ChocolateUpgrade", 0) == 1)
+        {
+            hasChocolateUpgrade = true;
+        }
+
+        int comboCount = 3;
+
+        if (hasChocolateUpgrade)
+        {
+            comboCount = 6;
+        }
+
+        int combo = Random.Range(0, comboCount);
 
         switch (combo)
         {
@@ -41,6 +55,20 @@ public class OrderSystem : MonoBehaviour
 
             case 2:
                 order.base1 = LiquidBase.Milk;
+                order.base2 = LiquidBase.Tea;
+                break;
+            case 3:
+                order.base1 = LiquidBase.Chocolate;
+                order.base2 = LiquidBase.Matcha;
+                break;
+
+            case 4:
+                order.base1 = LiquidBase.Chocolate;
+                order.base2 = LiquidBase.Milk;
+                break;
+
+            case 5:
+                order.base1 = LiquidBase.Chocolate;
                 order.base2 = LiquidBase.Tea;
                 break;
         }

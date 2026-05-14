@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 
 public enum SugarType { None, Syrup, Honey }
-public enum LiquidBase { None, Tea, Matcha, Milk }
+public enum LiquidBase { None, Tea, Matcha, Milk, Chocolate }
 
 public class CupData : MonoBehaviour
 {

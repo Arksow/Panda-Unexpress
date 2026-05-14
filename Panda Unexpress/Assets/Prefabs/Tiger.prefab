@@ -187,7 +187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.4}
+  m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &171757982331401894
@@ -267,7 +267,6 @@ GameObject:
   - component: {fileID: -389669258415188671}
   - component: {fileID: 3048224134137227757}
   - component: {fileID: 9023236613880162286}
-  - component: {fileID: 421088430816453928}
   m_Layer: 0
   m_Name: Tiger
   m_TagString: Customer
@@ -440,22 +439,6 @@ MonoBehaviour:
   wrongOrder: {fileID: 0}
   progressImage: {fileID: 4267179276053110209}
   gameSystem: {fileID: 0}
---- !u!208 &421088430816453928
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7363462436892381181}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.5, y: 1, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &8963101702713840451
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,15 +525,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9f334da44f46d7d4fbc1cb0501f7cbcf, type: 3}
       propertyPath: m_LocalScale.x
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9f334da44f46d7d4fbc1cb0501f7cbcf, type: 3}
       propertyPath: m_LocalScale.y
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9f334da44f46d7d4fbc1cb0501f7cbcf, type: 3}
       propertyPath: m_LocalScale.z
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9f334da44f46d7d4fbc1cb0501f7cbcf, type: 3}
       propertyPath: m_LocalPosition.x

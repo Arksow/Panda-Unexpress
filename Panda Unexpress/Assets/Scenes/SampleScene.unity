@@ -21452,10 +21452,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
   customerPrefabs:
-  - {fileID: 7363462436892381181, guid: 2ebbcd473e21c6549aac989163d626ba, type: 3}
-  - {fileID: 5580090564196132669, guid: 0d10589449797dd40b49ea6f6b075493, type: 3}
-  - {fileID: 7363462436892381181, guid: e6636da6e112bf74baa9df7708a69815, type: 3}
-  - {fileID: 7363462436892381181, guid: 8dad3085f8afac94db6b6effade09092, type: 3}
   - {fileID: 7363462436892381181, guid: 93091da5cbb2d5941b559a65f915e4b6, type: 3}
   spawnPoint: {fileID: 1406570618}
   leaveLocation: {fileID: 1882924259}
@@ -21631,6 +21627,7 @@ MonoBehaviour:
   earningsText: {fileID: 1335439956}
   highscoreText: {fileID: 18812290}
   newHighscoreAlert: {fileID: 1513883979}
+  buttonSound: {fileID: 0}
 --- !u!114 &1625447335
 MonoBehaviour:
   m_ObjectHideFlags: 0
