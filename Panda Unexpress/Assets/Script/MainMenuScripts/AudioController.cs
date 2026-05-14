@@ -17,6 +17,7 @@ public class AudioController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -60,6 +61,7 @@ public class AudioController : MonoBehaviour
 
     public void PlayGlobalSFX(AudioClip clip)
     {
+        if (this == null || staticSource == null) return;
         if (clip != null)
         {
             staticSource.PlayOneShot(clip);
@@ -68,6 +70,8 @@ public class AudioController : MonoBehaviour
 
     public void PlaySpatialSFX(AudioClip clip, Vector3 position)
     {
+        if (this == null) return;
+
         if (clip != null)
         {
             GameObject tempAudio = new GameObject("TempAudio");
