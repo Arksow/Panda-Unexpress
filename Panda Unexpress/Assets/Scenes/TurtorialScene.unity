@@ -10453,6 +10453,8 @@ MonoBehaviour:
   rotationAxis: 0
   zeroPercentAngle: -50
   hundredPercentAngle: 50
+  angleTolerance: 10
+  brokenSparkSound: {fileID: 0}
 --- !u!65 &376022030
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28206,6 +28208,7 @@ MonoBehaviour:
   failedOrders: 0
   currentWave: 1
   activeCustomers: 0
+  waveSpeedLimit: 45
 --- !u!1 &602913181
 GameObject:
   m_ObjectHideFlags: 0
@@ -64114,6 +64117,8 @@ MonoBehaviour:
   rotationAxis: 0
   zeroPercentAngle: -50
   hundredPercentAngle: 50
+  angleTolerance: 10
+  brokenSparkSound: {fileID: 0}
 --- !u!65 &1029778097
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65077,6 +65082,7 @@ MonoBehaviour:
   failedOrders: 0
   currentWave: 1
   activeCustomers: 0
+  waveSpeedLimit: 45
 --- !u!1 &1060577050
 GameObject:
   m_ObjectHideFlags: 0
@@ -106908,6 +106914,7 @@ GameObject:
   - component: {fileID: 1625447333}
   - component: {fileID: 1625447334}
   - component: {fileID: 1625447335}
+  - component: {fileID: 1625447336}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -107012,6 +107019,8 @@ MonoBehaviour:
   isHotWeather: 0
   thirstTimer: 30
   gameSystem: {fileID: 1058979138}
+  summerSoundtrack: {fileID: 0}
+  defaultSoundtrack: {fileID: 0}
 --- !u!114 &1625447333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107019,7 +107028,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625447328}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b4c8f56c3a478b469cb57545824ea38, type: 3}
   m_Name: 
@@ -107044,6 +107053,7 @@ MonoBehaviour:
   failedOrders: 0
   currentWave: 1
   activeCustomers: 0
+  waveSpeedLimit: 45
 --- !u!114 &1625447334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107184,6 +107194,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VoiceCommandManager
   voiceExperience: {fileID: 1625447334}
   cupDispenser: {fileID: 2106703192}
+--- !u!114 &1625447336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625447328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27a8d26463de8f48b5f92def1b4a9bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialCustomerController
+  gameSystem: {fileID: 1625447333}
+  mainMenuSceneName: MainMenu
+  tutorialManager: {fileID: 1625447331}
+  step: 10
 --- !u!1 &1627303535
 GameObject:
   m_ObjectHideFlags: 0
@@ -108339,6 +108365,8 @@ MonoBehaviour:
   rotationAxis: 0
   zeroPercentAngle: -50
   hundredPercentAngle: 50
+  angleTolerance: 10
+  brokenSparkSound: {fileID: 0}
 --- !u!114 &1665167645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109352,6 +109380,8 @@ MonoBehaviour:
   rotationAxis: 0
   zeroPercentAngle: -50
   hundredPercentAngle: 50
+  angleTolerance: 10
+  brokenSparkSound: {fileID: 0}
 --- !u!1 &1712501447
 GameObject:
   m_ObjectHideFlags: 0
@@ -117519,6 +117549,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0b499cafd9977fc4987012650b92054c, type: 2}
   - {fileID: 11400000, guid: 522ab6ae51620ec47b54356f3c5ae9c2, type: 2}
   - {fileID: 11400000, guid: 9ab1e64c9d02bb644a68314b0b294102, type: 2}
+  maxMeltTime: 15
+  meltUIContainer: {fileID: 0}
+  meltBarImage: {fileID: 0}
 --- !u!114 &1838320625
 MonoBehaviour:
   m_ObjectHideFlags: 0
