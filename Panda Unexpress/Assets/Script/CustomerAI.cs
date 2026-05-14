@@ -190,6 +190,11 @@ public class CustomerAI : MonoBehaviour
         {
             currentOrders.RemoveAt(matchedIndex);
 
+            if (EconomyManager.instance != null)
+            {
+                EconomyManager.instance.AddMoney(10);
+            }
+
             orderUI?.UpdateUI();
 
             if (currentOrders.Count == 0)
