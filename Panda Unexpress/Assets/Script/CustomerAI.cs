@@ -192,6 +192,7 @@ public class CustomerAI : MonoBehaviour
                     AudioController.Instance.PlayGlobalSFX(correctOrder);
                 }
                 ClearCustomerUI();
+                onCustomerLeave?.Invoke();
                 LeaveStore();
             }
         }
