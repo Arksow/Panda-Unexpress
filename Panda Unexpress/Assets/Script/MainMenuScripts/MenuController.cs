@@ -7,6 +7,8 @@ public class MenuController : MonoBehaviour
     public GameObject Level;
     public GameObject Controls;
 
+    public  GameObject[] ObjectsToHide;
+
     public AudioClip menuBGM;
 
 
@@ -20,6 +22,10 @@ public class MenuController : MonoBehaviour
     {
         menu.SetActive(false);
         Level.SetActive(true);
+        foreach (var obj in ObjectsToHide)
+        {
+            obj.SetActive(false);
+        }
     }
     public void OnClickBack()
     {
