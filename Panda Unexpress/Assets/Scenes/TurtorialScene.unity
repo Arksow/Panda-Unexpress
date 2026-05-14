@@ -56818,7 +56818,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 585e186ea4a8637449f60ec15c798947, type: 2}
   m_BuildHeightMesh: 0
@@ -107008,7 +107008,7 @@ MonoBehaviour:
     highlights:
     - {fileID: 1102328927}
     - {fileID: 1755148663}
-  - stepText: now use the speaker and get a fresh cup from the dispenser
+  - stepText: now use the speaker and get a fresh cup from the dispenser, say 'REFILL'
     highlights:
     - {fileID: 2106703194}
     - {fileID: 739928266}
