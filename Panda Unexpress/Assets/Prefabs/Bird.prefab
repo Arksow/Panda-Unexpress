@@ -256,8 +256,10 @@ MonoBehaviour:
   orderCount: 1
   receivedOrder: {fileID: 0}
   orderUI: {fileID: 0}
+  decreaseSpeed: 0.001
   textBubble: {fileID: 6130658321879856375}
-  bubbleDuration: 2
+  correctOrder: {fileID: 0}
+  wrongOrder: {fileID: 8300000, guid: 61c9e3e5759491f4aa2fe27e6a89a24c, type: 3}
   progressImage: {fileID: 1143933482538336016}
   gameSystem: {fileID: 0}
 --- !u!1 &6130658321879856375

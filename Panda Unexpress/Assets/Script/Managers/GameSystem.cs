@@ -222,9 +222,11 @@ public class GameSystem : MonoBehaviour
         ai.leaveLocation = leaveLocation;
         ai.orderGenerator = orderSystem;
         ai.orderCount = extraDrink ? 2 : 1;
+
+        ai.decreaseSpeed = 0.001f + ((currentWave - 1) * 0.0002f);
+
         ai.orderUI = freeSlot.slotUI;
         freeSlot.slotUI.SetCustomer(ai);
-
         freeSlot.isOccupied = true;
         activeCustomers++;
 

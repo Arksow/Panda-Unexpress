@@ -28,12 +28,17 @@ public class CustomerAI : MonoBehaviour
     [HideInInspector] public OrderUIManager orderUI;
 
     [Header("Progress")]
-    private float decreaseSpeed = 0.001f;
+    [HideInInspector]
+    public float decreaseSpeed = 0.001f;
     private bool orderGenerated = false;
 
     [Header("Speech Bubble")]
     [SerializeField] private GameObject textBubble;
     private float bubbleDuration = 2f;
+
+    [Header("Audio")]
+    public AudioClip correctOrder;
+    public AudioClip wrongOrder;
 
     private NavMeshAgent agent;
     [SerializeField] private Image progressImage;
@@ -63,7 +68,6 @@ public class CustomerAI : MonoBehaviour
     {
         if (agent == null) return;
 
-        // ARRIVE AT COUNTER
         if (!reachedCounter &&
             !agent.pathPending &&
             agent.hasPath &&
@@ -79,7 +83,6 @@ public class CustomerAI : MonoBehaviour
             StartCoroutine(ShowTextBubble());
         }
 
-        // WAITING STATE
         if (reachedCounter && !isLeaving)
         {
             RotateToCounter();
@@ -100,7 +103,6 @@ public class CustomerAI : MonoBehaviour
             }
         }
 
-        // DESTROY AFTER LEAVING
         if (isLeaving &&
             !agent.pathPending &&
             agent.hasPath &&
@@ -151,37 +153,54 @@ public class CustomerAI : MonoBehaviour
 
         if (currentOrders.Count == 0)
         {
-            Debug.Log("No more orders for this customer");
             return;
         }
 
-        CustomerOrder currentOrder = currentOrders[0];
-
         int cupBobaScoops = Mathf.FloorToInt(receivedOrder.bobaParticleCount / 30f);
 
-        bool baseMatch = (currentOrder.base1 == receivedOrder.base1 && currentOrder.base2 == receivedOrder.base2) ||
-                     (currentOrder.base1 == receivedOrder.base2 && currentOrder.base2 == receivedOrder.base1);
+        int matchedIndex = -1;
 
-        bool correct =
-            currentOrder.sugarPercent == receivedOrder.sugarPercentage &&
-            currentOrder.sugarType == receivedOrder.currentSugarType &&
-            currentOrder.iceAmount == receivedOrder.iceScoopCount &&
-            currentOrder.bobaAmount == cupBobaScoops &&
-            baseMatch &&
-            !receivedOrder.isTrashCup;
-
-        if (correct)
+        for (int i = 0; i < currentOrders.Count; i++)
         {
-            Debug.Log($"Customer {customerID} order completed!");
+            CustomerOrder currentOrder = currentOrders[i];
 
-            currentOrders.RemoveAt(0);
+            bool baseMatch =
+                (currentOrder.base1 == receivedOrder.base1 &&
+                 currentOrder.base2 == receivedOrder.base2)
+                ||
+                (currentOrder.base1 == receivedOrder.base2 &&
+                 currentOrder.base2 == receivedOrder.base1);
+
+            bool correct =
+                currentOrder.sugarPercent == receivedOrder.sugarPercentage &&
+                currentOrder.sugarType == receivedOrder.currentSugarType &&
+                currentOrder.iceAmount == receivedOrder.iceScoopCount &&
+                currentOrder.bobaAmount == cupBobaScoops &&
+                baseMatch &&
+                !receivedOrder.isTrashCup;
+
+            if (correct)
+            {
+                matchedIndex = i;
+                break;
+            }
+        }
+
+        if (matchedIndex != -1)
+        {
+            currentOrders.RemoveAt(matchedIndex);
+
+            if (EconomyManager.instance != null)
+            {
+                EconomyManager.instance.AddMoney(10);
+            }
 
             orderUI?.UpdateUI();
 
             if (currentOrders.Count == 0)
             {
-                Debug.Log($"Customer {customerID} is HAPPY and leaving!");
                 progressImage.fillAmount = 0f;
+                AudioController.Instance?.PlayGlobalSFX(correctOrder);
 
                 ClearCustomerUI();
                 LeaveStore();
@@ -189,12 +208,12 @@ public class CustomerAI : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Customer {customerID} is UNHAPPY!");
-
             if (!hasFailed)
             {
                 hasFailed = true;
                 gameSystem?.RegisterFailedOrder();
+
+                AudioController.Instance?.PlayGlobalSFX(wrongOrder);
             }
 
             StartCoroutine(LeaveAfterAngry());
@@ -215,11 +234,6 @@ public class CustomerAI : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
-    }
-
-    public void SetPatienceMultiplier(float multiplier)
-    {
-        decreaseSpeed *= multiplier;
     }
 
     void ClearCustomerUI()

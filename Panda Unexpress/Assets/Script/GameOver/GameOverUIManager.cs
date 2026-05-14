@@ -12,6 +12,9 @@ public class GameOverUIManager : MonoBehaviour
     public TextMeshProUGUI highscoreText;
     public GameObject newHighscoreAlert;
 
+    [Header("Audio")]
+    public AudioClip buttonSound;
+
     private void Start()
     {
         if (gameOverCanvas != null)
@@ -53,6 +56,11 @@ public class GameOverUIManager : MonoBehaviour
 
     public void OnRetry()
     {
+        if (AudioController.Instance != null)
+        {
+            AudioController.Instance.PlayGlobalSFX(buttonSound);
+        }
+
         if (EconomyManager.instance != null)
         {
             EconomyManager.instance.currentMoney = 0;
@@ -70,6 +78,11 @@ public class GameOverUIManager : MonoBehaviour
 
     public void OnMainMenu()
     {
+        if (AudioController.Instance != null)
+        {
+            AudioController.Instance.PlayGlobalSFX(buttonSound);
+        }
+
         if (EconomyManager.instance != null)
         {
             EconomyManager.instance.currentMoney = 0;
