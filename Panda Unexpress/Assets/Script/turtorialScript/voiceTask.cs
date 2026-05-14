@@ -5,54 +5,51 @@ public class voiceTask : MonoBehaviour
     public CupDispenser dispenser;
     public TutorialManager tutorialManager;
     public int stepIndex;
-
+    private bool wasPressedLastFrame = false;
     [Header("DEBUG")]
     public bool debugSkipWithButton = true;
+    // Better to use an Action Reference from your Input Actions Asset
+    public InputActionReference debugSkipReference;
 
-    private InputAction skipAction;
     private bool completed = false;
-
-    void Awake()
-    {
-        skipAction = new InputAction(type: InputActionType.Button);
-
-        //bind to controller for debug
-        skipAction.AddBinding("<XRController>{RightHand}/primaryButton");
-        skipAction.AddBinding("<XRController>{LeftHand}/primaryButton");
-
-        skipAction.performed += OnSkipPressed;
-    }
 
     void OnEnable()
     {
         dispenser.OnDispenserRefilled += CompleteTask;
 
-        if (debugSkipWithButton)
-            skipAction.Enable();
+        
+        if (debugSkipReference != null)
+            debugSkipReference.action.Enable();
+
+        wasPressedLastFrame = false;
     }
 
     void OnDisable()
     {
         dispenser.OnDispenserRefilled -= CompleteTask;
-        skipAction.Disable();
     }
 
     void Update()
     {
-        if (!debugSkipWithButton || completed) return;
-    }
+        if (completed || !debugSkipWithButton || debugSkipReference == null) return;
 
-    private void OnSkipPressed(InputAction.CallbackContext ctx)
-    {
-        Debug.Log("DEBUG: Skipping voice task (controller)");
-        CompleteTask();
-    }
+        // Check the ACTUAL current state of the button
+        bool isCurrentlyPressed = debugSkipReference.action.IsPressed();
 
+        // Only trigger if it is pressed NOW but was NOT pressed last frame
+        if (isCurrentlyPressed && !wasPressedLastFrame)
+        {
+            Debug.Log($"DEBUG: Skip triggered for step {stepIndex}");
+            CompleteTask();
+        }
+
+        // Save the state for the next frame
+        wasPressedLastFrame = isCurrentlyPressed;
+    }
 
     private void CompleteTask()
     {
         if (completed) return;
-
         completed = true;
         tutorialManager.CompleteStep(stepIndex);
     }

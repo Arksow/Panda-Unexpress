@@ -36830,7 +36830,19 @@ MonoBehaviour:
       m_Calls: []
   onButtonUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1625447335}
+        m_TargetAssemblyTypeName: VoiceCommandManager, Assembly-CSharp
+        m_MethodName: StopListening
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!135 &739928263
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -36960,6 +36972,7 @@ MonoBehaviour:
   tutorialManager: {fileID: 1625447331}
   stepIndex: 9
   debugSkipWithButton: 1
+  debugSkipReference: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1 &742713255
 GameObject:
   m_ObjectHideFlags: 0
@@ -106963,6 +106976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   currentSteps: 0
   textUI: {fileID: 2086145166}
+  tutorialCustomerController: {fileID: 1625447336}
   steps:
   - stepText: welcome
     highlights: []
@@ -107000,6 +107014,8 @@ MonoBehaviour:
     - {fileID: 739928266}
   - stepText: You have learnt how to make boba, and a customer has came. Serve him
       his order to complete the turtorial!
+    highlights: []
+  - stepText: completed turtorial
     highlights: []
 --- !u!114 &1625447332
 MonoBehaviour:

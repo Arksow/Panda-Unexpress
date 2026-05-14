@@ -16,7 +16,7 @@ public class TutorialManager : MonoBehaviour
 {
     public int currentSteps;
     public TMP_Text textUI;
-
+    public TutorialCustomerController tutorialCustomerController;
     public TutorialStepData[] steps;
 
     void Start()
@@ -48,7 +48,10 @@ public class TutorialManager : MonoBehaviour
             if (h != null)
                 h.SetHighlight(true);
         }
-
+        if (currentSteps == 10 && tutorialCustomerController != null)
+        {
+            tutorialCustomerController.SpawnSingleCustomer();
+        }
     }
 
     private void DisableAllHighlights()

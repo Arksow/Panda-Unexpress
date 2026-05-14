@@ -10,12 +10,17 @@ public class TutorialCustomerController : MonoBehaviour
     private CustomerAI tutorialCustomer;
     public TutorialManager tutorialManager;  
     public int step;
-    void Start()
+    //void Start()
+    //{
+    //    SpawnSingleCustomer();
+    //}
+    public void TrySpawnCustomer(int currentStep)
     {
+        if (currentStep != step) return;
+
         SpawnSingleCustomer();
     }
-
-    void SpawnSingleCustomer()
+    public void SpawnSingleCustomer()
     {
         //spawn single customer ONLY
         gameSystem.StopAllCoroutines();
@@ -50,7 +55,7 @@ public class TutorialCustomerController : MonoBehaviour
     //    Debug.Log("Tutorial completed. Returning to menu...");
     //    SceneManager.LoadScene(mainMenuSceneName);
     //}
-    void OnTutorialCustomerFinished()
+    public void OnTutorialCustomerFinished()
     {
         StartCoroutine(FinishTutorialFlow());
     }
