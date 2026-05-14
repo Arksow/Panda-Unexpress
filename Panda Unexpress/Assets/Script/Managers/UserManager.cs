@@ -1,16 +1,18 @@
 using UnityEngine;
 using TMPro;
 
-public class UserManager : MonoBehaviour
+public class ArcadeLoginManager : MonoBehaviour
 {
     [Tooltip("Drag the 3 individual TextMeshPro objects here for Left, Middle, and Right letters.")]
     public TextMeshProUGUI[] letterDisplays = new TextMeshProUGUI[3];
     public TextMeshProUGUI highScoreDisplay;
+
     public Color activeColor = Color.yellow;
     public Color inactiveColor = Color.white;
     public ProfileManager profileManager;
 
     private char[] currentLetters = new char[3] { 'A', 'A', 'A' };
+
     private int activeLetterIndex = 0;
 
     private void Start()
@@ -40,24 +42,38 @@ public class UserManager : MonoBehaviour
 
     public void ConfirmSelection()
     {
-        if (activeLetterIndex < 2)
+        activeLetterIndex++;
+
+        if (activeLetterIndex > 2)
         {
-            activeLetterIndex++;
-            UpdateDisplays();
+            activeLetterIndex = 0;
+
+            if (profileManager != null)
+            {
+                string tempName = new string(currentLetters);
+                profileManager.LoadPlayerProfile(tempName);
+            }
+        }
+
+        UpdateDisplays();
+    }
+
+    public void StartGame()
+    {
+        if (profileManager != null)
+        {
+            string finalName = new string(currentLetters);
+            profileManager.LoadPlayerProfile(finalName);
+            Debug.Log("Locked in player: " + finalName);
+        }
+
+        if (SceneTransitionManager.instance != null)
+        {
+            SceneTransitionManager.instance.StartShift();
         }
         else
         {
-            if (profileManager != null)
-            {
-                string finalName = new string(currentLetters);
-                profileManager.LoadPlayerProfile(finalName);
-                Debug.Log("Locked in player: " + finalName);
-
-                if (SceneTransitionManager.instance != null)
-                {
-                    SceneTransitionManager.instance.StartShift();
-                }
-            }
+            Debug.LogError("Panda Unexpress: SceneTransitionManager is missing!");
         }
     }
 

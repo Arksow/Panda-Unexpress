@@ -6,8 +6,13 @@ public class UpgradeSystem : MonoBehaviour
 
     [SerializeField] private GameObject baseUpgradeButton;
 
-    public void BuyChocolateUpgrade()
+    public void BuyBaseUpgrade()
     {
+        if (PlayerPrefs.GetInt("BaseUpgrade", 0) == 1)
+        {
+            return;
+        }
+
         if (EconomyManager.instance == null)
         {
             return;
@@ -17,13 +22,9 @@ public class UpgradeSystem : MonoBehaviour
         {
             EconomyManager.instance.DeductMoney(baseUpgradeCost);
 
-            PlayerPrefs.SetInt("ChocolateUpgrade", 1);
+            PlayerPrefs.SetInt("BaseUpgrade", 1);
             PlayerPrefs.Save();
             baseUpgradeButton.SetActive(false);
-            if (EconomyManager.instance != null)
-            {
-                EconomyManager.instance.DeductMoney(100);
-            }
         }
     }
 }
