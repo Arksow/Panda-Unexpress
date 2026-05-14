@@ -36,36 +36,37 @@ public class OrderUIManager : MonoBehaviour
         {
             var order = currentCustomer.currentOrders[i];
 
-            text += "" + order.base1 + " " + order.base2 + "\n";
-            text += "- Sugar Level: " + order.sugarPercent + "%\n";
-            text += "- " + GetIceText(order.iceAmount) + "\n";
-            text += "- " + GetBobaText(order.bobaAmount) + "\n\n";
+            text += "" + order.base1 + " & " + order.base2 + "\n";
+
+            if (order.sugarType == SugarType.None)
+            {
+                text += "- No Sweetener\n";
+            }
+            else
+            {
+                text += "- " + order.sugarType.ToString() + ": " + order.sugarPercent + "%\n";
+            }
+
+            text += "- " + GetScoopText(order.iceAmount, "Ice") + "\n";
+            text += "- " + GetScoopText(order.bobaAmount, "Boba") + "\n\n";
         }
 
         orderText.text = text;
     }
 
-    string GetIceText(int ice)
+    string GetScoopText(int amount, string ingredientName)
     {
-        switch (ice)
+        if (amount == 0)
         {
-            case 0: return "No Ice";
-            case 1: return "Less Ice";
-            case 2: return "Regular Ice";
-            case 3: return "More Ice";
-            default: return "Unknown";
+            return "No " + ingredientName;
         }
-    }
-
-    string GetBobaText(int boba)
-    {
-        switch (boba)
+        else if (amount == 1)
         {
-            case 0: return "No Boba";
-            case 1: return "Less Boba";
-            case 2: return "Normal Boba";
-            case 3: return "More Boba";
-            default: return "Unknown";
+            return "1 Scoop of " + ingredientName;
+        }
+        else
+        {
+            return amount + " Scoops of " + ingredientName;
         }
     }
 }

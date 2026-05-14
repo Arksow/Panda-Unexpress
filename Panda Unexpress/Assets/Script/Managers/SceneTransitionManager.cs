@@ -10,7 +10,7 @@ public class SceneTransitionManager : MonoBehaviour
     public string mainMenuScene = "MainMenu";
     public string gameScene = "MainGame";
     public string gameOverScene = "GameOver";
-
+    public string tutorialScene = "TurtorialScene";
     private void Awake()
     {
         if (instance == null)
@@ -28,7 +28,10 @@ public class SceneTransitionManager : MonoBehaviour
     {
         StartCoroutine(LoadSceneAsync(gameScene));
     }
-
+    public void StartTutorial()
+    {
+        StartCoroutine(LoadSceneAsync(tutorialScene));
+    }
     public void EndShift()
     {
         StartCoroutine(LoadSceneAsync(gameOverScene));

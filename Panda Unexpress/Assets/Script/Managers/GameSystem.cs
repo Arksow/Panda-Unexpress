@@ -49,11 +49,15 @@ public class GameSystem : MonoBehaviour
 
     private bool waitingForNextWave = false;
 
+    public float waveSpeedLimit = 45f;
+    private float currentWaveTime;
+
     void Start()
     {
         if (wavePanel != null)
             wavePanel.SetActive(false);
 
+        currentWaveTime = Time.time;
         StartCoroutine(WaveLoop());
     }
 
@@ -97,6 +101,18 @@ public class GameSystem : MonoBehaviour
                 yield return null;
             }
 
+            float waveClearTime = Time.time - currentWaveTime;
+            Debug.Log($"Wave cleared in {waveClearTime} seconds.");
+
+            if (waveClearTime < waveSpeedLimit)
+            {
+                Debug.Log("Player is too fast! Triggering punishment event...");
+                if (EventManager.instance != null)
+                {
+                    EventManager.instance.TriggerSpecificEvent(Events.HotWeather);
+                }
+            }
+
             ShowWaveUI();
 
             // Wait for player OR timeout
@@ -131,6 +147,7 @@ public class GameSystem : MonoBehaviour
 
             // Move to next wave
             currentWave++;
+            currentWaveTime = Time.time;
             ApplyRandomModifier();
         }
     }

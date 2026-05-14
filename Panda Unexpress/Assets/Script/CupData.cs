@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
-using System.Net;
-using System;
+using UnityEngine.UI;
 
 public enum SugarType { None, Syrup, Honey }
 public enum LiquidBase { None, Tea, Matcha, Milk }
@@ -31,24 +30,79 @@ public class CupData : MonoBehaviour
 
     public DrinkRecipe[] validRecipes;
 
-    private float meltTimer = 5f;
+    [Header("Hot Weather Event")]
+    public float maxMeltTime = 15f;
+    private float meltTimer;
 
     public System.Action OnSugarAdded;
-    public System.Action  OnBobaAdded;
+    public System.Action OnBobaAdded;
+
+    public GameObject meltUIContainer;
+    public Image meltBarImage;
 
     void Start()
     {
+        meltTimer = maxMeltTime;
         uiCanvas.SetActive(true);
         UpdateUI();
+    }
+
+    void Update()
+    {
+        if (EventManager.instance != null && EventManager.instance.isHotWeather)
+        {
+            if (iceScoopCount > 0 && !isTrashCup)
+            {
+                if (meltUIContainer != null) meltUIContainer.SetActive(true);
+
+                meltTimer -= Time.deltaTime;
+
+                if (meltBarImage != null)
+                {
+                    meltBarImage.fillAmount = meltTimer / maxMeltTime;
+                }
+
+                if (meltTimer <= 0f)
+                {
+                    Debug.Log("Ice melted in the heat! Cup ruined.");
+                    RuinCup();
+                    meltTimer = maxMeltTime;
+                    if (meltUIContainer != null) meltUIContainer.SetActive(false);
+                }
+            }
+            else
+            {
+                if (meltUIContainer != null) meltUIContainer.SetActive(false);
+            }
+        }
+        else
+        {
+            if (meltUIContainer != null) meltUIContainer.SetActive(false);
+            meltTimer = maxMeltTime;
+        }
     }
 
     public void ShowUI() { uiCanvas.SetActive(true); UpdateUI(); }
     public void HideUI() { uiCanvas.SetActive(false); }
 
-    public void AddIceScoop() { iceScoopCount++; UpdateUI(); }
+    public void AddIceScoop()
+    {
+        if (isTrashCup) return;
+
+        iceScoopCount++;
+
+        if (EventManager.instance != null && EventManager.instance.isHotWeather)
+        {
+            meltTimer = maxMeltTime;
+        }
+
+        UpdateUI();
+    }
 
     public void SetSugar(float percentage, SugarType type)
     {
+        if (isTrashCup) return;
+
         sugarPercentage = percentage;
         currentSugarType = type;
         UpdateUI();
@@ -69,17 +123,21 @@ public class CupData : MonoBehaviour
         {
             drinkStatus = "<color=red>Ruined (Trash)</color>";
         }
-        else if (!string.IsNullOrEmpty(DrinkName))
+        else if (!string.IsNullOrEmpty(DrinkName) && DrinkName != "Unknown Drink")
         {
             drinkStatus = $"<color=green>{DrinkName}</color>";
+        }
+        else if (base1 != LiquidBase.None && base2 != LiquidBase.None)
+        {
+            drinkStatus = $"{base1} & {base2}";
         }
         else if (base1 != LiquidBase.None)
         {
             drinkStatus = base1.ToString();
-            if (base2 != LiquidBase.None)
-            {
-                drinkStatus += $" & {base2.ToString()}";
-            }
+        }
+        else if (base2 != LiquidBase.None)
+        {
+            drinkStatus = base2.ToString();
         }
 
         contentsText.text = "<u>Cup Contents</u>\n" +
@@ -87,23 +145,6 @@ public class CupData : MonoBehaviour
                             $"Ice: {iceScoopCount} Scoops\n" +
                             $"Boba: {bobaScoops} Scoops\n" +
                             $"{sugarDisplay}";
-    }
-
-    void Update()
-    {
-        if (EventManager.instance != null && EventManager.instance.isHotWeather)
-        {
-            if (iceScoopCount > 0 && !isTrashCup)
-            {
-                meltTimer -= Time.deltaTime;
-                if (meltTimer <= 0f)
-                {
-                    Debug.Log("Ice melted in the heat! Cup ruined.");
-                    RuinCup();
-                    meltTimer = 5f;
-                }
-            }
-        }
     }
 
     public void AddLiquid(LiquidBase incomingBase, float amount)
@@ -138,8 +179,7 @@ public class CupData : MonoBehaviour
 
     private void ValidateRecipe()
     {
-        if (validRecipes == null)
-            return;
+        if (validRecipes == null) return;
 
         bool isValidCombo = false;
 
@@ -164,10 +204,12 @@ public class CupData : MonoBehaviour
     private void RuinCup()
     {
         isTrashCup = true;
+        UpdateUI();
     }
 
     public void AddBobaParticles(int amount)
     {
+        if (isTrashCup) return;
         bobaParticleCount += amount;
         UpdateUI();
         OnBobaAdded?.Invoke();

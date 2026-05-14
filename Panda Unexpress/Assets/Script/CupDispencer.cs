@@ -13,7 +13,7 @@ public class CupDispenser : MonoBehaviour
 
     private Grabbable currentCup;
     private Rigidbody currentRb;
-
+    public System.Action OnDispenserRefilled;
     private void Start()
     {
         cupsRemaining = maxCups;
@@ -53,13 +53,30 @@ public class CupDispenser : MonoBehaviour
             cupData.enabled = true;
         }
 
+        if (OVRInput.IsControllerConnected(OVRInput.Controller.RTouch))
+        {
+            OVRInput.SetControllerVibration(0.6f, 0.6f, OVRInput.Controller.RTouch);
+        }
+        if (OVRInput.IsControllerConnected(OVRInput.Controller.LTouch))
+        {
+            OVRInput.SetControllerVibration(0.6f, 0.6f, OVRInput.Controller.LTouch);
+        }
+
+        Invoke(nameof(StopHaptics), 0.1f);
+
         currentCup = null;
         cupsRemaining--;
 
         if (cupsRemaining > 0)
         {
-            SpawnNewCup();
+            Invoke(nameof(SpawnNewCup), 0.75f);
         }
+    }
+
+    private void StopHaptics()
+    {
+        OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
+        OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.LTouch);
     }
 
     public void RefillDispenser()
@@ -70,5 +87,7 @@ public class CupDispenser : MonoBehaviour
             SpawnNewCup();
         }
         Debug.Log("Dispenser Refilled via Voice Command!");
+
+        OnDispenserRefilled?.Invoke();
     }
 }
