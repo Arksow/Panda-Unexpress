@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: 72efc450-1ad5-48c7-9225-9341451c8597
+  instanceId: 30e37ee6-71a7-4242-ae8c-ceb4d4cc828d
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
-  instanceId: e3ebd27f-eb77-4d78-9e6d-af4567752ad5
+  instanceId: 47b8e7a4-efff-4e2d-8a58-7a2f71c303d3
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -6123,7 +6123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
-  instanceId: 190af45e-062c-4f10-8e0a-a9be9d9ed05e
+  instanceId: d64c069e-97b2-4bb6-9c41-c355e3a2c644
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -6655,7 +6655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
-  instanceId: 63765b3b-4ff1-4de4-83e4-5b9b1c768714
+  instanceId: 71f4340b-f389-4c05-a947-26cde80d2934
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -8024,6 +8024,7 @@ GameObject:
   - component: {fileID: 4418923729064859944}
   - component: {fileID: 8707012695538882169}
   - component: {fileID: 1208008854680552270}
+  - component: {fileID: 1907214323949818290}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -8061,7 +8062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: e47682b9-c270-40b1-b16d-90b627a5ce1b
-  instanceId: 1a011df9-6708-4640-8841-356c78918618
+  instanceId: 7fc84055-870c-4f08-a7de-c2947f502e9f
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -8197,6 +8198,14 @@ MonoBehaviour:
   - <Keyboard>/leftAlt
   - <Keyboard>/rightAlt
   - <Keyboard>/f2
+--- !u!81 &1907214323949818290
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6989504421038447964}
+  m_Enabled: 1
 --- !u!1 &7090793918884216314
 GameObject:
   m_ObjectHideFlags: 0
@@ -11394,7 +11403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: 81f55626-5fad-45e9-a1df-184f330da7ba
-  instanceId: 11922e96-645d-4d51-8f08-58b7bec5ae30
+  instanceId: fb39b5f6-0e62-473e-a00c-0fe3969ef175
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 2063f481-1b63-4eda-9ee8-a00df98536bc

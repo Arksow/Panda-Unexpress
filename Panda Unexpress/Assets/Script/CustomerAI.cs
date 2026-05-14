@@ -28,12 +28,17 @@ public class CustomerAI : MonoBehaviour
     [HideInInspector] public OrderUIManager orderUI;
 
     [Header("Progress")]
-    private float decreaseSpeed = 0.001f;
+    [HideInInspector]
+    public float decreaseSpeed = 0.001f;
     private bool orderGenerated = false;
 
     [Header("Speech Bubble")]
     [SerializeField] private GameObject textBubble;
     private float bubbleDuration = 2f;
+
+    [Header("Audio")]
+    public AudioClip correctOrder;
+    public AudioClip wrongOrder;
 
     private NavMeshAgent agent;
     [SerializeField] private Image progressImage;
@@ -182,7 +187,10 @@ public class CustomerAI : MonoBehaviour
             {
                 Debug.Log($"Customer {customerID} is HAPPY and leaving!");
                 progressImage.fillAmount = 0f;
-
+                if (AudioController.Instance != null)
+                {
+                    AudioController.Instance.PlayGlobalSFX(correctOrder);
+                }
                 ClearCustomerUI();
                 LeaveStore();
             }
@@ -195,6 +203,10 @@ public class CustomerAI : MonoBehaviour
             {
                 hasFailed = true;
                 gameSystem?.RegisterFailedOrder();
+                if (AudioController.Instance != null)
+                {
+                    AudioController.Instance.PlayGlobalSFX(wrongOrder);
+                }
             }
 
             StartCoroutine(LeaveAfterAngry());
@@ -215,11 +227,6 @@ public class CustomerAI : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
-    }
-
-    public void SetPatienceMultiplier(float multiplier)
-    {
-        decreaseSpeed *= multiplier;
     }
 
     void ClearCustomerUI()
