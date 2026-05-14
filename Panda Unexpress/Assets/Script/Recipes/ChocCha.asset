@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ChocCha
   m_EditorClassIdentifier: Assembly-CSharp::DrinkRecipe
   drinkName: ChocCha
-  requiredBase1: 2
-  requiredBase2: 4
+  requiredBase1: 4
+  requiredBase2: 2
