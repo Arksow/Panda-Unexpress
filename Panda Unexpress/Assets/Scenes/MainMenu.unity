@@ -984,7 +984,7 @@ GameObject:
   - component: {fileID: 169270375}
   - component: {fileID: 169270374}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: audioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2302,6 +2302,10 @@ MonoBehaviour:
   Settings: {fileID: 2030664050}
   Level: {fileID: 1837677774}
   Controls: {fileID: 757468995}
+  ObjectsToHide:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   menuBGM: {fileID: 8300000, guid: 7aef442fce7c07446b1c8dbf12a75e0b, type: 3}
 --- !u!114 &424422796
 MonoBehaviour:
@@ -9287,7 +9291,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -10747,7 +10751,7 @@ Transform:
   m_GameObject: {fileID: 2062887459}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 454.347, y: -8.104, z: -263.624}
+  m_LocalPosition: {x: 454.214, y: -8.039, z: -263.772}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
