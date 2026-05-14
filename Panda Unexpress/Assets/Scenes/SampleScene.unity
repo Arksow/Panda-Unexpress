@@ -21404,6 +21404,7 @@ GameObject:
   - component: {fileID: 1625447332}
   - component: {fileID: 1625447334}
   - component: {fileID: 1625447335}
+  - component: {fileID: 1625447336}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -21650,6 +21651,19 @@ MonoBehaviour:
   gameSystem: {fileID: 1625447331}
   summerSoundtrack: {fileID: 0}
   defaultSoundtrack: {fileID: 0}
+--- !u!114 &1625447336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625447328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91491145fc3ec148ace8cbe4c709fb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
+  currentMoney: 0
 --- !u!1 &1655650670
 GameObject:
   m_ObjectHideFlags: 0
@@ -21786,7 +21800,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 3a345018546e52d458dab9a8050138b3, type: 2}
   m_BuildHeightMesh: 0
