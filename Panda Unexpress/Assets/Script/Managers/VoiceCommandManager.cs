@@ -62,7 +62,7 @@ public class VoiceCommandManager : MonoBehaviour
             }
         }
 
-        if (lowerText.Contains("please god") || lowerText.Contains("please, god") || lowerText.Contains("please stop"))
+        if (lowerText.Contains("please") && lowerText.Contains("god"))
         {
             if (EventManager.instance != null && EventManager.instance.currentEvent == Events.HotWeather)
             {

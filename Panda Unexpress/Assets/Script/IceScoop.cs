@@ -44,7 +44,7 @@ public class IceScoop : MonoBehaviour
 
         foreach (var hitCollider in hitColliders)
         {
-            CupData cup = hitCollider.GetComponent<CupData>();
+            CupData cup = hitCollider.GetComponentInParent<CupData>();
             if (cup != null)
             {
                 cup.AddIceScoop();
