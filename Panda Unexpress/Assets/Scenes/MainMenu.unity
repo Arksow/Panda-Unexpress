@@ -2303,9 +2303,9 @@ MonoBehaviour:
   Level: {fileID: 1837677774}
   Controls: {fileID: 757468995}
   ObjectsToHide:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 362762887}
+  - {fileID: 1940229771}
+  - {fileID: 471623516}
   menuBGM: {fileID: 8300000, guid: 7aef442fce7c07446b1c8dbf12a75e0b, type: 3}
 --- !u!114 &424422796
 MonoBehaviour:
