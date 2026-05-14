@@ -79,7 +79,7 @@ public class MetaSocket : MonoBehaviour
     {
         currentItem = newObj;
         currentRigidbody = objRb;
-        
+
         if (currentRigidbody != null)
         {
             currentRigidbody.linearVelocity = Vector3.zero;
@@ -123,5 +123,10 @@ public class MetaSocket : MonoBehaviour
         if (hologram != null) hologram.SetActive(false);
 
         SocketIt(newObj, newObj.GetComponent<Rigidbody>());
+    }
+
+    public bool IsBlocked()
+    {
+        return currentItem != null || hoveringItem != null;
     }
 }
