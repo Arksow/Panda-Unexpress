@@ -417,7 +417,6 @@ GameObject:
   - component: {fileID: 4056677287427123278}
   - component: {fileID: 7112041274424257103}
   - component: {fileID: 4765907736330608883}
-  - component: {fileID: 2848763052685296624}
   - component: {fileID: 5341444913540730815}
   m_Layer: 6
   m_Name: Cup 2
@@ -576,6 +575,9 @@ MonoBehaviour:
   isTrashCup: 0
   DrinkName: Unknown Drink
   validRecipes: []
+  maxMeltTime: 15
+  meltUIContainer: {fileID: 0}
+  meltBarImage: {fileID: 0}
 --- !u!64 &4765907736330608883
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -598,19 +600,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8836714662680777085, guid: 4c1de8b6f73291243b5caa1c86c3ee20, type: 3}
---- !u!114 &2848763052685296624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8958696451032635468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42dd972c5fe83b54faf74c1269cd0f3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Phyics
-  isSocketed: 0
 --- !u!114 &5341444913540730815
 MonoBehaviour:
   m_ObjectHideFlags: 0
