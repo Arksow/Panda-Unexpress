@@ -17,6 +17,15 @@ public class UserManager : MonoBehaviour
 
     private void Start()
     {
+        string lastPlayer = PlayerPrefs.GetString(SaveKeys.CURRENT_PLAYER, "AAA");
+
+        if (lastPlayer.Length >= 3)
+        {
+            currentLetters[0] = lastPlayer[0];
+            currentLetters[1] = lastPlayer[1];
+            currentLetters[2] = lastPlayer[2];
+        }
+
         UpdateDisplays();
     }
 
