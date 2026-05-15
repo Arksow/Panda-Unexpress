@@ -62,12 +62,12 @@ public class VoiceCommandManager : MonoBehaviour
             }
         }
 
-        if (lowerText.Contains("please") && lowerText.Contains("god"))
+        if (lowerText.Contains("please") && lowerText.Contains("rain"))
         {
             if (EventManager.instance != null && EventManager.instance.currentEvent == Events.HotWeather)
             {
                 Debug.Log("The heavens have answered! Hot weather ended.");
-                EventManager.instance.ResolveCurrentEvent();
+                EventManager.instance.ResolveEvent();
             }
             else
             {

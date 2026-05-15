@@ -195,6 +195,11 @@ public class CustomerAI : MonoBehaviour
                 EconomyManager.instance.AddMoney(10);
             }
 
+            if (EventManager.instance != null)
+            {
+                EventManager.instance.RollForRandomEvent();
+            }
+
             orderUI?.UpdateUI();
 
             if (currentOrders.Count == 0)

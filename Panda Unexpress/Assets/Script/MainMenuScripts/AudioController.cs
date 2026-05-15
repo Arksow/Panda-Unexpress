@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    public static AudioController Instance;
+    public static AudioController Instance { get; private set; }
 
     public AudioSource musicSource;
     public AudioSource staticSource;
+
+    public AudioClip buttonClickSound;
 
     public string CurrentClip = "";
     float masterVolume = 1f;
@@ -58,11 +60,18 @@ public class AudioController : MonoBehaviour
         staticSource.volume = masterVolume * staticVolume;
     }
 
-    public void PlayGlobalSFX(AudioClip clip)
+    public void PlayGlobalSFX(AudioClip clip, float volumeBoost = 1f)
     {
         if (clip != null)
         {
-            staticSource.PlayOneShot(clip);
+            if (staticSource != null)
+            {
+                staticSource.PlayOneShot(clip, volumeBoost);
+            }
+            else
+            {
+                Debug.LogWarning("AudioController: staticSource is missing or was destroyed! Please attach an AudioSource directly to the AudioController GameObject.");
+            }
         }
     }
 
@@ -83,6 +92,14 @@ public class AudioController : MonoBehaviour
 
             audioSource.Play();
             Destroy(tempAudio, clip.length);
+        }
+    }
+
+    public void PlayClick()
+    {
+        if (buttonClickSound != null)
+        {
+            PlayGlobalSFX(buttonClickSound, 2.5f);
         }
     }
 

@@ -12,9 +12,6 @@ public class GameOverUIManager : MonoBehaviour
     public TextMeshProUGUI highscoreText;
     public GameObject newHighscoreAlert;
 
-    [Header("Audio")]
-    public AudioClip buttonSound;
-
     private void Start()
     {
         if (gameOverCanvas != null)
@@ -38,7 +35,7 @@ public class GameOverUIManager : MonoBehaviour
             int earnings = EconomyManager.instance.currentMoney;
             earningsText.text = $"Earnings: ${earnings}";
 
-            EconomyManager.instance.EndGame(currentPlayer);
+            EconomyManager.instance.EndGame();
 
             int updatedHighscore = PlayerPrefs.GetInt(SaveKeys.GetHighScoreKey(currentPlayer), 0);
             highscoreText.text = $"Highscore: ${updatedHighscore}";
@@ -56,11 +53,6 @@ public class GameOverUIManager : MonoBehaviour
 
     public void OnRetry()
     {
-        if (AudioController.Instance != null)
-        {
-            AudioController.Instance.PlayGlobalSFX(buttonSound);
-        }
-
         if (EconomyManager.instance != null)
         {
             EconomyManager.instance.currentMoney = 0;
@@ -78,11 +70,6 @@ public class GameOverUIManager : MonoBehaviour
 
     public void OnMainMenu()
     {
-        if (AudioController.Instance != null)
-        {
-            AudioController.Instance.PlayGlobalSFX(buttonSound);
-        }
-
         if (EconomyManager.instance != null)
         {
             EconomyManager.instance.currentMoney = 0;

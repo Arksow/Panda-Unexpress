@@ -247,12 +247,17 @@ public class GameSystem : MonoBehaviour
         }
         return null;
     }
-
     public void RegisterFailedOrder()
+    {
+        AddStrike();
+    }
+
+    public void AddStrike()
     {
         if (isGameOver) return;
 
         failedOrders++;
+        Debug.Log($"Strike added! Current strikes: {failedOrders}/{maxFailedOrders}");
 
         if (failedOrders >= maxFailedOrders)
         {
@@ -264,6 +269,16 @@ public class GameSystem : MonoBehaviour
     {
         isGameOver = true;
         Debug.Log("Shift Over! Too many angry customers.");
+
+        if (EconomyManager.instance != null)
+        {
+            EconomyManager.instance.EndGame();
+        }
+
+        if (AudioController.Instance != null)
+        {
+            AudioController.Instance.musicSource.Stop();
+        }
 
         CustomerAI[] allCustomers = FindObjectsByType<CustomerAI>(FindObjectsSortMode.None);
 
