@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class ArcadeLoginManager : MonoBehaviour
+public class UserManager : MonoBehaviour
 {
     [Tooltip("Drag the 3 individual TextMeshPro objects here for Left, Middle, and Right letters.")]
     public TextMeshProUGUI[] letterDisplays = new TextMeshProUGUI[3];

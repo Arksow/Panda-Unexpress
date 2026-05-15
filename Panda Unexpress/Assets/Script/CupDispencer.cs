@@ -14,6 +14,11 @@ public class CupDispenser : MonoBehaviour
     private Grabbable currentCup;
     private Rigidbody currentRb;
     public System.Action OnDispenserRefilled;
+
+    public AudioClip popSound;
+
+    private OVRInput.Controller vibratedController = OVRInput.Controller.None;
+
     private void Start()
     {
         cupsRemaining = maxCups;
@@ -53,16 +58,34 @@ public class CupDispenser : MonoBehaviour
             cupData.enabled = true;
         }
 
-        if (OVRInput.IsControllerConnected(OVRInput.Controller.RTouch))
+        if (AudioController.Instance != null && popSound != null)
         {
-            OVRInput.SetControllerVibration(0.6f, 0.6f, OVRInput.Controller.RTouch);
-        }
-        if (OVRInput.IsControllerConnected(OVRInput.Controller.LTouch))
-        {
-            OVRInput.SetControllerVibration(0.6f, 0.6f, OVRInput.Controller.LTouch);
+            AudioController.Instance.PlaySpatialSFX(popSound, dispenserSocket.attachPoint.position);
         }
 
-        Invoke(nameof(StopHaptics), 0.1f);
+        float leftGrab = Mathf.Max(
+            OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch),
+            OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.LTouch));
+
+        float rightGrab = Mathf.Max(
+            OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch),
+            OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch));
+
+        if (rightGrab > leftGrab && OVRInput.IsControllerConnected(OVRInput.Controller.RTouch))
+        {
+            OVRInput.SetControllerVibration(0.6f, 0.6f, OVRInput.Controller.RTouch);
+            vibratedController = OVRInput.Controller.RTouch;
+        }
+        else if (leftGrab > rightGrab && OVRInput.IsControllerConnected(OVRInput.Controller.LTouch))
+        {
+            OVRInput.SetControllerVibration(0.6f, 0.6f, OVRInput.Controller.LTouch);
+            vibratedController = OVRInput.Controller.LTouch;
+        }
+
+        if (vibratedController != OVRInput.Controller.None)
+        {
+            Invoke(nameof(StopHaptics), 0.1f);
+        }
 
         currentCup = null;
         cupsRemaining--;
@@ -82,8 +105,11 @@ public class CupDispenser : MonoBehaviour
 
     private void StopHaptics()
     {
-        OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
-        OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.LTouch);
+        if (vibratedController != OVRInput.Controller.None)
+        {
+            OVRInput.SetControllerVibration(0, 0, vibratedController);
+            vibratedController = OVRInput.Controller.None;
+        }
     }
 
     public void RefillDispenser()
