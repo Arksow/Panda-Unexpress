@@ -9770,7 +9770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &340781047
 Transform:
   m_ObjectHideFlags: 0
@@ -10258,7 +10258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &351297485
 Transform:
   m_ObjectHideFlags: 0
@@ -36150,7 +36150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &693489118
 Transform:
   m_ObjectHideFlags: 0
@@ -72984,7 +72984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2173b1725157d7f4a8997dadc931189f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BobaBin
-  bobaPrefab: {fileID: 7252981104990096425, guid: bf3998c40b5642449ad3669206e68b69, type: 3}
+  bobaPrefab: {fileID: 919132149155446097, guid: c52d46c5db3a99f479b6a8c62f4be887, type: 3}
   spawnPoint: {fileID: 1102328921}
   maxBobaInBin: 5
 --- !u!64 &1102328923
@@ -111985,7 +111985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1725476769
 Transform:
   m_ObjectHideFlags: 0
@@ -133009,7 +133009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2101147686
 Transform:
   m_ObjectHideFlags: 0
@@ -133544,6 +133544,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boba
       objectReference: {fileID: 0}
+    - target: {fileID: 7252981104990096425, guid: bf3998c40b5642449ad3669206e68b69, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -133998,7 +134002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2130337355
 Transform:
   m_ObjectHideFlags: 0
