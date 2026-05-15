@@ -178,7 +178,7 @@ public class SugarMachine : MonoBehaviour
         cup.sugarPercentage = levelToDispense;
         cup.currentSugarType = selectedType;
         cup.UpdateUI();
-
+        cup.OnSugarAdded?.Invoke();
         if (syrupStream != null) syrupStream.Stop();
         if (honeyStream != null) honeyStream.Stop();
 
