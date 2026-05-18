@@ -1,9 +1,13 @@
+using Oculus.Interaction;
+using Oculus.Interaction.HandGrab;
+using System.Collections;
 using UnityEngine;
 
 public class SugarMachine : MonoBehaviour
 {
     public Transform slotLever;
     public MetaSocket cupSocket;
+    public Grabbable leverGrabbable;
 
     public SugarType selectedType = SugarType.Syrup;
     private readonly float[] sugarLevels = { 0f, 25f, 50f, 75f, 100f };
@@ -23,12 +27,26 @@ public class SugarMachine : MonoBehaviour
     private int currentExtremeHits = 0;
     private bool lastExtremeWasZero = false;
     private bool lastExtremeWasHundred = false;
+    private float lastLeverAngle = 0f;
+    private float nextCreakTime = 0f;
 
+    [Header("Audio & Timers")]
     public AudioClip brokenSparkSound;
+    public AudioClip creakingSound;
+    public AudioClip dispensingSound;
+    public float dispenseDuration = 2f;
+
+    private bool isDispensing = false;
+    public AudioSource machineAudioSource;
 
     public void ToggleSugarType() { selectedType = (selectedType == SugarType.Syrup) ? SugarType.Honey : SugarType.Syrup; }
     public void SetToSyrup() { selectedType = SugarType.Syrup; }
     public void SetToHoney() { selectedType = SugarType.Honey; }
+
+    private void Start()
+    {
+        lastLeverAngle = GetCurrentLeverAngle();
+    }
 
     private void Update()
     {
@@ -36,80 +54,78 @@ public class SugarMachine : MonoBehaviour
         {
             if (requiredSwings == 0)
             {
-                requiredSwings = Random.Range(1, 5);
-                currentExtremeHits = 0;
-                lastExtremeWasZero = false;
-                lastExtremeWasHundred = false;
-                Debug.Log($"Sugar Machine broken! Move lever up and down {requiredSwings} times to fix.");
+                requiredSwings = Random.Range(1, 5) * 2;
             }
 
             float currentAngle = GetCurrentLeverAngle();
+            float moveDistance = Mathf.Abs(Mathf.DeltaAngle(currentAngle, lastLeverAngle));
+
+            bool isGrabbed = leverGrabbable != null && leverGrabbable.SelectingPointsCount > 0;
+
+            if (isGrabbed && moveDistance > 1.0f)
+            {
+                if (Time.time > nextCreakTime)
+                {
+                    if (AudioController.Instance != null && creakingSound != null)
+                    {
+                        AudioController.Instance.PlaySpatialSFX(creakingSound, transform.position);
+                    }
+                    nextCreakTime = Time.time + 0.4f;
+                }
+            }
+            lastLeverAngle = currentAngle;
 
             bool isAtZero = Mathf.Abs(currentAngle - zeroPercentAngle) <= angleTolerance;
             bool isAtHundred = Mathf.Abs(currentAngle - hundredPercentAngle) <= angleTolerance;
 
             if (isAtZero && !lastExtremeWasZero)
             {
+                currentExtremeHits++;
                 lastExtremeWasZero = true;
                 lastExtremeWasHundred = false;
-                currentExtremeHits++;
             }
             else if (isAtHundred && !lastExtremeWasHundred)
             {
+                currentExtremeHits++;
                 lastExtremeWasHundred = true;
                 lastExtremeWasZero = false;
-                currentExtremeHits++;
             }
 
-            if (currentExtremeHits >= requiredSwings * 2)
+            if (currentExtremeHits >= requiredSwings)
             {
-                Debug.Log("Sugar Machine fixed!");
-                EventManager.instance.ResolveCurrentEvent();
-
+                EventManager.instance.ResolveEvent();
                 requiredSwings = 0;
                 currentExtremeHits = 0;
-                lastExtremeWasZero = false;
-                lastExtremeWasHundred = false;
             }
-        }
-        else if (requiredSwings != 0)
-        {
-            requiredSwings = 0;
-            currentExtremeHits = 0;
-            lastExtremeWasZero = false;
-            lastExtremeWasHundred = false;
         }
     }
 
     private float GetCurrentLeverAngle()
     {
         float angle = 0f;
-
-        if (rotationAxis == Axis.X) angle = slotLever.localEulerAngles.x;
-        else if (rotationAxis == Axis.Y) angle = slotLever.localEulerAngles.y;
-        else if (rotationAxis == Axis.Z) angle = slotLever.localEulerAngles.z;
-
+        switch (rotationAxis)
+        {
+            case Axis.X: angle = slotLever.localEulerAngles.x; break;
+            case Axis.Y: angle = slotLever.localEulerAngles.y; break;
+            case Axis.Z: angle = slotLever.localEulerAngles.z; break;
+        }
         if (angle > 180f) angle -= 360f;
-
         return angle;
     }
 
     public float GetSelectedSugarLevel()
     {
         float currentAngle = GetCurrentLeverAngle();
-
         float normalizedLever = Mathf.InverseLerp(zeroPercentAngle, hundredPercentAngle, currentAngle);
-
         int levelIndex = Mathf.RoundToInt(normalizedLever * 4f);
         levelIndex = Mathf.Clamp(levelIndex, 0, 4);
-
-        float finalSugar = sugarLevels[levelIndex];
-
-        return finalSugar;
+        return sugarLevels[levelIndex];
     }
 
     public void DispenseSugar()
     {
+        if (isDispensing) return;
+
         if (EventManager.instance != null && EventManager.instance.currentEvent == Events.SugarSpoil)
         {
             if (AudioController.Instance != null && brokenSparkSound != null)
@@ -124,17 +140,52 @@ public class SugarMachine : MonoBehaviour
             CupData cup = cupSocket.GetSocketItem();
             if (cup != null)
             {
-                float levelToDispense = GetSelectedSugarLevel();
-
-                if (selectedType == SugarType.Syrup && syrupStream != null) syrupStream.Play();
-                if (selectedType == SugarType.Honey && honeyStream != null) honeyStream.Play();
-
-                cup.sugarPercentage = levelToDispense;
-                cup.currentSugarType = selectedType;
-                cup.ShowUI();
-
-                cup.OnSugarAdded?.Invoke();
+                StartCoroutine(DispenseRoutine(cup));
             }
         }
+    }
+
+    private IEnumerator DispenseRoutine(CupData cup)
+    {
+        isDispensing = true;
+
+        HandGrabInteractable[] handGrabs = cup.GetComponentsInChildren<HandGrabInteractable>();
+        GrabInteractable[] controllerGrabs = cup.GetComponentsInChildren<GrabInteractable>();
+
+        foreach (var hg in handGrabs) hg.enabled = false;
+        foreach (var cg in controllerGrabs) cg.enabled = false;
+
+        Grabbable cupGrabbable = cup.GetComponent<Grabbable>();
+        if (cupGrabbable != null) cupGrabbable.enabled = false;
+
+        if (machineAudioSource != null && dispensingSound != null)
+        {
+            machineAudioSource.clip = dispensingSound;
+            machineAudioSource.Play();
+        }
+
+        float levelToDispense = GetSelectedSugarLevel();
+        if (selectedType == SugarType.Syrup && syrupStream != null) syrupStream.Play();
+        if (selectedType == SugarType.Honey && honeyStream != null) honeyStream.Play();
+
+        yield return new WaitForSeconds(dispenseDuration);
+
+        if (machineAudioSource != null)
+        {
+            machineAudioSource.Stop();
+        }
+
+        cup.sugarPercentage = levelToDispense;
+        cup.currentSugarType = selectedType;
+        cup.UpdateUI();
+
+        if (syrupStream != null) syrupStream.Stop();
+        if (honeyStream != null) honeyStream.Stop();
+
+        foreach (var hg in handGrabs) hg.enabled = true;
+        foreach (var cg in controllerGrabs) cg.enabled = true;
+        if (cupGrabbable != null) cupGrabbable.enabled = true;
+
+        isDispensing = false;
     }
 }

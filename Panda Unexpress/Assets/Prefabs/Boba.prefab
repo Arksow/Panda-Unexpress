@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7264269441385078244}
   - component: {fileID: 2187036484812291765}
   - component: {fileID: 5222913706598153648}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Boba
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,6 +13,10 @@ public class SpigotDispenser : MonoBehaviour
     public float pourAngleThreshold = 45f;
     public float springSpeed = 10f;
 
+    [Header("Audio")]
+    public AudioSource spigotAudioSource;
+    public AudioClip dispensingSound;
+
     private Grabbable handleGrabbable;
     public bool isPouring = false;
 
@@ -51,10 +55,25 @@ public class SpigotDispenser : MonoBehaviour
             if (isPouring && !liquidStream.isPlaying)
             {
                 liquidStream.Play();
+
+                if (spigotAudioSource != null && dispensingSound != null)
+                {
+                    spigotAudioSource.clip = dispensingSound;
+                    spigotAudioSource.loop = true;
+                    if (!spigotAudioSource.isPlaying)
+                    {
+                        spigotAudioSource.Play();
+                    }
+                }
             }
             else if (!isPouring && liquidStream.isPlaying)
             {
                 liquidStream.Stop();
+
+                if (spigotAudioSource != null)
+                {
+                    spigotAudioSource.Stop();
+                }
 
                 if (cupSocket != null && cupSocket.HasItem())
                 {

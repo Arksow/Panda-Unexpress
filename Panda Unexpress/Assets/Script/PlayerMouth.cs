@@ -21,7 +21,7 @@ public class PlayerMouth : MonoBehaviour
                         AudioController.Instance.PlayGlobalSFX(drinkingSound);
                     }
 
-                    EventManager.instance.ResolveCurrentEvent();
+                    EventManager.instance.ResolveEvent();
                     Destroy(other.gameObject);
                 }
                 else

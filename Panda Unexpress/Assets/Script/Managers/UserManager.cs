@@ -6,15 +6,34 @@ public class UserManager : MonoBehaviour
     [Tooltip("Drag the 3 individual TextMeshPro objects here for Left, Middle, and Right letters.")]
     public TextMeshProUGUI[] letterDisplays = new TextMeshProUGUI[3];
     public TextMeshProUGUI highScoreDisplay;
+
     public Color activeColor = Color.yellow;
     public Color inactiveColor = Color.white;
     public ProfileManager profileManager;
 
     private char[] currentLetters = new char[3] { 'A', 'A', 'A' };
+
     private int activeLetterIndex = 0;
 
     private void Start()
     {
+        string lastPlayer = PlayerPrefs.GetString(SaveKeys.CURRENT_PLAYER, "AAA");
+
+        if (lastPlayer.Length >= 3)
+        {
+            currentLetters[0] = lastPlayer[0];
+            currentLetters[1] = lastPlayer[1];
+            currentLetters[2] = lastPlayer[2];
+        }
+
+        string topPlayer = PlayerPrefs.GetString("Global_HighScore_Name", "---");
+        int topScore = PlayerPrefs.GetInt("Global_HighScore_Value", 0);
+
+        if (highScoreDisplay != null)
+        {
+            highScoreDisplay.text = $"ALL-TIME BEST\n{topPlayer} - ${topScore}";
+        }
+
         UpdateDisplays();
     }
 
@@ -40,24 +59,38 @@ public class UserManager : MonoBehaviour
 
     public void ConfirmSelection()
     {
-        if (activeLetterIndex < 2)
+        activeLetterIndex++;
+
+        if (activeLetterIndex > 2)
         {
-            activeLetterIndex++;
-            UpdateDisplays();
+            activeLetterIndex = 0;
+
+            if (profileManager != null)
+            {
+                string tempName = new string(currentLetters);
+                profileManager.LoadPlayerProfile(tempName);
+            }
+        }
+
+        UpdateDisplays();
+    }
+
+    public void StartGame()
+    {
+        if (profileManager != null)
+        {
+            string finalName = new string(currentLetters);
+            profileManager.LoadPlayerProfile(finalName);
+            Debug.Log("Locked in player: " + finalName);
+        }
+
+        if (SceneTransitionManager.instance != null)
+        {
+            SceneTransitionManager.instance.StartShift();
         }
         else
         {
-            if (profileManager != null)
-            {
-                string finalName = new string(currentLetters);
-                profileManager.LoadPlayerProfile(finalName);
-                Debug.Log("Locked in player: " + finalName);
-
-                if (SceneTransitionManager.instance != null)
-                {
-                    SceneTransitionManager.instance.StartShift();
-                }
-            }
+            Debug.LogError("Panda Unexpress: SceneTransitionManager is missing!");
         }
     }
 
@@ -80,7 +113,6 @@ public class UserManager : MonoBehaviour
         {
             string tempName = new string(currentLetters);
             int score = PlayerPrefs.GetInt(SaveKeys.GetHighScoreKey(tempName), 0);
-            highScoreDisplay.text = $"High Score:\n${score}";
         }
     }
 }

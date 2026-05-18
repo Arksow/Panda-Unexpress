@@ -56,6 +56,11 @@ public class Buttons : MonoBehaviour
         isPressed = true;
         buttonCap.localPosition = originalPosition - new Vector3(0, 0, pressDownDistance);
         if (onButtonDown != null) onButtonDown.Invoke();
+
+        if (AudioController.Instance != null)
+        {
+            AudioController.Instance.PlayClick();
+        }
     }
 
     private void ReleaseButton()
