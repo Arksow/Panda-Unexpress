@@ -177,7 +177,8 @@ public class CustomerAI : MonoBehaviour
                 currentOrder.iceAmount == receivedOrder.iceScoopCount &&
                 currentOrder.bobaAmount == cupBobaScoops &&
                 baseMatch &&
-                !receivedOrder.isTrashCup;
+                !receivedOrder.isTrashCup &&
+                receivedOrder.isSealed;
 
             if (correct)
             {

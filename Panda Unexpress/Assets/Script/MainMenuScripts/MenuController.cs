@@ -26,6 +26,8 @@ public class MenuController : MonoBehaviour
         {
             obj.SetActive(false);
         }
+
+        AudioController.Instance.PlayMusic(menuBGM);
     }
     public void OnClickBack()
     {

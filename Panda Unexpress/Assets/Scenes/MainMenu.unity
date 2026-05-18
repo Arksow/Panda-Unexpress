@@ -3536,6 +3536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f47e36fa8f35d9b478fef10624645f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionManager
+  bgm: {fileID: 8300000, guid: 7aef442fce7c07446b1c8dbf12a75e0b, type: 3}
   mainMenuScene: MainMenu
   gameScene: MainGame
   gameOverScene: GameOver

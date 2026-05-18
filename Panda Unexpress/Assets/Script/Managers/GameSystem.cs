@@ -165,7 +165,10 @@ public class GameSystem : MonoBehaviour
         waitingForNextWave = false;
 
         if (wavePanel != null)
+        {
             wavePanel.SetActive(false);
+            waveText.text = "";
+        }
     }
 
     void ApplyRandomModifier()

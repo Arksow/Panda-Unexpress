@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841a6a8726f7ec74f9dde0a08bb23152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpigotDispenser
-  barrelLiquidType: 4
+  barrelLiquidType: 2
   cupSocket: {fileID: 1567606914}
   liquidStream: {fileID: 1650735681}
   fillSpeed: 1
@@ -5772,7 +5772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Buttons
   buttonCap: {fileID: 87939329}
-  pressDownDistance: 0.0025
+  pressDownDistance: 0.003
   onButtonDown:
     m_PersistentCalls:
       m_Calls:
@@ -26494,8 +26494,8 @@ MonoBehaviour:
   isHotWeather: 0
   thirstTimer: 30
   gameSystem: {fileID: 1625447331}
-  summerSoundtrack: {fileID: 0}
-  defaultSoundtrack: {fileID: 0}
+  summerSoundtrack: {fileID: 8300000, guid: ffbcd3ef68c800d4e8ee2241a3947292, type: 3}
+  defaultSoundtrack: {fileID: 8300000, guid: 7aef442fce7c07446b1c8dbf12a75e0b, type: 3}
   breathingSource: {fileID: 1625447337}
   heavyBreathingSound: {fileID: 8300000, guid: a5de3677ddf4d3044882cbd8e47eac15, type: 3}
   playerVoiceSource: {fileID: 1625447337}
@@ -50560,6 +50560,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0b499cafd9977fc4987012650b92054c, type: 2}
   - {fileID: 11400000, guid: 522ab6ae51620ec47b54356f3c5ae9c2, type: 2}
   - {fileID: 11400000, guid: 9ab1e64c9d02bb644a68314b0b294102, type: 2}
+  - {fileID: 11400000, guid: 14548082ab081bd4b9eb325a641cfdd2, type: 2}
+  - {fileID: 11400000, guid: 998aaeafde649224bb5159cf047d89be, type: 2}
+  - {fileID: 11400000, guid: cd2c8f72711352d43903403280314fa4, type: 2}
   popSound: {fileID: 8300000, guid: 65dc78189a950ca4295de6ce828d6f35, type: 3}
 --- !u!4 &5541881447127751777
 Transform:

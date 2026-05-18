@@ -14,6 +14,8 @@ public class AudioController : MonoBehaviour
     float musicVolume = 1f;
     float staticVolume = 1f;
 
+    public bool IsPlaying() => musicSource != null && musicSource.isPlaying;
+
     private void Awake()
     {
         if (Instance == null)
@@ -109,10 +111,11 @@ public class AudioController : MonoBehaviour
 
     public void PlayMusic(AudioClip newClip)
     {
-        if (musicSource.clip == newClip)
+        if (musicSource.clip == newClip && musicSource.isPlaying)
             return;
 
         musicSource.clip = newClip;
+        musicSource.loop = true;
         musicSource.Play();
     }
 }

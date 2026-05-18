@@ -49,11 +49,9 @@ public class MetaSocket : MonoBehaviour
 
     private void Update()
     {
-        if (currentItem != null && currentItem.SelectingPointsCount == 0)
-        {
-            currentItem.transform.position = attachPoint.position;
-            currentItem.transform.rotation = attachPoint.rotation;
-        }
+        // Notice we are NO LONGER locking the position here.
+        // The Rigidbody is kinematic, so it floats in place natively. 
+        // This stops your script from fighting the Meta SDK's Two-Handed movement math!
 
         if (hoveringItem != null && currentItem == null)
         {
@@ -74,11 +72,6 @@ public class MetaSocket : MonoBehaviour
                 hoveringItem = null;
             }
         }
-
-        if (currentItem != null && currentItem.SelectingPointsCount > 0)
-        {
-            ReleaseIt();
-        }
     }
 
     private void SocketIt(Grabbable newObj, Rigidbody objRb)
@@ -93,20 +86,48 @@ public class MetaSocket : MonoBehaviour
             currentRigidbody.isKinematic = true;
         }
 
+        // Snap to position
         currentItem.transform.position = attachPoint.position;
         currentItem.transform.rotation = attachPoint.rotation;
+
+        // NEW: Parent the item to the socket so it moves with it
+        // The 'true' parameter ensures the cup doesn't magically shrink or grow 
+        // if your moving socket has a weird scale applied to it.
+        currentItem.transform.SetParent(attachPoint, true);
+
+        currentItem.WhenPointerEventRaised += HandlePointerEvent;
     }
 
     private void ReleaseIt()
     {
+        if (currentItem != null)
+        {
+            currentItem.WhenPointerEventRaised -= HandlePointerEvent;
+
+            // NEW: Un-parent the item so it is back in the main world space
+            currentItem.transform.SetParent(null, true);
+        }
+
         if (currentRigidbody != null)
         {
             currentRigidbody.isKinematic = false;
+            currentRigidbody.WakeUp();
+            currentRigidbody.linearVelocity = Vector3.zero;
+            currentRigidbody.angularVelocity = Vector3.zero;
         }
 
         hoveringItem = currentItem;
         currentItem = null;
         currentRigidbody = null;
+    }
+
+    private void HandlePointerEvent(PointerEvent evt)
+    {
+        // Intercept the exact frame the user pulls the grab trigger
+        if (evt.Type == PointerEventType.Select && currentItem != null)
+        {
+            ReleaseIt();
+        }
     }
 
     public bool HasItem()
@@ -127,6 +148,11 @@ public class MetaSocket : MonoBehaviour
     {
         hoveringItem = null;
         if (hologram != null) hologram.SetActive(false);
+
+        if (currentItem != null)
+        {
+            currentItem.WhenPointerEventRaised -= HandlePointerEvent;
+        }
 
         SocketIt(newObj, newObj.GetComponent<Rigidbody>());
     }

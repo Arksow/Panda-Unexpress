@@ -35,6 +35,9 @@ public class UserManager : MonoBehaviour
         }
 
         UpdateDisplays();
+
+        if (profileManager != null)
+            profileManager.LoadPlayerProfile(new string(currentLetters));
     }
 
     public void CycleUp()

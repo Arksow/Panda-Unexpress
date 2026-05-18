@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameOverUIManager : MonoBehaviour
 {
@@ -62,13 +63,20 @@ public class GameOverUIManager : MonoBehaviour
         }
 
         if (SceneTransitionManager.instance != null)
-        {
             SceneTransitionManager.instance.StartShift();
-        }
         else
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+            StartCoroutine(LoadAsync(SceneManager.GetActiveScene().buildIndex));
+    }
+
+    private IEnumerator LoadAsync(int sceneIndex)
+    {
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneIndex);
+        op.allowSceneActivation = false;
+
+        while (op.progress < 0.9f)
+            yield return null;
+
+        op.allowSceneActivation = true;
     }
 
     public void OnMainMenu()

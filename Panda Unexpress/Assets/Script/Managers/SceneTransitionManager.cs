@@ -5,6 +5,7 @@ using System.Collections;
 public class SceneTransitionManager : MonoBehaviour
 {
     public static SceneTransitionManager instance;
+    public AudioClip bgm;
 
     [Header("Scene Names")]
     public string mainMenuScene = "MainMenu";
@@ -47,9 +48,10 @@ public class SceneTransitionManager : MonoBehaviour
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
         while (!asyncLoad.isDone)
-        {
             yield return null;
-        }
+
+        if (AudioController.Instance != null)
+            AudioController.Instance.PlayMusic(bgm);
 
         Debug.Log("Successfully transitioned to: " + sceneName);
     }
