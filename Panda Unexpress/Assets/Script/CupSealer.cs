@@ -24,7 +24,7 @@ public class CupSealer : MonoBehaviour
     private void StartSealing()
     {
         CupData cup = cupSocket.GetSocketItem();
-        if (cup == null || cup.isTrashCup) return;
+        if (cup == null || cup.isTrashCup || cup.isSealed) return;
 
         isSealing = true;
 
