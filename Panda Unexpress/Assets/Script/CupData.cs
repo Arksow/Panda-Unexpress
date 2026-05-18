@@ -11,6 +11,8 @@ public class CupData : MonoBehaviour
     public int iceScoopCount = 0;
     public int bobaParticleCount = 0;
 
+    public Renderer liquidRenderer;
+
     public float sugarPercentage = 0f;
     public SugarType currentSugarType = SugarType.None;
 
@@ -154,8 +156,13 @@ public class CupData : MonoBehaviour
         if (base1 == LiquidBase.None || base1 == incomingBase)
         {
             base1 = incomingBase;
+            if (base1Amount > 0 && base2 == LiquidBase.None)
+            {
+                TextureManager.Instance?.ApplyBaseTexture(liquidRenderer, base1);
+            }
             base1Amount += amount;
             if (base1Amount > 0.5f) base1Amount = 0.5f;
+          
         }
         else if (base2 == LiquidBase.None || base2 == incomingBase)
         {
@@ -189,6 +196,7 @@ public class CupData : MonoBehaviour
             {
                 isValidCombo = true;
                 DrinkName = recipe.drinkName;
+                TextureManager.Instance?.ApplyDrinkTexture(liquidRenderer, recipe);
                 Debug.Log($"Successfully mixed a valid base for: {recipe.drinkName}");
                 break;
             }
@@ -204,6 +212,7 @@ public class CupData : MonoBehaviour
     private void RuinCup()
     {
         isTrashCup = true;
+        TextureManager.Instance?.ApplyTrashTexture(liquidRenderer);
         UpdateUI();
     }
 
