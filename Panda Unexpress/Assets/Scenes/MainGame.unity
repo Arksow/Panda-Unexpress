@@ -10232,7 +10232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSystem
   baseUpgradeButton: {fileID: 105021050}
   sugarUpgradeButton: {fileID: 1964999453}
-  notEnoughMoneyText: {fileID: 0}
+  notEnoughMoneyText: {fileID: 1184560397}
 --- !u!1 &676877678
 GameObject:
   m_ObjectHideFlags: 0
@@ -17870,7 +17870,7 @@ GameObject:
   - component: {fileID: 1184560398}
   - component: {fileID: 1184560397}
   m_Layer: 5
-  m_Name: Timer
+  m_Name: Timer/UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
