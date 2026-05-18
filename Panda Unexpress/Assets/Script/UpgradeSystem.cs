@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class UpgradeSystem : MonoBehaviour
 {
@@ -8,17 +9,18 @@ public class UpgradeSystem : MonoBehaviour
     [SerializeField] private GameObject baseUpgradeButton;
     [SerializeField] private GameObject sugarUpgradeButton;
 
+    [SerializeField] private TextMeshProUGUI notEnoughMoneyText;
+
     public void BuyBaseUpgrade()
     {
         if (PlayerPrefs.GetInt("BaseUpgrade", 0) == 1)
         {
+            baseUpgradeButton.SetActive(false);
             return;
         }
 
         if (EconomyManager.instance == null)
-        {
             return;
-        }
 
         if (EconomyManager.instance.currentMoney >= baseUpgradeCost)
         {
@@ -26,14 +28,22 @@ public class UpgradeSystem : MonoBehaviour
 
             PlayerPrefs.SetInt("BaseUpgrade", 1);
             PlayerPrefs.Save();
+
             baseUpgradeButton.SetActive(false);
+        }
+        else
+        {
+            ShowNotEnoughMoney();
         }
     }
 
     public void BuySugarUpgrade()
     {
         if (PlayerPrefs.GetInt("SugarUpgrade", 0) == 1)
+        {
+            sugarUpgradeButton.SetActive(false);
             return;
+        }
 
         if (EconomyManager.instance == null)
             return;
@@ -47,5 +57,27 @@ public class UpgradeSystem : MonoBehaviour
 
             sugarUpgradeButton.SetActive(false);
         }
+        else
+        {
+            ShowNotEnoughMoney();
+        }
+    }
+
+    void ShowNotEnoughMoney()
+    {
+        if (notEnoughMoneyText == null) return;
+
+        notEnoughMoneyText.text = "Not enough money!";
+        notEnoughMoneyText.gameObject.SetActive(true);
+
+        CancelInvoke(nameof(HideNotEnoughMoney));
+        Invoke(nameof(HideNotEnoughMoney), 1.5f);
+    }
+
+    void HideNotEnoughMoney()
+    {
+        if (notEnoughMoneyText == null) return;
+
+        notEnoughMoneyText.gameObject.SetActive(false);
     }
 }
