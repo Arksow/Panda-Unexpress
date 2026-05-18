@@ -138,7 +138,7 @@ public class SugarMachine : MonoBehaviour
         if (cupSocket.HasItem())
         {
             CupData cup = cupSocket.GetSocketItem();
-            if (cup != null)
+            if (cup != null && !cup.isSealed)
             {
                 StartCoroutine(DispenseRoutine(cup));
             }
