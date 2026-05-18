@@ -10164,7 +10164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSystem
   baseUpgradeButton: {fileID: 105021050}
-  sugarUpgradeButton: {fileID: 0}
+  sugarUpgradeButton: {fileID: 1964999453}
+  notEnoughMoneyText: {fileID: 0}
 --- !u!1 &676877678
 GameObject:
   m_ObjectHideFlags: 0
