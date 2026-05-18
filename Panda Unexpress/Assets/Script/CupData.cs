@@ -42,6 +42,9 @@ public class CupData : MonoBehaviour
     public GameObject meltUIContainer;
     public Image meltBarImage;
 
+    public GameObject seal;
+    public bool isSealed = false;
+
     void Start()
     {
         meltTimer = maxMeltTime;
@@ -89,7 +92,7 @@ public class CupData : MonoBehaviour
 
     public void AddIceScoop()
     {
-        if (isTrashCup) return;
+        if (isTrashCup || isSealed) return;
 
         iceScoopCount++;
 
@@ -151,7 +154,7 @@ public class CupData : MonoBehaviour
 
     public void AddLiquid(LiquidBase incomingBase, float amount)
     {
-        if (isTrashCup) return;
+        if (isTrashCup || isSealed) return;
 
         if (base1 == LiquidBase.None || base1 == incomingBase)
         {
@@ -218,7 +221,7 @@ public class CupData : MonoBehaviour
 
     public void AddBobaParticles(int amount)
     {
-        if (isTrashCup) return;
+        if (isTrashCup || isSealed) return;
         bobaParticleCount += amount;
         UpdateUI();
         OnBobaAdded?.Invoke();
