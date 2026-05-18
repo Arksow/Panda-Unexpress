@@ -56,6 +56,9 @@ public class GameOverUIManager : MonoBehaviour
         if (EconomyManager.instance != null)
         {
             EconomyManager.instance.currentMoney = 0;
+            PlayerPrefs.SetInt("BaseUpgrade", 0);
+            PlayerPrefs.SetInt("SugarUpgrade", 0);
+            PlayerPrefs.Save();
         }
 
         if (SceneTransitionManager.instance != null)
@@ -73,6 +76,9 @@ public class GameOverUIManager : MonoBehaviour
         if (EconomyManager.instance != null)
         {
             EconomyManager.instance.currentMoney = 0;
+            PlayerPrefs.SetInt("BaseUpgrade", 0);
+            PlayerPrefs.SetInt("SugarUpgrade", 0);
+            PlayerPrefs.Save();
         }
 
         if (SceneTransitionManager.instance != null)
