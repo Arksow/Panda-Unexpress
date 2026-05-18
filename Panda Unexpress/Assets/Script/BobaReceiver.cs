@@ -13,7 +13,7 @@ public class BobaReceiver : MonoBehaviour
     {
         BobaPearl incomingPearl = other.GetComponent<BobaPearl>();
 
-        if (incomingPearl != null && incomingPearl.isScooped)
+        if (incomingPearl != null && incomingPearl.isScooped && !cupData.isSealed)
         {
             Destroy(incomingPearl.gameObject);
 

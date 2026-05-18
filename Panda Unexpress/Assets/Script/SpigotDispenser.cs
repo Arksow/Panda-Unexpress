@@ -92,7 +92,7 @@ public class SpigotDispenser : MonoBehaviour
         if (isPouring && cupSocket != null && cupSocket.HasItem())
         {
             CupData cup = cupSocket.GetSocketItem();
-            if (cup != null)
+            if (cup != null && !cup.isSealed)
             {
                 cup.AddLiquid(barrelLiquidType, fillSpeed * Time.deltaTime);
             }
