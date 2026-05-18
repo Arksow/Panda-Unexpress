@@ -29,7 +29,7 @@ public class CustomerAI : MonoBehaviour
 
     [Header("Progress")]
     [HideInInspector]
-    public float decreaseSpeed = 0.001f;
+    public float decreaseSpeed = 0.008f;
     private bool orderGenerated = false;
 
     [Header("Speech Bubble")]
