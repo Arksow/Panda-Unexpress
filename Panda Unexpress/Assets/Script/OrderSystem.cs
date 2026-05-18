@@ -10,7 +10,8 @@ public class OrderSystem : MonoBehaviour
         SetBaseCombination(order);
 
         //Sugar
-        order.sugarType = (SugarType)Random.Range(0, 3);
+        bool hasSugarUpgrade = PlayerPrefs.GetInt("SugarUpgrade", 0) == 1;
+        order.sugarType = (SugarType)Random.Range(0, hasSugarUpgrade ? 4 : 3);
         order.sugarPercent = GetRandomSugar(order.sugarType);
 
         //Ice
