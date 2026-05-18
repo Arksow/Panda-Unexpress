@@ -40,14 +40,19 @@ public class CupDispenser : MonoBehaviour
         currentCup = newCup.GetComponent<Grabbable>();
 
         CupData cupData = newCup.GetComponent<CupData>();
-
         if (cupData != null)
         {
             cupData.enabled = false;
             cupData.validRecipes = this.masterRecipeList;
         }
 
-        dispenserSocket.ForceSocket(currentCup);
+        StartCoroutine(DelayedSocket(currentCup));
+    }
+
+    private System.Collections.IEnumerator DelayedSocket(Grabbable cup)
+    {
+        yield return null;
+        dispenserSocket.ForceSocket(cup);
     }
 
     private void OnCupGrabbed()

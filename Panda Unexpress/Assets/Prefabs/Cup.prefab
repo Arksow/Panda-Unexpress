@@ -383,8 +383,8 @@ Transform:
   m_GameObject: {fileID: 3250388388363072922}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1177889, y: -0.07806667, z: 0.104466654}
-  m_LocalScale: {x: 0.014444445, y: 0.012222223, z: 0.014444445}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.012, y: 0.011, z: 0.012}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5616670555287795262}
@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CupData
   iceScoopCount: 0
   bobaParticleCount: 0
-  liquidRenderer: {fileID: 0}
+  liquidRenderer: {fileID: 7728496760097719595}
   sugarPercentage: 0
   currentSugarType: 0
   uiCanvas: {fileID: 5217231810690104}
