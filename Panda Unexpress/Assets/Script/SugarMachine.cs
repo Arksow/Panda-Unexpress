@@ -172,7 +172,7 @@ public class SugarMachine : MonoBehaviour
         }
 
         float levelToDispense = GetSelectedSugarLevel();
-        if (selectedType == SugarType.Syrup && syrupStream != null) syrupStream.Play();
+        if ((selectedType == SugarType.Syrup && syrupStream != null) || (selectedType == SugarType.BrownSugar && honeyStream != null)) syrupStream.Play();
         if (selectedType == SugarType.Honey && honeyStream != null) honeyStream.Play();
 
         yield return new WaitForSeconds(dispenseDuration);
