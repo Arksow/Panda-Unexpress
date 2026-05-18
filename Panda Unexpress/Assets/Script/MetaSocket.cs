@@ -49,6 +49,12 @@ public class MetaSocket : MonoBehaviour
 
     private void Update()
     {
+        if (currentItem != null && currentItem.SelectingPointsCount == 0)
+        {
+            currentItem.transform.position = attachPoint.position;
+            currentItem.transform.rotation = attachPoint.rotation;
+        }
+
         if (hoveringItem != null && currentItem == null)
         {
             if (hoveringItem.SelectingPointsCount > 0)
@@ -84,8 +90,7 @@ public class MetaSocket : MonoBehaviour
         {
             currentRigidbody.linearVelocity = Vector3.zero;
             currentRigidbody.angularVelocity = Vector3.zero;
-
-            currentRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            currentRigidbody.isKinematic = true;
         }
 
         currentItem.transform.position = attachPoint.position;
@@ -96,7 +101,7 @@ public class MetaSocket : MonoBehaviour
     {
         if (currentRigidbody != null)
         {
-            currentRigidbody.constraints = RigidbodyConstraints.None;
+            currentRigidbody.isKinematic = false;
         }
 
         hoveringItem = currentItem;
