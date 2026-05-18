@@ -5757,7 +5757,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &87939325
 MonoBehaviour:
@@ -5772,7 +5772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Buttons
   buttonCap: {fileID: 87939329}
-  pressDownDistance: 0.003
+  pressDownDistance: 0.0003
   onButtonDown:
     m_PersistentCalls:
       m_Calls:
@@ -7859,7 +7859,7 @@ Transform:
   m_GameObject: {fileID: 409713320}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0172, z: 0}
+  m_LocalPosition: {x: 0, y: -0.018, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26335,7 +26335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoiceCommandManager
   voiceExperience: {fileID: 1625447333}
-  cupDispenser: {fileID: 0}
+  cupDispenser: {fileID: 5526169730235751602}
 --- !u!114 &1625447333
 MonoBehaviour:
   m_ObjectHideFlags: 0
