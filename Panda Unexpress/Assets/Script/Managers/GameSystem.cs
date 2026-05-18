@@ -223,7 +223,7 @@ public class GameSystem : MonoBehaviour
         ai.orderGenerator = orderSystem;
         ai.orderCount = extraDrink ? 2 : 1;
 
-        ai.decreaseSpeed = 0.001f + ((currentWave - 1) * 0.0002f);
+        ai.decreaseSpeed = currentWave * 0.002f;
 
         ai.orderUI = freeSlot.slotUI;
         freeSlot.slotUI.SetCustomer(ai);
