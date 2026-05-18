@@ -39,9 +39,16 @@ public class SugarMachine : MonoBehaviour
     private bool isDispensing = false;
     public AudioSource machineAudioSource;
 
-    public void ToggleSugarType() { selectedType = (selectedType == SugarType.Syrup) ? SugarType.Honey : SugarType.Syrup; }
+    public void ToggleSugarType()
+    {
+        selectedType =
+            (selectedType == SugarType.Syrup) ? SugarType.Honey :
+            (selectedType == SugarType.Honey) ? SugarType.BrownSugar :
+            SugarType.Syrup;
+    }
     public void SetToSyrup() { selectedType = SugarType.Syrup; }
     public void SetToHoney() { selectedType = SugarType.Honey; }
+    public void SetToBrownSugar() { selectedType = SugarType.BrownSugar; }
 
     private void Start()
     {
