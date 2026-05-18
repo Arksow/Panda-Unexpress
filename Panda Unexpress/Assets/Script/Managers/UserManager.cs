@@ -26,6 +26,14 @@ public class UserManager : MonoBehaviour
             currentLetters[2] = lastPlayer[2];
         }
 
+        string topPlayer = PlayerPrefs.GetString("Global_HighScore_Name", "---");
+        int topScore = PlayerPrefs.GetInt("Global_HighScore_Value", 0);
+
+        if (highScoreDisplay != null)
+        {
+            highScoreDisplay.text = $"ALL-TIME BEST\n{topPlayer} - ${topScore}";
+        }
+
         UpdateDisplays();
     }
 
@@ -105,7 +113,6 @@ public class UserManager : MonoBehaviour
         {
             string tempName = new string(currentLetters);
             int score = PlayerPrefs.GetInt(SaveKeys.GetHighScoreKey(tempName), 0);
-            highScoreDisplay.text = $"High Score:\n${score}";
         }
     }
 }

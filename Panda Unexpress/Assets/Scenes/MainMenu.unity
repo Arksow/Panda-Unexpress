@@ -2393,6 +2393,7 @@ GameObject:
   - component: {fileID: 424422796}
   - component: {fileID: 424422797}
   - component: {fileID: 424422798}
+  - component: {fileID: 424422799}
   m_Layer: 5
   m_Name: menu
   m_TagString: Untagged
@@ -2562,7 +2563,21 @@ MonoBehaviour:
   highScoreDisplay: {fileID: 289012059}
   activeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   inactiveColor: {r: 1, g: 1, b: 1, a: 1}
-  profileManager: {fileID: 723857182}
+  profileManager: {fileID: 424422799}
+--- !u!114 &424422799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424422789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2937ca1269ebbc643a575582663aa46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProfileManager
+  playerName: 
+  highScore: 0
 --- !u!1 &431128420
 GameObject:
   m_ObjectHideFlags: 0
@@ -3394,7 +3409,6 @@ GameObject:
   m_Component:
   - component: {fileID: 723857180}
   - component: {fileID: 723857181}
-  - component: {fileID: 723857182}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3433,20 +3447,6 @@ MonoBehaviour:
   gameScene: SampleScene
   gameOverScene: GameOver
   tutorialScene: TurtorialScene
---- !u!114 &723857182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 723857178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2937ca1269ebbc643a575582663aa46c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProfileManager
-  playerName: 
-  highScore: 0
 --- !u!1 &754803947 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8512163697550639498, guid: 329487ed031689d44afed5ccae84d862, type: 3}
