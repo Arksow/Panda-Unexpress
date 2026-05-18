@@ -3537,7 +3537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionManager
   mainMenuScene: MainMenu
-  gameScene: SampleScene
+  gameScene: MainGame
   gameOverScene: GameOver
   tutorialScene: TurtorialScene
 --- !u!1 &754803947 stripped

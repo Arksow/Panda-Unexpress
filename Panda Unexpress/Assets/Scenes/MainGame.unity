@@ -8769,6 +8769,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538035814}
   m_CullTransparentMesh: 1
+--- !u!1 &539622408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 539622410}
+  - component: {fileID: 539622409}
+  m_Layer: 0
+  m_Name: textureManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &539622409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539622408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a77b84d988cbb4c9d5a185fb1971e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextureManager
+  baseTextures:
+  - baseType: 1
+    liquid: {fileID: 2100000, guid: 1edbb4d33a1895c49beab21455f4b9eb, type: 2}
+  - baseType: 2
+    liquid: {fileID: 2100000, guid: 61d5488a717cc3d4589c79af08eed9d4, type: 2}
+  - baseType: 3
+    liquid: {fileID: 2100000, guid: 0166410ad534a7f48a2721510614b197, type: 2}
+  - baseType: 4
+    liquid: {fileID: 2100000, guid: 335c2dbf96df490458666b3bfc27194c, type: 2}
+  drinkTextures:
+  - recipe: {fileID: 11400000, guid: 9ab1e64c9d02bb644a68314b0b294102, type: 2}
+    liquid: {fileID: 2100000, guid: b2f827cf4d58b4f449893c0d4bfcbf58, type: 2}
+  - recipe: {fileID: 11400000, guid: 522ab6ae51620ec47b54356f3c5ae9c2, type: 2}
+    liquid: {fileID: 2100000, guid: a54b34a2a81a0ae41a2eef16c4a73f63, type: 2}
+  - recipe: {fileID: 11400000, guid: 0b499cafd9977fc4987012650b92054c, type: 2}
+    liquid: {fileID: 2100000, guid: 7bc4b7934892b8548ae513f0f24d596a, type: 2}
+  - recipe: {fileID: 11400000, guid: cd2c8f72711352d43903403280314fa4, type: 2}
+    liquid: {fileID: 2100000, guid: 1edbb4d33a1895c49beab21455f4b9eb, type: 2}
+  - recipe: {fileID: 11400000, guid: 998aaeafde649224bb5159cf047d89be, type: 2}
+    liquid: {fileID: 2100000, guid: 1edbb4d33a1895c49beab21455f4b9eb, type: 2}
+  - recipe: {fileID: 11400000, guid: 14548082ab081bd4b9eb325a641cfdd2, type: 2}
+    liquid: {fileID: 2100000, guid: 1edbb4d33a1895c49beab21455f4b9eb, type: 2}
+  trashTexture: {fileID: 2100000, guid: 2ae7e45dcb7d6c944a834a8b09b77fed, type: 2}
+--- !u!4 &539622410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539622408}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.54998, y: 0.05, z: -2.40998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &579754073
 GameObject:
   m_ObjectHideFlags: 0
@@ -57660,3 +57727,4 @@ SceneRoots:
   - {fileID: 123316599}
   - {fileID: 994137712}
   - {fileID: 1335214299297411059}
+  - {fileID: 539622410}
