@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class CharacterTextureRandomisation : MonoBehaviour
 {
-    public Texture[] textures;
+    public Material[] materials;
     public Renderer targetRenderer;
 
     void Start()
     {
-        ApplyRandomTexture();
+        ApplyRandomMaterial();
     }
 
-    void ApplyRandomTexture()
+    void ApplyRandomMaterial()
     {
-        if (textures.Length == 0) return;
+        if (materials.Length == 0) return;
 
-        int index = Random.Range(0, textures.Length);
+        int index = Random.Range(0, materials.Length);
 
-        targetRenderer.material.mainTexture = textures[index];
+        targetRenderer.material = materials[index];
     }
 }
