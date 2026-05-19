@@ -12,4 +12,5 @@ public class CustomerOrder
     public int iceAmount;
 
     public int bobaAmount;
+    public int aloeAmount;
 }

@@ -50,8 +50,6 @@ public class MetaSocket : MonoBehaviour
 
     private void Update()
     {
-        // 1. Manually lock position here to support Moving Sockets WITHOUT using SetParent().
-        // This prevents the Meta SDK from breaking if the Dispenser has a customized scale!
         if (currentItem != null)
         {
             currentItem.transform.position = attachPoint.position;
@@ -107,36 +105,35 @@ public class MetaSocket : MonoBehaviour
 
     private void ReleaseIt()
     {
-        // Store references before nulling them out
         var releasingItem = currentItem;
         var releasingRb = currentRigidbody;
 
         releasingItem.WhenPointerEventRaised -= HandlePointerEvent;
         hoveringItem = releasingItem;
 
-        // Instantly null currentItem so the Update() loop STOPS forcing the position.
-        // This allows your hand to pull it away smoothly.
         currentItem = null;
         currentRigidbody = null;
 
-        // 2. Defer turning on physics until the Meta SDK is done doing its Two-Handed Math
         if (releasingRb != null && gameObject.activeInHierarchy)
         {
-            StartCoroutine(RestorePhysicsRoutine(releasingRb));
+            StartCoroutine(RestorePhysicsRoutine(releasingRb, releasingItem));
         }
     }
 
-    private IEnumerator RestorePhysicsRoutine(Rigidbody rb)
+    private IEnumerator RestorePhysicsRoutine(Rigidbody rb, Grabbable releasingItem)
     {
-        // Wait until the very end of the frame. The Meta SDK grab math is now safely finished.
         yield return new WaitForEndOfFrame();
 
         if (rb != null)
         {
-            rb.isKinematic = false;
-            rb.WakeUp(); // Wake up the colliders so triggers/spherecasts work instantly
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            if (releasingItem == null || releasingItem.SelectingPointsCount == 0)
+            {
+                rb.isKinematic = false;
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
+
+            rb.WakeUp();
         }
     }
 

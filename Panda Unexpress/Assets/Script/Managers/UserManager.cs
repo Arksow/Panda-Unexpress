@@ -26,12 +26,16 @@ public class UserManager : MonoBehaviour
             currentLetters[2] = lastPlayer[2];
         }
 
-        string topPlayer = PlayerPrefs.GetString("Global_HighScore_Name", "---");
-        int topScore = PlayerPrefs.GetInt("Global_HighScore_Value", 0);
-
         if (highScoreDisplay != null)
         {
-            highScoreDisplay.text = $"ALL-TIME BEST\n{topPlayer} - ${topScore}";
+            string leaderboardText = "TOP 5 ALL-TIME BEST\n";
+            for (int i = 0; i < 5; i++)
+            {
+                string rankName = PlayerPrefs.GetString("Global_Name_" + i, "---");
+                int rankScore = PlayerPrefs.GetInt("Global_Score_" + i, 0);
+                leaderboardText += $"{i + 1}. {rankName} - ${rankScore}\n";
+            }
+            highScoreDisplay.text = leaderboardText;
         }
 
         UpdateDisplays();
@@ -40,22 +44,30 @@ public class UserManager : MonoBehaviour
             profileManager.LoadPlayerProfile(new string(currentLetters));
     }
 
-    public void CycleUp()
+    public void CycleLetterUp()
     {
-        if (currentLetters[activeLetterIndex] == 'Z')
-            currentLetters[activeLetterIndex] = 'A';
+        char currentChar = currentLetters[activeLetterIndex];
+
+        if (currentChar == 'Z')
+            currentChar = 'A';
         else
-            currentLetters[activeLetterIndex]++;
+            currentChar++;
+
+        currentLetters[activeLetterIndex] = currentChar;
 
         UpdateDisplays();
     }
 
-    public void CycleDown()
+    public void CycleLetterDown()
     {
-        if (currentLetters[activeLetterIndex] == 'A')
-            currentLetters[activeLetterIndex] = 'Z';
+        char currentChar = currentLetters[activeLetterIndex];
+
+        if (currentChar == 'A')
+            currentChar = 'Z';
         else
-            currentLetters[activeLetterIndex]--;
+            currentChar--;
+
+        currentLetters[activeLetterIndex] = currentChar;
 
         UpdateDisplays();
     }
@@ -110,12 +122,6 @@ public class UserManager : MonoBehaviour
                 else
                     letterDisplays[i].color = inactiveColor;
             }
-        }
-
-        if (profileManager != null && highScoreDisplay != null)
-        {
-            string tempName = new string(currentLetters);
-            int score = PlayerPrefs.GetInt(SaveKeys.GetHighScoreKey(tempName), 0);
         }
     }
 }

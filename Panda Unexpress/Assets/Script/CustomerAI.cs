@@ -29,7 +29,7 @@ public class CustomerAI : MonoBehaviour
 
     [Header("Progress")]
     [HideInInspector]
-    public float decreaseSpeed = 0.008f;
+    public float decreaseSpeed = 0.01f;
     private bool orderGenerated = false;
 
     [Header("Speech Bubble")]
@@ -151,12 +151,7 @@ public class CustomerAI : MonoBehaviour
 
         receivedOrder = cup;
 
-        if (currentOrders.Count == 0)
-        {
-            return;
-        }
-
-        int cupBobaScoops = Mathf.FloorToInt(receivedOrder.bobaParticleCount / 30f);
+        if (currentOrders.Count == 0) return;
 
         int matchedIndex = -1;
 
@@ -165,17 +160,15 @@ public class CustomerAI : MonoBehaviour
             CustomerOrder currentOrder = currentOrders[i];
 
             bool baseMatch =
-                (currentOrder.base1 == receivedOrder.base1 &&
-                 currentOrder.base2 == receivedOrder.base2)
-                ||
-                (currentOrder.base1 == receivedOrder.base2 &&
-                 currentOrder.base2 == receivedOrder.base1);
+                (currentOrder.base1 == receivedOrder.base1 && currentOrder.base2 == receivedOrder.base2) ||
+                (currentOrder.base1 == receivedOrder.base2 && currentOrder.base2 == receivedOrder.base1);
 
             bool correct =
                 currentOrder.sugarPercent == receivedOrder.sugarPercentage &&
                 currentOrder.sugarType == receivedOrder.currentSugarType &&
                 currentOrder.iceAmount == receivedOrder.iceScoopCount &&
-                currentOrder.bobaAmount == cupBobaScoops &&
+                currentOrder.bobaAmount == receivedOrder.bobaScoopCount &&
+                currentOrder.aloeAmount == receivedOrder.aloeScoopCount &&
                 baseMatch &&
                 !receivedOrder.isTrashCup &&
                 receivedOrder.isSealed;

@@ -4,12 +4,14 @@ using UnityEngine.UI;
 
 public enum SugarType { None, Syrup, Honey, BrownSugar }
 public enum LiquidBase { None, Tea, Matcha, Milk, Chocolate }
+public enum ToppingType { None, Boba, AloeVera }
 
 public class CupData : MonoBehaviour
 {
     [Header("Cup Contents")]
     public int iceScoopCount = 0;
-    public int bobaParticleCount = 0;
+    public int bobaScoopCount = 0;
+    public int aloeScoopCount = 0;
 
     public Renderer liquidRenderer;
 
@@ -116,39 +118,23 @@ public class CupData : MonoBehaviour
 
     public void UpdateUI()
     {
-        int bobaScoops = Mathf.FloorToInt((float)bobaParticleCount / 30f);
-
         string sugarDisplay = sugarPercentage > 0
             ? $"{currentSugarType}: {Mathf.RoundToInt(sugarPercentage)}%"
             : "Sugar: 0%";
 
         string drinkStatus = "Empty";
 
-        if (isTrashCup)
-        {
-            drinkStatus = "<color=red>Ruined (Trash)</color>";
-        }
-        else if (!string.IsNullOrEmpty(DrinkName) && DrinkName != "Unknown Drink")
-        {
-            drinkStatus = $"<color=green>{DrinkName}</color>";
-        }
-        else if (base1 != LiquidBase.None && base2 != LiquidBase.None)
-        {
-            drinkStatus = $"{base1} & {base2}";
-        }
-        else if (base1 != LiquidBase.None)
-        {
-            drinkStatus = base1.ToString();
-        }
-        else if (base2 != LiquidBase.None)
-        {
-            drinkStatus = base2.ToString();
-        }
+        if (isTrashCup) drinkStatus = "<color=red>Ruined (Trash)</color>";
+        else if (!string.IsNullOrEmpty(DrinkName) && DrinkName != "Unknown Drink") drinkStatus = $"<color=green>{DrinkName}</color>";
+        else if (base1 != LiquidBase.None && base2 != LiquidBase.None) drinkStatus = $"{base1} & {base2}";
+        else if (base1 != LiquidBase.None) drinkStatus = base1.ToString();
+        else if (base2 != LiquidBase.None) drinkStatus = base2.ToString();
 
         contentsText.text = "<u>Cup Contents</u>\n" +
                             $"Base: {drinkStatus}\n" +
                             $"Ice: {iceScoopCount} Scoops\n" +
-                            $"Boba: {bobaScoops} Scoops\n" +
+                            $"Boba: {bobaScoopCount} Scoops\n" +
+                            $"Aloe: {aloeScoopCount} Scoops\n" +
                             $"{sugarDisplay}";
     }
 
@@ -219,10 +205,15 @@ public class CupData : MonoBehaviour
         UpdateUI();
     }
 
-    public void AddBobaParticles(int amount)
+    public void AddTopping(ToppingType type, int amount)
     {
         if (isTrashCup || isSealed) return;
-        bobaParticleCount += amount;
+
+        if (type == ToppingType.Boba)
+            bobaScoopCount += amount;
+        else if (type == ToppingType.AloeVera)
+            aloeScoopCount += amount;
+
         UpdateUI();
         OnBobaAdded?.Invoke();
     }

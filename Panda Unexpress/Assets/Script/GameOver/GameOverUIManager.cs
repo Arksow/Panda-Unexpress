@@ -38,16 +38,15 @@ public class GameOverUIManager : MonoBehaviour
 
             EconomyManager.instance.EndGame();
 
-            int updatedHighscore = PlayerPrefs.GetInt(SaveKeys.GetHighScoreKey(currentPlayer), 0);
-            highscoreText.text = $"Highscore: ${updatedHighscore}";
-
-            if (earnings > oldHighscore && newHighscoreAlert != null)
+            if (earnings > oldHighscore && earnings > 0)
             {
-                newHighscoreAlert.SetActive(true);
+                highscoreText.text = $"Highscore: ${earnings}";
+                if (newHighscoreAlert != null) newHighscoreAlert.SetActive(true);
             }
-            else if (newHighscoreAlert != null)
+            else
             {
-                newHighscoreAlert.SetActive(false);
+                highscoreText.text = $"Highscore: ${oldHighscore}";
+                if (newHighscoreAlert != null) newHighscoreAlert.SetActive(false);
             }
         }
     }
