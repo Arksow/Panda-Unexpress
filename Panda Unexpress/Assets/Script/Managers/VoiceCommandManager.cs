@@ -10,6 +10,16 @@ public class VoiceCommandManager : MonoBehaviour
 
     private bool isListening = false;
 
+    void Start()
+    {
+#if PLATFORM_ANDROID
+    if (!UnityEngine.Android.Permission.HasUserAuthorizedPermission(UnityEngine.Android.Permission.Microphone))
+    {
+        UnityEngine.Android.Permission.RequestUserPermission(UnityEngine.Android.Permission.Microphone);
+    }
+#endif
+    }
+
     private void Awake()
     {
         if (instance == null) instance = this;
