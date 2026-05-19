@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2187036484812291765}
   - component: {fileID: 5222913706598153648}
   m_Layer: 10
-  m_Name: Boba
+  m_Name: Boba 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2c80c302ba3a28442b2796ac72b51379, type: 2}
+  - {fileID: 2100000, guid: 0ee8ea8e0e0f4234dbb428827761323f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,4 +153,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921d7341c4dc3ac418b78e7e8f2b1977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BobaPearl
-  toppingType: 1
+  toppingType: 2

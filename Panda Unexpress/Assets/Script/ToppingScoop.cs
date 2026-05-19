@@ -2,50 +2,70 @@ using UnityEngine;
 
 public class ToppingScoop : MonoBehaviour
 {
-    public Transform bowlCenter;
+    public GameObject bobaVisual;
+    public GameObject aloeVisual;
+
+    [Header("Drop Settings")]
+    [Tooltip("The prefab dropped when tipping boba")]
+    public GameObject bobaDropPrefab;
+    [Tooltip("The prefab dropped when tipping aloe")]
+    public GameObject aloeDropPrefab;
+    public Transform dropSpawnPoint;
     public float dropAngleThreshold = 0.2f;
 
-    private GameObject currentPearl;
-    private Rigidbody pearlRb;
+    private ToppingType currentTopping = ToppingType.None;
 
-    void OnTriggerStay(Collider other)
+    void Start()
     {
-        if (currentPearl == null)
+        ClearScoop();
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (currentTopping == ToppingType.None)
         {
-            BobaPearl touchedPearl = other.GetComponent<BobaPearl>();
-
-            if (touchedPearl != null && !touchedPearl.isScooped)
+            ToppingBin bin = other.GetComponent<ToppingBin>();
+            if (bin != null)
             {
-                touchedPearl.isScooped = true;
-
-                currentPearl = touchedPearl.gameObject;
-                currentPearl.transform.SetParent(bowlCenter);
-                currentPearl.transform.localPosition = Vector3.zero;
-                pearlRb = currentPearl.GetComponent<Rigidbody>();
-                if (pearlRb != null)
-                {
-                    pearlRb.isKinematic = true;
-                }
-
-                Debug.Log("Physically caught a Boba Ball!");
+                FillScoop(bin.toppingType);
             }
         }
     }
 
     void Update()
     {
-        if (currentPearl != null && pearlRb != null && pearlRb.isKinematic)
+        if (currentTopping != ToppingType.None)
         {
             if (Vector3.Dot(transform.up, Vector3.up) < dropAngleThreshold)
             {
-                currentPearl.transform.SetParent(null);
-                pearlRb.isKinematic = false;
-
-                Destroy(currentPearl, 3f);
-
-                pearlRb = null;
-                currentPearl = null;
+                DropTopping();
             }
         }
+    }
+
+    private void FillScoop(ToppingType type)
+    {
+        currentTopping = type;
+        if (type == ToppingType.Boba && bobaVisual != null) bobaVisual.SetActive(true);
+        if (type == ToppingType.AloeVera && aloeVisual != null) aloeVisual.SetActive(true);
+    }
+
+    private void DropTopping()
+    {
+        GameObject prefabToDrop = (currentTopping == ToppingType.Boba) ? bobaDropPrefab : aloeDropPrefab;
+
+        if (prefabToDrop != null && dropSpawnPoint != null)
+        {
+            Instantiate(prefabToDrop, dropSpawnPoint.position, Quaternion.identity);
+        }
+
+        ClearScoop();
+    }
+
+    private void ClearScoop()
+    {
+        currentTopping = ToppingType.None;
+        if (bobaVisual != null) bobaVisual.SetActive(false);
+        if (aloeVisual != null) aloeVisual.SetActive(false);
     }
 }

@@ -11,17 +11,18 @@ public class BobaReceiver : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        BobaPearl incomingPearl = other.GetComponent<BobaPearl>();
+        ToppingItem incomingTopping = other.GetComponent<ToppingItem>();
 
-        if (incomingPearl != null && incomingPearl.isScooped && !cupData.isSealed)
+        if (incomingTopping != null && !cupData.isSealed)
         {
-            Destroy(incomingPearl.gameObject);
+            // Destroy the falling physical object
+            Destroy(incomingTopping.gameObject);
 
             if (cupData != null)
             {
-                cupData.AddBobaParticles(30);
-                cupData.OnBobaAdded?.Invoke();
-                Debug.Log("1 Boba Scoop added to cup!");
+                // Add the topping directly to the cup's data
+                cupData.AddTopping(incomingTopping.toppingType, 1);
+                Debug.Log($"1 Scoop of {incomingTopping.toppingType} added to cup!");
             }
         }
     }

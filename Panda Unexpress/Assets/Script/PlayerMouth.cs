@@ -10,7 +10,7 @@ public class PlayerMouth : MonoBehaviour
         {
             CupData cup = other.GetComponent<CupData>();
 
-            if (cup != null && (cup.base1Amount > 0 || cup.bobaParticleCount > 0))
+            if (cup != null && (cup.base1Amount > 0 ))
             {
                 if (EventManager.instance != null && EventManager.instance.currentEvent == Events.ThirstyPlayer)
                 {
