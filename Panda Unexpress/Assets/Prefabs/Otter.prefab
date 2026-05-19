@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: -389669258415188671}
   - component: {fileID: 3048224134137227757}
   - component: {fileID: 9023236613880162286}
+  - component: {fileID: 3040350237832341918}
   m_Layer: 0
   m_Name: Otter
   m_TagString: Customer
@@ -364,6 +365,23 @@ MonoBehaviour:
   wrongOrder: {fileID: 0}
   progressImage: {fileID: 4267179276053110209}
   gameSystem: {fileID: 0}
+--- !u!114 &3040350237832341918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7363462436892381181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e71bd8ea26411c649b573395b550c718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTextureRandomisation
+  textures:
+  - {fileID: 2800000, guid: 60d9c25b8c25e0d41b1022e6c4475888, type: 3}
+  - {fileID: 2800000, guid: 44a38269275e43342afa2ea6e121ecb3, type: 3}
+  - {fileID: 2800000, guid: d04e07befaf3b63479717e20ae357d5f, type: 3}
+  targetRenderer: {fileID: 1870320549571407364}
 --- !u!1 &7808763519060102438
 GameObject:
   m_ObjectHideFlags: 0
