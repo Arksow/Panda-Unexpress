@@ -7415,6 +7415,10 @@ PrefabInstance:
       value: PlayerFinger
       objectReference: {fileID: 0}
     - target: {fileID: 8707012695538882169, guid: 329487ed031689d44afed5ccae84d862, type: 3}
+      propertyPath: _enableDynamicResolution
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8707012695538882169, guid: 329487ed031689d44afed5ccae84d862, type: 3}
       propertyPath: requestScenePermissionOnStartup
       value: 1
       objectReference: {fileID: 0}
