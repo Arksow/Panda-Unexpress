@@ -1,5 +1,6 @@
 using Oculus.Interaction;
 using UnityEngine;
+using System.Collections;
 
 public class MetaSocket : MonoBehaviour
 {
@@ -49,9 +50,13 @@ public class MetaSocket : MonoBehaviour
 
     private void Update()
     {
-        // Notice we are NO LONGER locking the position here.
-        // The Rigidbody is kinematic, so it floats in place natively. 
-        // This stops your script from fighting the Meta SDK's Two-Handed movement math!
+        // 1. Manually lock position here to support Moving Sockets WITHOUT using SetParent().
+        // This prevents the Meta SDK from breaking if the Dispenser has a customized scale!
+        if (currentItem != null)
+        {
+            currentItem.transform.position = attachPoint.position;
+            currentItem.transform.rotation = attachPoint.rotation;
+        }
 
         if (hoveringItem != null && currentItem == null)
         {
@@ -86,47 +91,52 @@ public class MetaSocket : MonoBehaviour
             currentRigidbody.isKinematic = true;
         }
 
-        // Snap to position
         currentItem.transform.position = attachPoint.position;
         currentItem.transform.rotation = attachPoint.rotation;
-
-        // NEW: Parent the item to the socket so it moves with it
-        // The 'true' parameter ensures the cup doesn't magically shrink or grow 
-        // if your moving socket has a weird scale applied to it.
-        currentItem.transform.SetParent(attachPoint, true);
 
         currentItem.WhenPointerEventRaised += HandlePointerEvent;
     }
 
-    private void ReleaseIt()
-    {
-        if (currentItem != null)
-        {
-            currentItem.WhenPointerEventRaised -= HandlePointerEvent;
-
-            // NEW: Un-parent the item so it is back in the main world space
-            currentItem.transform.SetParent(null, true);
-        }
-
-        if (currentRigidbody != null)
-        {
-            currentRigidbody.isKinematic = false;
-            currentRigidbody.WakeUp();
-            currentRigidbody.linearVelocity = Vector3.zero;
-            currentRigidbody.angularVelocity = Vector3.zero;
-        }
-
-        hoveringItem = currentItem;
-        currentItem = null;
-        currentRigidbody = null;
-    }
-
     private void HandlePointerEvent(PointerEvent evt)
     {
-        // Intercept the exact frame the user pulls the grab trigger
         if (evt.Type == PointerEventType.Select && currentItem != null)
         {
             ReleaseIt();
+        }
+    }
+
+    private void ReleaseIt()
+    {
+        // Store references before nulling them out
+        var releasingItem = currentItem;
+        var releasingRb = currentRigidbody;
+
+        releasingItem.WhenPointerEventRaised -= HandlePointerEvent;
+        hoveringItem = releasingItem;
+
+        // Instantly null currentItem so the Update() loop STOPS forcing the position.
+        // This allows your hand to pull it away smoothly.
+        currentItem = null;
+        currentRigidbody = null;
+
+        // 2. Defer turning on physics until the Meta SDK is done doing its Two-Handed Math
+        if (releasingRb != null && gameObject.activeInHierarchy)
+        {
+            StartCoroutine(RestorePhysicsRoutine(releasingRb));
+        }
+    }
+
+    private IEnumerator RestorePhysicsRoutine(Rigidbody rb)
+    {
+        // Wait until the very end of the frame. The Meta SDK grab math is now safely finished.
+        yield return new WaitForEndOfFrame();
+
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.WakeUp(); // Wake up the colliders so triggers/spherecasts work instantly
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
     }
 
