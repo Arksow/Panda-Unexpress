@@ -102,11 +102,9 @@ public class GameSystem : MonoBehaviour
             }
 
             float waveClearTime = Time.time - currentWaveTime;
-            Debug.Log($"Wave cleared in {waveClearTime} seconds.");
 
             if (waveClearTime < waveSpeedLimit)
             {
-                Debug.Log("Player is too fast! Triggering punishment event...");
                 if (EventManager.instance != null)
                 {
                     EventManager.instance.TriggerSpecificEvent(Events.HotWeather);
