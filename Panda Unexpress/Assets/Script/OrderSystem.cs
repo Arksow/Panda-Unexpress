@@ -18,7 +18,9 @@ public class OrderSystem : MonoBehaviour
         order.iceAmount = GetRandomIce();
 
         //Boba
-        order.bobaAmount = GetRandomBoba();
+        bool hasBobaUpgrade = PlayerPrefs.GetInt("BobaUpgrade", 0) == 1;
+        order.toppingType = (ToppingType)Random.Range(0,hasBobaUpgrade ? 3 : 2);
+        order.bobaAmount = GetRandomBoba(order.toppingType);
 
         return order;
     }
@@ -99,12 +101,13 @@ public class OrderSystem : MonoBehaviour
     }
 
     //Boba values
-    int GetRandomBoba()
+    int GetRandomBoba(ToppingType bobaType)
     {
         float roll = Random.value;
-        if (roll < 0.30f) return 0;
-        if (roll < 0.65f) return 1;
-        if (roll < 0.90f) return 2;
+
+        if (roll < 0.20f) return 0;
+        if (roll < 0.50f) return 1;
+        if (roll < 0.80f) return 2;
         return 3;
     }
 }

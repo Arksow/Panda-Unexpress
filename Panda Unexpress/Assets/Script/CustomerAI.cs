@@ -160,8 +160,11 @@ public class CustomerAI : MonoBehaviour
             CustomerOrder currentOrder = currentOrders[i];
 
             bool baseMatch =
-                (currentOrder.base1 == receivedOrder.base1 && currentOrder.base2 == receivedOrder.base2) ||
-                (currentOrder.base1 == receivedOrder.base2 && currentOrder.base2 == receivedOrder.base1);
+                (currentOrder.base1 == receivedOrder.base1 &&
+                 currentOrder.base2 == receivedOrder.base2) ||
+
+                (currentOrder.base1 == receivedOrder.base2 &&
+                 currentOrder.base2 == receivedOrder.base1);
 
             bool correct =
                 currentOrder.sugarPercent == receivedOrder.sugarPercentage &&
