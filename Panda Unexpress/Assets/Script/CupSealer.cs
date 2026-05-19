@@ -1,4 +1,5 @@
 using Oculus.Interaction;
+using System;
 using UnityEngine;
 
 public class CupSealer : MonoBehaviour
@@ -12,6 +13,7 @@ public class CupSealer : MonoBehaviour
     public float animationDuration = 2f;
 
     private bool isSealing = false;
+    public static Action OnCupSealed;
 
     private void Update()
     {
@@ -48,6 +50,9 @@ public class CupSealer : MonoBehaviour
         Grabbable grabbable = cup.GetComponent<Grabbable>();
         if (grabbable != null) grabbable.enabled = true;
 
+        OnCupSealed?.Invoke();
         isSealing = false;
+
+
     }
 }
