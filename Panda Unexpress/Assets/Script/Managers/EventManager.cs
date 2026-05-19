@@ -58,7 +58,7 @@ public class EventManager : MonoBehaviour
         if (currentEvent != Events.None) return;
         int diceRoll = Random.Range(0, 100);
 
-        if (diceRoll < 100)
+        if (diceRoll < 20)
         {
             Debug.Log("Dice Roll: 25% Chance Hit! Triggering Random Event.");
 

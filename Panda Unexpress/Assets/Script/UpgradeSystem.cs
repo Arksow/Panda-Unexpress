@@ -3,11 +3,13 @@ using TMPro;
 
 public class UpgradeSystem : MonoBehaviour
 {
-    private int baseUpgradeCost = 100;
-    private int sugarUpgradeCost = 100;
+    private int baseUpgradeCost = 50;
+    private int sugarUpgradeCost = 80;
+    private int bobaUpgradeCost = 80;
 
     [SerializeField] private GameObject baseUpgradeButton;
     [SerializeField] private GameObject sugarUpgradeButton;
+    [SerializeField] private GameObject bobaUpgradeButton;
 
     [SerializeField] private TextMeshProUGUI notEnoughMoneyText;
 
@@ -56,6 +58,32 @@ public class UpgradeSystem : MonoBehaviour
             PlayerPrefs.Save();
 
             sugarUpgradeButton.SetActive(false);
+        }
+        else
+        {
+            ShowNotEnoughMoney();
+        }
+    }
+
+    public void BuyBobaUpgrade()
+    {
+        if (PlayerPrefs.GetInt("BobaUpgrade", 0) == 1)
+        {
+            bobaUpgradeButton.SetActive(false);
+            return;
+        }
+
+        if (EconomyManager.instance == null)
+            return;
+
+        if (EconomyManager.instance.currentMoney >= bobaUpgradeCost)
+        {
+            EconomyManager.instance.DeductMoney(bobaUpgradeCost);
+
+            PlayerPrefs.SetInt("BobaUpgrade", 1);
+            PlayerPrefs.Save();
+
+            bobaUpgradeButton.SetActive(false);
         }
         else
         {

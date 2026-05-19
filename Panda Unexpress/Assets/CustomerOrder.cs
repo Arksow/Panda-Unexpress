@@ -11,6 +11,7 @@ public class CustomerOrder
 
     public int iceAmount;
 
+    public ToppingType toppingType;
     public int bobaAmount;
     public int aloeAmount;
 }
