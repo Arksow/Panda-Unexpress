@@ -54,6 +54,11 @@ public class GameSystem : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("BaseUpgrade", 0);
+        PlayerPrefs.SetInt("SugarUpgrade", 0);
+        PlayerPrefs.SetInt("BobaUpgrade", 0);
+        PlayerPrefs.Save();
+
         if (wavePanel != null)
             wavePanel.SetActive(false);
 
@@ -134,6 +139,7 @@ public class GameSystem : MonoBehaviour
                 if (timer >= waveDelay)
                 {
                     waitingForNextWave = false;
+                    wavePanel.SetActive(false);
                 }
 
                 yield return null;

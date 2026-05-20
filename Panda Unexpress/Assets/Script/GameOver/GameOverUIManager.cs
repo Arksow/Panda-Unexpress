@@ -58,6 +58,7 @@ public class GameOverUIManager : MonoBehaviour
             EconomyManager.instance.currentMoney = 0;
             PlayerPrefs.SetInt("BaseUpgrade", 0);
             PlayerPrefs.SetInt("SugarUpgrade", 0);
+            PlayerPrefs.SetInt("BobaUpgrade", 0);
             PlayerPrefs.Save();
         }
 
@@ -85,6 +86,7 @@ public class GameOverUIManager : MonoBehaviour
             EconomyManager.instance.currentMoney = 0;
             PlayerPrefs.SetInt("BaseUpgrade", 0);
             PlayerPrefs.SetInt("SugarUpgrade", 0);
+            PlayerPrefs.SetInt("BobaUpgrade", 0);
             PlayerPrefs.Save();
         }
 
