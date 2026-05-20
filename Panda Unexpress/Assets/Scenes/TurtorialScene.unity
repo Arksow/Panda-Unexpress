@@ -19858,8 +19858,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
   outlineComponent: {fileID: 380552643}
   isPulsing: 1
-  minWidth: 5
-  maxWidth: 15
+  minWidth: 1
+  maxWidth: 2
   pulseSpeed: 5
 --- !u!1 &380907664
 GameObject:
@@ -21465,8 +21465,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
   outlineComponent: {fileID: 406880497}
   isPulsing: 1
-  minWidth: 2
-  maxWidth: 5
+  minWidth: 1
+  maxWidth: 2
   pulseSpeed: 5
 --- !u!114 &406880500
 MonoBehaviour:
@@ -22584,8 +22584,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
   outlineComponent: {fileID: 426899532}
   isPulsing: 1
-  minWidth: 2
-  maxWidth: 5
+  minWidth: 1
+  maxWidth: 2
   pulseSpeed: 5
 --- !u!1 &428944551
 GameObject:
@@ -54003,8 +54003,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
   outlineComponent: {fileID: 739928267}
   isPulsing: 1
-  minWidth: 2
-  maxWidth: 5
+  minWidth: 1
+  maxWidth: 2
   pulseSpeed: 5
 --- !u!114 &739928267
 MonoBehaviour:
@@ -96259,8 +96259,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
   outlineComponent: {fileID: 1102328928}
   isPulsing: 1
-  minWidth: 2
-  maxWidth: 5
+  minWidth: 1
+  maxWidth: 2
   pulseSpeed: 5
 --- !u!114 &1102328928
 MonoBehaviour:
@@ -151130,8 +151130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
   outlineComponent: {fileID: 1755148664}
   isPulsing: 1
-  minWidth: 2
-  maxWidth: 5
+  minWidth: 1
+  maxWidth: 2
   pulseSpeed: 5
 --- !u!114 &1755148664
 MonoBehaviour:
@@ -167965,8 +167965,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
   outlineComponent: {fileID: 1983252892}
   isPulsing: 1
-  minWidth: 2
-  maxWidth: 5
+  minWidth: 1
+  maxWidth: 2
   pulseSpeed: 5
 --- !u!1 &1984368605
 GameObject:
@@ -170495,8 +170495,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
   outlineComponent: {fileID: 2041936613}
   isPulsing: 1
-  minWidth: 2
-  maxWidth: 5
+  minWidth: 1
+  maxWidth: 2
   pulseSpeed: 5
 --- !u!114 &2041936615
 MonoBehaviour:
@@ -173547,8 +173547,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskHighlight
   outlineComponent: {fileID: 2106703193}
   isPulsing: 1
-  minWidth: 5
-  maxWidth: 15
+  minWidth: 1
+  maxWidth: 2
   pulseSpeed: 5
 --- !u!1001 &2110840259
 PrefabInstance:
