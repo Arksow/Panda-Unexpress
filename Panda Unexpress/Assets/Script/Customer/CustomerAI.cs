@@ -149,16 +149,19 @@ public class CustomerAI : MonoBehaviour
         agent.SetDestination(leaveLocation.position);
     }
 
-    bool IsUpgradedOrder(CupData cup)
+    int GetUpgradeBonus(CupData cup)
     {
+        int bonus = 0;
         bool chocolateBase =
             cup.base1.ToString().ToLower().Contains("chocolate") ||
             cup.base2.ToString().ToLower().Contains("chocolate");
-
         bool extraAloe = cup.aloeScoopCount > 1;
-        bool brownSugar = cup.currentSugarType.ToString().ToLower().Contains("brownsugar");
-
-        return chocolateBase || extraAloe || brownSugar;
+        bool brownSugar =
+            cup.currentSugarType.ToString().ToLower().Contains("brownsugar");
+        if (chocolateBase) bonus += 2;
+        if (extraAloe) bonus += 2;
+        if (brownSugar) bonus += 2;
+        return bonus;
     }
 
     public void CheckOrder(CupData cup)
@@ -206,7 +209,7 @@ public class CustomerAI : MonoBehaviour
             if (EconomyManager.instance != null)
             {
                 StartCoroutine(ShowHeartBubble());
-                int reward = IsUpgradedOrder(receivedOrder) ? 12 : 10;
+                int reward = 10 + GetUpgradeBonus(receivedOrder);
                 EconomyManager.instance.AddMoney(reward);
             }
 
