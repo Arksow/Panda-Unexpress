@@ -452,11 +452,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71bd8ea26411c649b573395b550c718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterTextureRandomisation
-  textures:
-  - {fileID: 2800000, guid: f7d94c56edb612f4fa775461264ebf13, type: 3}
-  - {fileID: 2800000, guid: e08c5b20b5871fb4e915092e49380c05, type: 3}
-  - {fileID: 2800000, guid: cfe4a8dff97247d4a8090ffe5a014563, type: 3}
-  targetRenderer: {fileID: 1870320549571407364}
+  materials:
+  - {fileID: 2100000, guid: f2416880de6d7d4409e8509ec950cbfa, type: 2}
+  - {fileID: 2100000, guid: b2767b6d0997cb544b14b3a22175c5ac, type: 2}
+  - {fileID: 2100000, guid: fcb397d1dbdc9864694abc1c40066ee1, type: 2}
 --- !u!1 &8963101702713840451
 GameObject:
   m_ObjectHideFlags: 0
