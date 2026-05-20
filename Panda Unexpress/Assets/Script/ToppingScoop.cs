@@ -12,6 +12,7 @@ public class ToppingScoop : MonoBehaviour
     public GameObject aloeDropPrefab;
     public Transform dropSpawnPoint;
     public float dropAngleThreshold = 0.2f;
+    public AudioClip toppingSound;
 
     private ToppingType currentTopping = ToppingType.None;
 
@@ -27,6 +28,7 @@ public class ToppingScoop : MonoBehaviour
             ToppingBin bin = other.GetComponent<ToppingBin>();
             if (bin != null)
             {
+                AudioController.Instance?.PlayGlobalSFX(toppingSound, 2f);
                 FillScoop(bin.toppingType);
             }
         }
@@ -58,7 +60,7 @@ public class ToppingScoop : MonoBehaviour
         {
             Instantiate(prefabToDrop, dropSpawnPoint.position, Quaternion.identity);
         }
-
+        AudioController.Instance?.PlayGlobalSFX(toppingSound, 2f);
         ClearScoop();
     }
 

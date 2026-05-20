@@ -101,7 +101,7 @@ public class CustomerAI : MonoBehaviour
 
             progressImage.fillAmount -= decreaseSpeed * Time.deltaTime;
 
-            if (progressImage.fillAmount <= 30f && !hasHurried)
+            if (progressImage.fillAmount <= 0.3f && !hasHurried)
             {
                 AudioController.Instance?.PlayGlobalSFX(hurryUp);
                 hasHurried = true;
@@ -166,9 +166,9 @@ public class CustomerAI : MonoBehaviour
         bool extraAloe = cup.aloeScoopCount > 1;
         bool brownSugar =
             cup.currentSugarType.ToString().ToLower().Contains("brownsugar");
-        if (chocolateBase) bonus += 2;
-        if (extraAloe) bonus += 2;
-        if (brownSugar) bonus += 2;
+        if (chocolateBase) bonus += 5;
+        if (extraAloe) bonus += 5;
+        if (brownSugar) bonus += 5;
         return bonus;
     }
 

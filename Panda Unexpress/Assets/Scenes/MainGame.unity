@@ -166,7 +166,7 @@ AudioSource:
   m_GameObject: {fileID: 8493217}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2819747689622111136, guid: 03dc2bcad4101104d9da0bd39fba1042, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -214,7 +214,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -460,7 +460,7 @@ AudioSource:
   m_GameObject: {fileID: 18988813}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2819747689622111136, guid: 03dc2bcad4101104d9da0bd39fba1042, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -508,7 +508,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -8687,6 +8687,7 @@ MonoBehaviour:
   aloeDropPrefab: {fileID: 7252981104990096425, guid: 0e56670eed6b02b48a93e8b42a39f803, type: 3}
   dropSpawnPoint: {fileID: 22883508}
   dropAngleThreshold: 0.25
+  toppingSound: {fileID: 8300000, guid: 20f238b877dfac44d8a694b4bf04ac69, type: 3}
 --- !u!54 &475254304
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9557,7 +9558,7 @@ AudioSource:
   m_GameObject: {fileID: 587243056}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2819747689622111136, guid: 03dc2bcad4101104d9da0bd39fba1042, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -9605,7 +9606,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -38974,6 +38975,7 @@ MonoBehaviour:
     m_Bits: 64
   tiltThreshold: 0.25
   pourRadius: 0.25
+  iceSound: {fileID: 8300000, guid: 04f6141680dd7834f871d7b0e53d3ce3, type: 3}
 --- !u!65 &1858270956
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43238,7 +43240,7 @@ AudioSource:
   m_GameObject: {fileID: 924291277665119202}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4387198466214544383, guid: 03dc2bcad4101104d9da0bd39fba1042, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -43286,7 +43288,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -44293,7 +44295,7 @@ AudioSource:
   m_GameObject: {fileID: 543861093511651467}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2819747689622111136, guid: 03dc2bcad4101104d9da0bd39fba1042, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -44341,7 +44343,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
