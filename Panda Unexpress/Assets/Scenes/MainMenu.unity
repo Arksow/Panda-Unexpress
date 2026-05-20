@@ -3954,7 +3954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbd0255b2821f44db0e1cf8d732a195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FingerTracker
-  targetFinger: {fileID: 0}
+  targetFinger: {fileID: 1677221948}
 --- !u!135 &793243785
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4176,6 +4176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3c4cfd6af23f64a95c6695eb12adcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!4 &817428478 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3927134417883381813, guid: 329487ed031689d44afed5ccae84d862, type: 3}
+  m_PrefabInstance: {fileID: 1610820473}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &835591002
 GameObject:
   m_ObjectHideFlags: 0
@@ -9077,6 +9082,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650092414}
   m_Mesh: {fileID: 3628990442929905983, guid: 2b0aa5a3f40861f45bb7bc701d9ac7c1, type: 3}
+--- !u!4 &1677221948 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6560394293260380691, guid: 329487ed031689d44afed5ccae84d862, type: 3}
+  m_PrefabInstance: {fileID: 1610820473}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1682928794
 GameObject:
   m_ObjectHideFlags: 0
@@ -10089,7 +10099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbd0255b2821f44db0e1cf8d732a195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FingerTracker
-  targetFinger: {fileID: 0}
+  targetFinger: {fileID: 817428478}
 --- !u!135 &1899472652
 SphereCollider:
   m_ObjectHideFlags: 0
