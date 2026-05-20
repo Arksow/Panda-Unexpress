@@ -119131,7 +119131,7 @@ MonoBehaviour:
   pourPoint: {fileID: 1577872538}
   cupLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   tiltThreshold: 0.25
   pourRadius: 0.25
   manager: {fileID: 1625447331}
@@ -145771,7 +145771,7 @@ MonoBehaviour:
   steps:
   - stepText: welcome
     highlights: []
-  - stepText: grab cup
+  - stepText: grab the cup
     highlights:
     - {fileID: 677795155}
   - stepText: get ice scoop and bring your cup with you
@@ -145792,7 +145792,8 @@ MonoBehaviour:
   - stepText: Next some tea to make milk tea
     highlights:
     - {fileID: 1983252893}
-  - stepText: put sugar,control the level to set amount
+  - stepText: put sugar,control the level to set amount. Raise it to add less sugar,
+      lower it to add more
     highlights:
     - {fileID: 426899533}
   - stepText: get boba, then you can put it in the cup
