@@ -15,7 +15,7 @@ public class MenuController : MonoBehaviour
     public void Start()
     {
         menu.SetActive(true);
-        AudioController.Instance.PlayMusic(menuBGM);
+        AudioController.Instance.PlayMusic(menuBGM, 0.5f);
     }
 
     public void OnClickPlay()
@@ -27,7 +27,7 @@ public class MenuController : MonoBehaviour
             obj.SetActive(false);
         }
 
-        AudioController.Instance.PlayMusic(menuBGM);
+        AudioController.Instance.PlayMusic(menuBGM, 0.5f);
     }
     public void OnClickBack()
     {

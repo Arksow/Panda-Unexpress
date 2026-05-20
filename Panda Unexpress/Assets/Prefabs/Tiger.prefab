@@ -516,6 +516,7 @@ MonoBehaviour:
   heartBubble: {fileID: 8456227121259683280}
   correctOrder: {fileID: 8300000, guid: 61c9e3e5759491f4aa2fe27e6a89a24c, type: 3}
   wrongOrder: {fileID: 8300000, guid: f7a682d16dd727a49933765b3e3843b5, type: 3}
+  hurryUp: {fileID: 8300000, guid: 0321983c096f1b847bd5ef0552b739e0, type: 3}
   progressImage: {fileID: 4267179276053110209}
   gameSystem: {fileID: 0}
 --- !u!114 &2605866013391094725

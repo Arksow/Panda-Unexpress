@@ -14,6 +14,8 @@ public class AudioController : MonoBehaviour
     float musicVolume = 1f;
     float staticVolume = 1f;
 
+    private float currentMusicMultiplier = 1f;
+
     public bool IsPlaying() => musicSource != null && musicSource.isPlaying;
 
     private void Awake()
@@ -59,7 +61,7 @@ public class AudioController : MonoBehaviour
 
     void ApplyVolumes()
     {
-        musicSource.volume = masterVolume * musicVolume;
+        musicSource.volume = masterVolume * musicVolume * currentMusicMultiplier;
         staticSource.volume = masterVolume * staticVolume;
     }
 
@@ -109,13 +111,17 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    public void PlayMusic(AudioClip newClip)
+    public void PlayMusic(AudioClip newClip, float trackVolume = 1f)
     {
         if (musicSource.clip == newClip && musicSource.isPlaying)
             return;
 
+        currentMusicMultiplier = trackVolume;
+
         musicSource.clip = newClip;
         musicSource.loop = true;
         musicSource.Play();
+
+        ApplyVolumes();
     }
 }

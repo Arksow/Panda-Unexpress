@@ -38,14 +38,16 @@ public class CustomerAI : MonoBehaviour
     private float bubbleDuration = 2f;
 
     [Header("Audio")]
-    public AudioClip correctOrder;
-    public AudioClip wrongOrder;
+    [SerializeField] private AudioClip correctOrder;
+    [SerializeField] private AudioClip wrongOrder;
+    [SerializeField] private AudioClip hurryUp;
 
     private NavMeshAgent agent;
     [SerializeField] private Image progressImage;
 
     private bool reachedCounter = false;
     private bool isLeaving = false;
+    private bool hasHurried = false;
 
     public System.Action onCustomerLeave;
     public GameSystem gameSystem;
@@ -98,6 +100,12 @@ public class CustomerAI : MonoBehaviour
             }
 
             progressImage.fillAmount -= decreaseSpeed * Time.deltaTime;
+
+            if (progressImage.fillAmount <= 30f && !hasHurried)
+            {
+                AudioController.Instance?.PlayGlobalSFX(hurryUp);
+                hasHurried = true;
+            }
 
             if (progressImage.fillAmount <= 0f && !hasFailed)
             {
