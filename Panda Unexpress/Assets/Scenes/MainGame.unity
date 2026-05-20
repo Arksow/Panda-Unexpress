@@ -27268,6 +27268,7 @@ MonoBehaviour:
   failedOrders: 0
   currentWave: 1
   activeCustomers: 0
+  customersRemainingInWave: 0
   waveSpeedLimit: 45
 --- !u!114 &1625447332
 MonoBehaviour:
@@ -51345,7 +51346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CupDispenser
   dispenserSocket: {fileID: 409713322}
   cupPrefab: {fileID: 8958696451032635468, guid: 1c270239ade7b7041a6e01af867b542e, type: 3}
-  maxCups: 10
+  maxCups: 5
   masterRecipeList:
   - {fileID: 11400000, guid: 0b499cafd9977fc4987012650b92054c, type: 2}
   - {fileID: 11400000, guid: 522ab6ae51620ec47b54356f3c5ae9c2, type: 2}

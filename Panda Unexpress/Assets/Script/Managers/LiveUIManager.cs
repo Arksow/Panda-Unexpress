@@ -40,7 +40,7 @@ public class LiveUIManager : MonoBehaviour
 
             if (activeCustomersText != null)
             {
-                activeCustomersText.text = $"Waiting: {gameSystem.activeCustomers}";
+                activeCustomersText.text = $"Remaining: {gameSystem.customersRemainingInWave}";
             }
         }
     }

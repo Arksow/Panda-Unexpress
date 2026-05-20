@@ -15,6 +15,15 @@ public class CupData : MonoBehaviour
 
     public Renderer liquidRenderer;
 
+    [Tooltip("The physical ice cubes sitting at the bottom of the cup")]
+    public GameObject iceVisualDry;
+    [Tooltip("The ice cubes floating at the top of the liquid")]
+    public GameObject iceVisualFloating;
+    [Tooltip("The boba pearls at the bottom")]
+    public GameObject bobaVisual;
+    [Tooltip("The aloe vera chunks at the bottom")]
+    public GameObject aloeVisual;
+
     public float sugarPercentage = 0f;
     public SugarType currentSugarType = SugarType.None;
 
@@ -51,6 +60,7 @@ public class CupData : MonoBehaviour
     {
         meltTimer = maxMeltTime;
         uiCanvas.SetActive(true);
+        UpdateVisuals();
         UpdateUI();
     }
 
@@ -104,6 +114,7 @@ public class CupData : MonoBehaviour
         }
 
         UpdateUI();
+        UpdateVisuals();
     }
 
     public void SetSugar(float percentage, SugarType type)
@@ -171,6 +182,7 @@ public class CupData : MonoBehaviour
         }
 
         UpdateUI();
+        UpdateVisuals();
     }
 
     private void ValidateRecipe()
@@ -215,6 +227,33 @@ public class CupData : MonoBehaviour
             aloeScoopCount += amount;
 
         UpdateUI();
+        UpdateVisuals();
         OnBobaAdded?.Invoke();
+    }
+
+    private void UpdateVisuals()
+    {
+        bool hasLiquid = base1Amount > 0 || base2Amount > 0;
+        bool hasIce = iceScoopCount > 0;
+
+        if (iceVisualDry != null)
+        {
+            iceVisualDry.SetActive(hasIce && !hasLiquid);
+        }
+
+        if (iceVisualFloating != null)
+        {
+            iceVisualFloating.SetActive(hasIce && hasLiquid);
+        }
+
+        if (bobaVisual != null)
+        {
+            bobaVisual.SetActive(bobaScoopCount > 0);
+        }
+
+        if (aloeVisual != null)
+        {
+            aloeVisual.SetActive(aloeScoopCount > 0);
+        }
     }
 }
