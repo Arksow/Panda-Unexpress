@@ -12327,6 +12327,7 @@ MonoBehaviour:
   aloeDropPrefab: {fileID: 0}
   dropSpawnPoint: {fileID: 0}
   dropAngleThreshold: 0.2
+  toppingSound: {fileID: 0}
 --- !u!4 &169050184
 Transform:
   m_ObjectHideFlags: 0
@@ -75457,6 +75458,7 @@ MonoBehaviour:
     m_Bits: 64
   tiltThreshold: 0.5
   pourRadius: 0.25
+  iceSound: {fileID: 0}
 --- !u!65 &871122869
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90429,6 +90431,7 @@ MonoBehaviour:
   aloeDropPrefab: {fileID: 0}
   dropSpawnPoint: {fileID: 0}
   dropAngleThreshold: 0.2
+  toppingSound: {fileID: 0}
 --- !u!4 &1022006907
 Transform:
   m_ObjectHideFlags: 0
@@ -101410,6 +101413,7 @@ MonoBehaviour:
     m_Bits: 64
   tiltThreshold: 0.5
   pourRadius: 0.25
+  iceSound: {fileID: 0}
 --- !u!4 &1147733880
 Transform:
   m_ObjectHideFlags: 0
@@ -119798,6 +119802,7 @@ MonoBehaviour:
     m_Bits: 64
   tiltThreshold: 0.5
   pourRadius: 0.25
+  iceSound: {fileID: 0}
 --- !u!4 &1245508603
 Transform:
   m_ObjectHideFlags: 0
@@ -119885,6 +119890,7 @@ MonoBehaviour:
     m_Bits: 64
   tiltThreshold: 0.5
   pourRadius: 0.25
+  iceSound: {fileID: 0}
   manager: {fileID: 1625447331}
   getIceStep: 3
   pourIceStep: 4
@@ -122310,6 +122316,7 @@ MonoBehaviour:
     m_Bits: 64
   tiltThreshold: 0.25
   pourRadius: 0.25
+  iceSound: {fileID: 8300000, guid: 04f6141680dd7834f871d7b0e53d3ce3, type: 3}
 --- !u!65 &1301176455
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -122407,6 +122414,7 @@ MonoBehaviour:
     m_Bits: 0
   tiltThreshold: 0.25
   pourRadius: 0.25
+  iceSound: {fileID: 0}
   manager: {fileID: 1625447331}
   getIceStep: 3
   pourIceStep: 4
@@ -142092,6 +142100,7 @@ MonoBehaviour:
   aloeDropPrefab: {fileID: 0}
   dropSpawnPoint: {fileID: 0}
   dropAngleThreshold: 0.2
+  toppingSound: {fileID: 0}
 --- !u!135 &1529738376
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -155389,6 +155398,7 @@ MonoBehaviour:
   aloeDropPrefab: {fileID: 7252981104990096425, guid: 0e56670eed6b02b48a93e8b42a39f803, type: 3}
   dropSpawnPoint: {fileID: 312303088}
   dropAngleThreshold: 0.25
+  toppingSound: {fileID: 8300000, guid: 20f238b877dfac44d8a694b4bf04ac69, type: 3}
 --- !u!23 &1755148661
 MeshRenderer:
   m_ObjectHideFlags: 0
