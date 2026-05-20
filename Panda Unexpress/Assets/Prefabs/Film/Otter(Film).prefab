@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6585553062927986062}
   - component: {fileID: -389669258415188671}
   - component: {fileID: 3048224134137227757}
-  - component: {fileID: 9023236613880162286}
   - component: {fileID: 3040350237832341918}
   m_Layer: 0
   m_Name: Otter(Film)
@@ -159,33 +158,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &9023236613880162286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7363462436892381181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1027a87c1844e3449af62fd3dba13407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CustomerAI
-  leaveLocation: {fileID: 0}
-  customerLocation: {fileID: 0}
-  orderGenerator: {fileID: 0}
-  customerID: 0
-  animator: {fileID: 8576573234941501593}
-  currentOrders: []
-  orderCount: 1
-  receivedOrder: {fileID: 0}
-  orderUI: {fileID: 0}
-  decreaseSpeed: 0.001
-  textBubble: {fileID: 0}
-  correctOrder: {fileID: 8300000, guid: 61c9e3e5759491f4aa2fe27e6a89a24c, type: 3}
-  wrongOrder: {fileID: 0}
-  progressImage: {fileID: 0}
-  gameSystem: {fileID: 0}
 --- !u!114 &3040350237832341918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,10 +450,5 @@ PrefabInstance:
 --- !u!4 &2442700587988581091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5d405a4d7c400b2479307c2cc1cc1c5c, type: 3}
-  m_PrefabInstance: {fileID: 2768744290834128136}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &8576573234941501593 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5d405a4d7c400b2479307c2cc1cc1c5c, type: 3}
   m_PrefabInstance: {fileID: 2768744290834128136}
   m_PrefabAsset: {fileID: 0}
