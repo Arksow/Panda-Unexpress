@@ -150386,7 +150386,7 @@ MonoBehaviour:
   gameSystem: {fileID: 1625447333}
   mainMenuSceneName: MainMenu
   tutorialManager: {fileID: 1625447331}
-  step: 10
+  step: 11
 --- !u!1 &1627303535
 GameObject:
   m_ObjectHideFlags: 0
