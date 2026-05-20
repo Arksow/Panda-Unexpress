@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 3280876208593767041}
   - component: {fileID: 7114706447080809602}
   - component: {fileID: 1591816120522588946}
+  - component: {fileID: 6400211659210733033}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Customer
@@ -262,6 +263,20 @@ MonoBehaviour:
   wrongOrder: {fileID: 8300000, guid: 61c9e3e5759491f4aa2fe27e6a89a24c, type: 3}
   progressImage: {fileID: 1143933482538336016}
   gameSystem: {fileID: 0}
+--- !u!114 &6400211659210733033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580090564196132669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e71bd8ea26411c649b573395b550c718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterTextureRandomisation
+  materials: []
+  targetRenderer: {fileID: 7447112309760845613}
 --- !u!1 &6130658321879856375
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,5 +779,10 @@ Animator:
 --- !u!4 &7297759003079423840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0e4a6c540daa67c4da06f37bee3dd5bc, type: 3}
+  m_PrefabInstance: {fileID: 7119171044527067275}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &7447112309760845613 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -8821120754856511578, guid: 0e4a6c540daa67c4da06f37bee3dd5bc, type: 3}
   m_PrefabInstance: {fileID: 7119171044527067275}
   m_PrefabAsset: {fileID: 0}
