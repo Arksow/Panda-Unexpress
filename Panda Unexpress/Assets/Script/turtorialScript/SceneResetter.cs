@@ -9,12 +9,12 @@ public class SceneResetter : MonoBehaviour
 
     public void RestartTutorial()
     {
-        StartCoroutine(LoadScene(tutorialScene));
+        SceneManager.LoadScene(tutorialScene);
     }
 
     public void ReturnToMenu()
     {
-        StartCoroutine(LoadScene(mainMenuScene));
+        SceneManager.LoadScene(mainMenuScene);
     }
 
     private IEnumerator LoadScene(string sceneName)
