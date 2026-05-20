@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2689868909008289956}
   - component: {fileID: 3280876208593767041}
   - component: {fileID: 7114706447080809602}
-  - component: {fileID: 1591816120522588946}
   - component: {fileID: 6400211659210733033}
   m_Layer: 0
   m_Name: Bird(Film)
@@ -159,33 +158,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1591816120522588946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5580090564196132669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1027a87c1844e3449af62fd3dba13407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CustomerAI
-  leaveLocation: {fileID: 0}
-  customerLocation: {fileID: 0}
-  orderGenerator: {fileID: 0}
-  customerID: 0
-  animator: {fileID: 3721932559375461658}
-  currentOrders: []
-  orderCount: 1
-  receivedOrder: {fileID: 0}
-  orderUI: {fileID: 0}
-  decreaseSpeed: 0.001
-  textBubble: {fileID: 0}
-  correctOrder: {fileID: 0}
-  wrongOrder: {fileID: 8300000, guid: 61c9e3e5759491f4aa2fe27e6a89a24c, type: 3}
-  progressImage: {fileID: 0}
-  gameSystem: {fileID: 0}
 --- !u!114 &6400211659210733033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,11 +443,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e4a6c540daa67c4da06f37bee3dd5bc, type: 3}
---- !u!95 &3721932559375461658 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 0e4a6c540daa67c4da06f37bee3dd5bc, type: 3}
-  m_PrefabInstance: {fileID: 7119171044527067275}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7297759003079423840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0e4a6c540daa67c4da06f37bee3dd5bc, type: 3}
