@@ -44,6 +44,8 @@ public class GameSystem : MonoBehaviour
     public int currentWave = 1;
     public int activeCustomers = 0;
 
+    public int customersRemainingInWave = 0;
+
     private int customerStartingWave = 5;
     private int customersWithExtraDrink = 0;
 
@@ -70,6 +72,8 @@ public class GameSystem : MonoBehaviour
     {
         while (!isGameOver)
         {
+            customersRemainingInWave = customerStartingWave;
+
             // Prepare which customers get extra drinks
             List<int> extraDrinkIndexes = new List<int>();
 
@@ -241,6 +245,7 @@ public class GameSystem : MonoBehaviour
         {
             freeSlot.isOccupied = false;
             activeCustomers--;
+            customersRemainingInWave--;
             freeSlot.slotUI.ClearCustomer(ai);
         };
     }
