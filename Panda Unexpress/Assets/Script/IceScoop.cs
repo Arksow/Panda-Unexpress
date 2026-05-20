@@ -10,6 +10,7 @@ public class IceScoop : MonoBehaviour
     public float pourRadius = 0.25f;
 
     private bool isFull = false;
+    public AudioClip iceSound;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class IceScoop : MonoBehaviour
         if (other.CompareTag("IceBin") && !isFull)
         {
             isFull = true;
+            AudioController.Instance?.PlayGlobalSFX(iceSound, 1.5f);
             Ice.SetActive(true);
         }
     }
@@ -59,6 +61,7 @@ public class IceScoop : MonoBehaviour
         }
 
         isFull = false;
+        AudioController.Instance?.PlayGlobalSFX(iceSound, 1.5f);
         Ice.SetActive(false);
     }
 
