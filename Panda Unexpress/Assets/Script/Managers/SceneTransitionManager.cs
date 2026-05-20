@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI; // Required for UI elements
 using System.Collections;
 
 public class SceneTransitionManager : MonoBehaviour
@@ -12,6 +13,12 @@ public class SceneTransitionManager : MonoBehaviour
     public string gameScene = "MainGame";
     public string gameOverScene = "GameOver";
     public string tutorialScene = "TurtorialScene";
+
+    [Header("Loading Screen UI")]
+    public GameObject loadingScreenPanel;
+    public Image loadingImageTarget;
+    public Sprite loadingSprite;
+
     private void Awake()
     {
         if (instance == null)
@@ -29,10 +36,12 @@ public class SceneTransitionManager : MonoBehaviour
     {
         StartCoroutine(LoadSceneAsync(gameScene));
     }
+
     public void StartTutorial()
     {
         StartCoroutine(LoadSceneAsync(tutorialScene));
     }
+
     public void EndShift()
     {
         StartCoroutine(LoadSceneAsync(gameOverScene));
@@ -45,13 +54,32 @@ public class SceneTransitionManager : MonoBehaviour
 
     private IEnumerator LoadSceneAsync(string sceneName)
     {
+        if (loadingScreenPanel != null)
+        {
+            if (loadingImageTarget != null && loadingSprite != null)
+            {
+                loadingImageTarget.sprite = loadingSprite;
+            }
+
+            loadingScreenPanel.SetActive(true);
+        }
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
         while (!asyncLoad.isDone)
+        {
             yield return null;
+        }
+
+        if (loadingScreenPanel != null)
+        {
+            loadingScreenPanel.SetActive(false);
+        }
 
         if (AudioController.Instance != null)
+        {
             AudioController.Instance.PlayMusic(bgm);
+        }
 
         Debug.Log("Successfully transitioned to: " + sceneName);
     }

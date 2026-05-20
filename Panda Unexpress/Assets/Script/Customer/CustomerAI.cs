@@ -34,6 +34,7 @@ public class CustomerAI : MonoBehaviour
 
     [Header("Speech Bubble")]
     [SerializeField] private GameObject textBubble;
+    [SerializeField] private GameObject heartBubble;
     private float bubbleDuration = 2f;
 
     [Header("Audio")]
@@ -62,6 +63,9 @@ public class CustomerAI : MonoBehaviour
 
         if (textBubble != null)
             textBubble.SetActive(false);
+
+        if (heartBubble != null)
+            heartBubble.SetActive(false);
     }
 
     void Update()
@@ -145,6 +149,18 @@ public class CustomerAI : MonoBehaviour
         agent.SetDestination(leaveLocation.position);
     }
 
+    bool IsUpgradedOrder(CupData cup)
+    {
+        bool chocolateBase =
+            cup.base1.ToString().ToLower().Contains("chocolate") ||
+            cup.base2.ToString().ToLower().Contains("chocolate");
+
+        bool extraAloe = cup.aloeScoopCount > 1;
+        bool brownSugar = cup.currentSugarType.ToString().ToLower().Contains("brownsugar");
+
+        return chocolateBase || extraAloe || brownSugar;
+    }
+
     public void CheckOrder(CupData cup)
     {
         if (isLeaving) return;
@@ -189,7 +205,9 @@ public class CustomerAI : MonoBehaviour
 
             if (EconomyManager.instance != null)
             {
-                EconomyManager.instance.AddMoney(10);
+                StartCoroutine(ShowHeartBubble());
+                int reward = IsUpgradedOrder(receivedOrder) ? 12 : 10;
+                EconomyManager.instance.AddMoney(reward);
             }
 
             if (EventManager.instance != null)
@@ -203,9 +221,7 @@ public class CustomerAI : MonoBehaviour
             {
                 progressImage.fillAmount = 0f;
                 AudioController.Instance?.PlayGlobalSFX(correctOrder);
-
                 ClearCustomerUI();
-              
                 LeaveStore();
             }
         }
@@ -215,7 +231,6 @@ public class CustomerAI : MonoBehaviour
             {
                 hasFailed = true;
                 gameSystem?.RegisterFailedOrder();
-
                 AudioController.Instance?.PlayGlobalSFX(wrongOrder);
             }
 
@@ -259,5 +274,12 @@ public class CustomerAI : MonoBehaviour
         textBubble.SetActive(true);
         yield return new WaitForSeconds(bubbleDuration);
         textBubble.SetActive(false);
+    }
+
+    IEnumerator ShowHeartBubble()
+    {
+        heartBubble.SetActive(true);
+        yield return new WaitForSeconds(bubbleDuration);
+        heartBubble.SetActive(false);
     }
 }
