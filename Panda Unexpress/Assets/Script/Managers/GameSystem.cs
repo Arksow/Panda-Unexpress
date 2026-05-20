@@ -134,6 +134,7 @@ public class GameSystem : MonoBehaviour
                 if (timer >= waveDelay)
                 {
                     waitingForNextWave = false;
+                    wavePanel.SetActive(false);
                 }
 
                 yield return null;
