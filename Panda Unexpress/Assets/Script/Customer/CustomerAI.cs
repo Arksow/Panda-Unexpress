@@ -29,7 +29,7 @@ public class CustomerAI : MonoBehaviour
 
     [Header("Progress")]
     [HideInInspector]
-    public float decreaseSpeed = 0.01f;
+    public float decreaseSpeed = 0.03f;
     private bool orderGenerated = false;
 
     [Header("Speech Bubble")]
@@ -214,22 +214,20 @@ public class CustomerAI : MonoBehaviour
         {
             currentOrders.RemoveAt(matchedIndex);
 
-            if (EconomyManager.instance != null)
-            {
-                StartCoroutine(ShowHeartBubble());
-                int reward = 10 + GetUpgradeBonus(receivedOrder);
-                EconomyManager.instance.AddMoney(reward);
-            }
-
-            if (EventManager.instance != null)
-            {
-                EventManager.instance.RollForRandomEvent();
-            }
-
             orderUI?.UpdateUI();
 
             if (currentOrders.Count == 0)
             {
+                if (EconomyManager.instance != null)
+                {
+                    StartCoroutine(ShowHeartBubble());
+                    int reward = 10 + GetUpgradeBonus(receivedOrder);
+                    EconomyManager.instance.AddMoney(reward);
+                }
+                if (EventManager.instance != null)
+                {
+                    EventManager.instance.RollForRandomEvent();
+                }
                 progressImage.fillAmount = 0f;
                 AudioController.Instance?.PlayGlobalSFX(correctOrder);
                 ClearCustomerUI();
