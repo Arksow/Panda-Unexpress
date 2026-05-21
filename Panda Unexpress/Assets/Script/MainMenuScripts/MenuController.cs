@@ -10,8 +10,26 @@ public class MenuController : MonoBehaviour
     public  GameObject[] ObjectsToHide;
 
     public AudioClip menuBGM;
-
-
+    public void HideObjects()
+    {
+        foreach (GameObject obj in ObjectsToHide)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(false);
+            }
+        }
+    }
+    public void ShowObjects()
+    {
+        foreach (GameObject obj in ObjectsToHide)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(true);
+            }
+        }
+    }
     public void Start()
     {
         menu.SetActive(true);
@@ -22,10 +40,7 @@ public class MenuController : MonoBehaviour
     {
         menu.SetActive(false);
         Level.SetActive(true);
-        foreach (var obj in ObjectsToHide)
-        {
-            obj.SetActive(false);
-        }
+        HideObjects();
 
         AudioController.Instance.PlayMusic(menuBGM, 0.5f);
     }
@@ -33,17 +48,20 @@ public class MenuController : MonoBehaviour
     {
         menu.SetActive(true);
         Level.SetActive(false);
+        ShowObjects();
     }
     public void OnClickSettings()
     {
         menu.SetActive(false);
         Settings.SetActive(true);
+        HideObjects();
     }
 
     public void OnClickSettingsBack()
     {
         menu.SetActive(true);
         Settings.SetActive(false);
+        ShowObjects();
     }
     public void OnClickControls()
     {

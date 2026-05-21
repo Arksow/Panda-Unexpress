@@ -2607,6 +2607,7 @@ MonoBehaviour:
   - {fileID: 362762887}
   - {fileID: 1940229771}
   - {fileID: 471623516}
+  - {fileID: 289012058}
   menuBGM: {fileID: 8300000, guid: 7aef442fce7c07446b1c8dbf12a75e0b, type: 3}
 --- !u!114 &424422796
 MonoBehaviour:

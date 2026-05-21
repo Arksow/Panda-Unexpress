@@ -33,6 +33,7 @@ public class voiceTask : MonoBehaviour
     {
         if (completed || !debugSkipWithButton || debugSkipReference == null) return;
 
+        //debug check NOT added in build
         // Check the ACTUAL current state of the button
         bool isCurrentlyPressed = debugSkipReference.action.IsPressed();
 

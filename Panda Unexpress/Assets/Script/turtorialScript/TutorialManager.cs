@@ -48,7 +48,7 @@ public class TutorialManager : MonoBehaviour
             if (h != null)
                 h.SetHighlight(true);
         }
-        if (currentSteps == 10 && tutorialCustomerController != null)
+        if (currentSteps == 11 && tutorialCustomerController != null)
         {
             tutorialCustomerController.SpawnSingleCustomer();
         }
