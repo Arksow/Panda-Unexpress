@@ -4436,7 +4436,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.0023, y: 0.004530205}
+  m_AnchoredPosition: {x: -0.00041, y: 0.004530205}
   m_SizeDelta: {x: 0.05, y: 0.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &100968099
@@ -16786,7 +16786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0266, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.2, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &298364121
@@ -16809,7 +16809,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Brown Sugar
+  m_text: BROWN SUGAR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17664,7 +17664,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.00121, y: 0.0045300857}
+  m_AnchoredPosition: {x: -0.00014, y: 0.0045300857}
   m_SizeDelta: {x: 0.05, y: 0.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &316187048
@@ -147700,7 +147700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Buttons
   buttonCap: {fileID: 1557911288}
-  pressDownDistance: 0.02
+  pressDownDistance: 0.001
   onButtonDown:
     m_PersistentCalls:
       m_Calls:
@@ -148114,7 +148114,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Syrup
+  m_text: SYRUP
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -153321,7 +153321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.00152, y: 0.0045300857}
+  m_AnchoredPosition: {x: -0.00025, y: 0.0045300857}
   m_SizeDelta: {x: 0.05, y: 0.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1697681143
