@@ -48,7 +48,17 @@ public class OrderUIManager : MonoBehaviour
             }
 
             text += "- " + GetScoopText(order.iceAmount, "Ice") + "\n";
-            text += "- " + GetScoopText(order.bobaAmount, "Boba") + "\n\n";
+            if (order.toppingType == ToppingType.None)
+            {
+                text += "- No Topping\n\n";
+            }
+            else
+            {
+                int toppingAmount = order.toppingType == ToppingType.Boba
+                    ? order.bobaAmount
+                    : order.aloeAmount;
+                text += "- " + GetScoopText(toppingAmount, order.toppingType.ToString()) + "\n\n";
+            }
         }
 
         orderText.text = text;

@@ -228,7 +228,10 @@ public class CupData : MonoBehaviour
 
         UpdateUI();
         UpdateVisuals();
-        OnBobaAdded?.Invoke();
+        if (type == ToppingType.Boba)
+        {
+            OnBobaAdded?.Invoke();
+        }
     }
 
     private void UpdateVisuals()

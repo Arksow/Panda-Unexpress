@@ -13,6 +13,7 @@ public class CupDispenser : MonoBehaviour
 
     private Grabbable currentCup;
     private Rigidbody currentRb;
+    private Coroutine pendingCupSpawn;
     public System.Action OnDispenserRefilled;
 
     public AudioClip popSound;
@@ -97,7 +98,7 @@ public class CupDispenser : MonoBehaviour
 
         if (cupsRemaining > 0)
         {
-            StartCoroutine(WaitAndSpawnCup());
+            pendingCupSpawn = StartCoroutine(WaitAndSpawnCup());
         }
     }
 
@@ -106,6 +107,7 @@ public class CupDispenser : MonoBehaviour
         yield return new WaitForSeconds(0.75f);
         yield return new WaitUntil(() => !dispenserSocket.IsBlocked());
         SpawnNewCup();
+        pendingCupSpawn = null;
     }
 
     private void StopHaptics()
@@ -122,6 +124,11 @@ public class CupDispenser : MonoBehaviour
         cupsRemaining = maxCups;
         if (currentCup == null)
         {
+            if (pendingCupSpawn != null)
+            {
+                StopCoroutine(pendingCupSpawn);
+                pendingCupSpawn = null;
+            }
             SpawnNewCup();
         }
         Debug.Log("Dispenser Refilled via Voice Command!");

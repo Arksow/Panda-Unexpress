@@ -20,7 +20,15 @@ public class OrderSystem : MonoBehaviour
         //Boba
         bool hasBobaUpgrade = PlayerPrefs.GetInt("BobaUpgrade", 0) == 1;
         order.toppingType = (ToppingType)Random.Range(0,hasBobaUpgrade ? 3 : 2);
-        order.bobaAmount = GetRandomBoba(order.toppingType);
+        int toppingAmount = GetRandomBoba(order.toppingType);
+        if (order.toppingType == ToppingType.Boba)
+        {
+            order.bobaAmount = toppingAmount;
+        }
+        else if (order.toppingType == ToppingType.AloeVera)
+        {
+            order.aloeAmount = toppingAmount;
+        }
 
         return order;
     }
@@ -103,6 +111,8 @@ public class OrderSystem : MonoBehaviour
     //Boba values
     int GetRandomBoba(ToppingType bobaType)
     {
+        if (bobaType == ToppingType.None) return 0;
+
         float roll = Random.value;
 
         if (roll < 0.20f) return 0;
